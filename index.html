@@ -73,13 +73,34 @@ input[type="text"], input[type="email"], select { width: 100%; padding: 12px; bo
 footer { background: var(--eu-blue); color: #fff; padding: 50px 10%; margin-top: 80px; font-size: 13px; text-align: center; }
 footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
 
-/* PRINT STYLES FOR PDF GENERATION */
+.print-footer { display: none; }
+
+/* PRINT STYLES FOR CLEAN PDF GENERATION */
+@page {
+  margin: 1.5cm; /* Suppresses default browser URL/header/footer */
+}
+
 @media print {
   .eu-top-banner, .btn-eu, .btn-outline, .lang-select, footer, #langSelect { display: none !important; }
-  body { background: #fff; color: #000; }
+  body { background: #fff; color: #000; padding: 0; margin: 0; }
   .card { border: none; box-shadow: none; padding: 0; }
   .main-content { max-width: 100%; margin: 0; padding: 0; }
   header { border-bottom: 2px solid var(--eu-blue); padding-bottom: 20px; }
+  
+  /* Custom Official PDF Footer */
+  .print-footer {
+    display: block !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    background: #fff;
+  }
 }
 </style>
 </head>
@@ -183,7 +204,7 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
         <div class="aml-item"><i class="fas fa-check-circle"></i> <span><strong data-i18n="aml4Title">Transaction Review</strong> — <span data-i18n="aml4Desc">History analyzed; structural flags attributed to technical parameters, not misconduct</span></span></div>
         <div class="aml-item"><i class="fas fa-check-circle"></i> <span><strong data-i18n="aml5Title">Risk Screening</strong> — <span data-i18n="aml5Desc">No sanctions, fraud, or prohibited activity detected</span></span></div>
         <div class="aml-item"><i class="fas fa-check-circle"></i> <span><strong data-i18n="aml6Title">Enhanced Due Diligence (EDD)</strong> — <span data-i18n="aml6Desc">Satisfied for AML classification</span></span></div>
-        <div class="aml-item"><i class="fas fa-times-circle"></i> <span><strong data-i18n="aml7Title">Guarantee Deposit</strong> — <span style="color:var(--danger); font-weight:700;" data-i18n="aml7Desc">REQUIRED FOR CERTIFICATE ISSUANCE</span></span></div>
+        <div class="aml-item"><i class="fas fa-times-circle"></i> <span><strong data-i18n="aml7Title">Guarantee Deposit</strong> — <span style="color:var(--danger); font-weight:700;" data-i18n="aml7Desc">REQUIRED AS A PROOF OF LIQUIDITY</span></span></div>
       </div>
 
       <!-- DEADLINE WARNING BOX -->
@@ -266,6 +287,11 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
     </div>
 
   </div>
+</div>
+
+<!-- PRINT ONLY OFFICIAL FOOTER -->
+<div class="print-footer">
+  Official European Securities and Markets Authority Portal — <strong>https://www.esma.europa.eu/</strong>
 </div>
 
 <!-- AGREEMENT MODAL -->
@@ -668,7 +694,7 @@ const i18n = {
     btnConfirmDeposit: "CONFIRMAR DEPÓSITO ENVIADO",
     btnCancel: "Cancelar y volver al Portal de la ESMA",
     modalTitle: "Afirmación de Cumplimiento",
-    modalText: "Reconozco el marco <strong>MiCA (Reglamento UE 2023/1114)</strong> y entiendo que la liberación de fondos está estrictamente supeditada a la verificación del depósito de garantía obligatorio.",
+    modalText: "Reconozco el marco <strong>MiCA (Reglamento UE 2023/1114)</strong> y entiendo que la liberación de fondos está strictly supeditada a la verificación del depósito de garantía obligatorio.",
     btnModalProceed: "PROCEDER A LA VERIFICACIÓN",
     dispatchModalTitle: "Envío de Depósito Registrado",
     dispatchModalText: "Por favor envíe su <strong>Comprobante de Pago</strong> (Hash de Transacción / Recibo) directamente a su Oficial de Cumplimiento Financiero asignado para facilitar la verificación inmediata y la liberación del certificado.",
@@ -802,7 +828,7 @@ const i18n = {
     p8Title: "Passerelle de Paiement Séquestre Sécurisée",
     p8Sub: "Transaction Validée par ESMA / MiCA",
     p8AmountSend: "MONTANT À ENVOYER",
-    p8FiatVal: "VALEUR FIAT",
+    p8FiatVal: "FIAT VALUE",
     p8Network: "RÉSEAU",
     p8EscrowAddr: "ADRESSE OFFICIELLE DE SÉQUESTRE",
     btnConfirmDeposit: "CONFIRMER LE DÉPÔT ENVOYÉ",
