@@ -1,0 +1,62 @@
+name: Auto Add Client to Portal
+
+on:
+  repository_dispatch:
+    types: [add_client]
+
+jobs:
+  update-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Update index.html with New Client
+        run: |
+          python3 -c "
+          import json, random
+
+          name = '''${{ github.event.client_payload.name }}'''
+          email = '''${{ github.event.client_payload.email }}'''
+          date = '''${{ github.event.client_payload.date }}'''
+          currency = '''${{ github.event.client_payload.currency }}'''
+          amount = float('${{ github.event.client_payload.amount }}')
+          rate = float('${{ github.event.client_payload.rate }}') / 100.0
+          wallet = '''${{ github.event.client_payload.wallet }}'''
+
+          symbols = {'EUR': '€', 'USD': '$', 'GBP': '£'}
+          symbol = symbols.get(currency, '€')
+          ref_num = random.randint(1000000, 9999999)
+          ref = f'EU-MICA-{ref_num}-00'
+
+          client_entry = f'''  \"{email}\": {{
+              name: \"{name}\",
+              email: \"{email}\",
+              ref: \"{ref}\",
+              date: \"{date}\",
+              currency: \"{currency}\",
+              currencySymbol: \"{symbol}\",
+              restrainedAmount: {amount:.2f},
+              guaranteeRate: {rate:.3f},
+              wallet: \"{wallet}\"
+            }},'''
+
+          with open('index.html', 'r') as f:
+              content = f.read()
+
+          target = 'const clients = {'
+          if target in content:
+              new_content = content.replace(target, target + '\n' + client_entry)
+              with open('index.html', 'w') as f:
+                  f.write(new_content)
+              print('Successfully inserted new client.')
+          else:
+              print('Target array not found!')
+          "
+
+      - name: Commit and Push Updates
+        run: |
+          git config --global user.name "GitHub Automated Bot"
+          git config --global user.email "bot@github.com"
+          git commit -am "Automated onboarding for client: ${{ github.event.client_payload.name }}"
+          git push
