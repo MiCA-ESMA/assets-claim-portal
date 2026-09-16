@@ -70,8 +70,43 @@ input[type="text"], input[type="email"], select { width: 100%; padding: 12px; bo
 .modal-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; }
 .modal-box { background: white; padding: 40px; max-width: 550px; border-radius: 4px; text-align: left; }
 
-footer { background: var(--eu-blue); color: #fff; padding: 50px 10%; margin-top: 80px; font-size: 13px; text-align: center; }
-footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
+footer { 
+  background-color: #E2E2EC; 
+  padding: 40px 10%; 
+  margin-top: 80px; 
+  font-size: 13px; 
+  font-family: sans-serif;
+  color: #333333;
+}
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+.footer-content {
+  flex: 1;
+  text-align: center;
+}
+footer a { 
+  color: #0055CC; 
+  font-family: sans-serif; 
+  text-decoration: underline; 
+  margin: 0 10px; 
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
 
 .print-footer { display: none; }
 
@@ -321,11 +356,20 @@ footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
   </div>
 </div>
 
-<footer>
-  <a href="https://www.esma.europa.eu/cookie-policy" target="_blank" data-i18n="ftrCookie">Cookie Policy</a> | 
-  <a href="https://www.esma.europa.eu/legal-notice" target="_blank" data-i18n="ftrLegal">Legal Notice</a>
-  <div style="color: var(--eu-yellow); margin: 15px 0;">Support: support@mica-ch.info</div>
-  <p>© 2026 European Securities and Markets Authority</p>
+<footer style="background-color: #E2E2EC; padding: 40px 10%; margin-top: 80px; font-size: 13px; font-family: sans-serif; color: #333333;">
+  <div class="footer-container">
+    <div class="footer-logo">
+      <a href="https://www.esma.europa.eu/" target="_blank">
+        <img src="https://raw.githubusercontent.com/MiCA-ESMA/assets-claim-portal/refs/heads/main/ESMA-Logo.JPG" alt="ESMA Official Logo">
+      </a>
+    </div>
+    <div class="footer-content">
+      <a href="https://www.esma.europa.eu/cookie-policy" target="_blank" data-i18n="ftrCookie" style="color: #0055CC; font-family: sans-serif;">Cookie Policy</a> | 
+      <a href="https://www.esma.europa.eu/legal-notice" target="_blank" data-i18n="ftrLegal" style="color: #0055CC; font-family: sans-serif;">Legal Notice</a>
+      <div style="color: var(--eu-yellow); margin: 15px 0;">Support: support@mica-ch.info</div>
+      <p style="margin: 0; font-family: sans-serif;">© 2026 European Securities and Markets Authority</p>
+    </div>
+  </div>
 </footer>
 
 <script>
