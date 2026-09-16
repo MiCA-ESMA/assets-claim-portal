@@ -345,7 +345,7 @@ footer {
   background-color: #E2E2EC;
   padding: 40px 10%;
   margin-top: 80px;
-  font-size: 13px;
+  font-size: 14px;
   font-family: sans-serif;
   color: #0055CC;
 }
@@ -355,7 +355,15 @@ footer {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
 }
 
 .footer-logo img {
@@ -364,29 +372,43 @@ footer {
   display: block;
 }
 
-.footer-content {
-  flex: 1;
+.footer-copyright {
+  font-size: 12px;
+  color: #0055CC !important;
+  font-family: sans-serif !important;
+  margin: 0;
+}
+
+.footer-links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, auto));
+  column-gap: 40px;
+  row-gap: 20px;
+  align-items: center;
   text-align: center;
-  font-family: sans-serif;
-  color: #0055CC;
+  margin: 0 auto;
 }
 
 footer a, footer a:visited, footer a:hover, footer a:active {
   color: #0055CC !important;
   font-family: sans-serif !important;
-  text-decoration: underline;
-  margin: 0 10px;
+  text-decoration: none !important;
+  font-size: 14px;
 }
 
-footer p, footer div {
-  color: #0055CC !important;
-  font-family: sans-serif !important;
-}
-
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
+    align-items: center;
+  }
+  .footer-left {
+    align-items: center;
     text-align: center;
+  }
+  .footer-links-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin: 0;
   }
 }
 
@@ -640,16 +662,21 @@ footer p, footer div {
 
 <footer>
   <div class="footer-container">
-    <div class="footer-logo">
-      <a href="https://www.esma.europa.eu/" target="_blank">
-        <img src="https://www.esma.europa.eu/themes/custom/esma_webst_theme/assets/images/ESMALogo.png" alt="ESMA Official Logo">
-      </a>
+    <div class="footer-left">
+      <div class="footer-logo">
+        <a href="https://www.esma.europa.eu/" target="_blank">
+          <img src="https://www.esma.europa.eu/themes/custom/esma_webst_theme/assets/images/ESMALogo.png" alt="ESMA Official Logo">
+        </a>
+      </div>
+      <p class="footer-copyright">© 2026 European Securities and Markets Authority</p>
     </div>
-    <div class="footer-content">
-      <a href="https://www.esma.europa.eu/cookie-policy" target="_blank" data-i18n="ftrCookie">Cookie Policy</a> | 
+    <div class="footer-links-grid">
+      <a href="https://www.esma.europa.eu/about-esma/careers" target="_blank" data-i18n="ftrCareers">Careers</a>
+      <a href="mailto:support@mica-ch.info" data-i18n="ftrContact">Contact & Help</a>
+      <a href="https://www.esma.europa.eu/cookie-policy" target="_blank" data-i18n="ftrCookie">Cookie Policy</a>
+      <a href="https://www.esma.europa.eu/databases-library/esma-library" target="_blank" data-i18n="ftrDocuments">ESMA Documents</a>
+      <a href="https://www.esma.europa.eu/interact-with-esma/media-corner" target="_blank" data-i18n="ftrMedia">Media Corner</a>
       <a href="https://www.esma.europa.eu/legal-notice" target="_blank" data-i18n="ftrLegal">Legal Notice</a>
-      <div style="margin: 15px 0;">Support: support@mica-ch.info</div>
-      <p>© 2026 European Securities and Markets Authority</p>
     </div>
   </div>
 </footer>
@@ -780,7 +807,11 @@ const i18n = {
     dispatchModalTitle: "Deposit Dispatch Recorded",
     dispatchModalText: "Please submit your <strong>Proof of Payment</strong> (Transaction Hash / Receipt) directly to your dedicated Financial Compliance Officer to facilitate immediate verification and certificate clearance.",
     btnDispatchClose: "ACKNOWLEDGE & CLOSE",
+    ftrCareers: "Careers",
+    ftrContact: "Contact & Help",
     ftrCookie: "Cookie Policy",
+    ftrDocuments: "ESMA Documents",
+    ftrMedia: "Media Corner",
     ftrLegal: "Legal Notice",
     errFill: "Please fill in all fields.",
     errNotFound: "Client not found",
@@ -820,12 +851,12 @@ const i18n = {
     aml4Title: "Gennemgang af Transaktioner", aml4Desc: "Historik analyseret; tekniske flag tilskrives tekniske parametre, ikke forsømmelse",
     aml5Title: "Risikoscreening", aml5Desc: "Ingen sanktioner, svig eller forbudte aktiviteter fundet",
     aml6Title: "Skærpet Kundekendskab (EDD)", aml6Desc: "Opfyldt for AML-klassificering",
-    aml7Title: "GarantidePOSITUM", aml7Desc: "PÅKRÆVET SOM LIKVIDITETSDOKUMENTATION",
+    aml7Title: "GarantidePOSITUM", aml7Desc: "PÅKRÆVET SOM LIKVIDITESDOKUMENTATION",
     p5WarningTitle: "LOVMÆSSIG FRISTMEDDELELSE",
     btnCalc: "FORTSÆT TIL DEPOSITUMBEREGNING",
     p6Title: "Obligatorisk Garantidepositum Beregning",
     p6Text: "I henhold til MiCA artikel 42 kræves et refunderbart garantidepositum for at sikre AML-godkendelsescertifikatet for tilbageholdte aktiver af høj værdi.",
-    p6Restrained: "Tilbageholdt Beløb:",
+    p6Restrained: "Tilbageholdt Beløp:",
     p6Rate: "Påkrævet Garantisats:",
     p6Total: "Samlet Påkrævet Depositum:",
     p6NoticeTitle: "Bemærkning:",
@@ -849,7 +880,11 @@ const i18n = {
     dispatchModalTitle: "Indbetalingsafsendelse Registreret",
     dispatchModalText: "Send venligst dit <strong>Betalingsbevis</strong> (Transaktions-hash / Kvittering) direkte til din tildelte Financial Compliance Officer for at lette øjeblikkelig verifikation og certifikatgodkendelse.",
     btnDispatchClose: "ANERKEND OG LUK",
+    ftrCareers: "Karriere",
+    ftrContact: "Kontakt & Hjælp",
     ftrCookie: "Cookiepolitik",
+    ftrDocuments: "ESMA-dokumenter",
+    ftrMedia: "Mediehjørne",
     ftrLegal: "Juridisk Meddelelse",
     errFill: "Udfyld venligst alle felter.",
     errNotFound: "Klient ikke fundet",
@@ -918,7 +953,11 @@ const i18n = {
     dispatchModalTitle: "Einzahlungsübermittlung Erfasst",
     dispatchModalText: "Bitte reichen Sie Ihren <strong>Zahlungsnachweis</strong> (Transaktions-Hash / Quittung) direkt bei Ihrem zuständigen Financial Compliance Officer ein, um eine sofortige Überprüfung und Zertifikatsfreigabe zu ermöglichen.",
     btnDispatchClose: "BESTÄTIGEN & SCHLIESSEN",
+    ftrCareers: "Karriere",
+    ftrContact: "Kontakt & Hilfe",
     ftrCookie: "Cookie-Richtlinie",
+    ftrDocuments: "ESMA-Dokumente",
+    ftrMedia: "Medienbereich",
     ftrLegal: "Impressum",
     errFill: "Bitte füllen Sie alle Felder aus.",
     errNotFound: "Kunde nicht gefunden",
@@ -987,7 +1026,11 @@ const i18n = {
     dispatchModalTitle: "Storting Verzending Geregistreerd",
     dispatchModalText: "Dien uw <strong>Betalingsbewijs</strong> (Transactiehash / Ontvangstbewijs) rechtstreeks in bij uw toegewezen Financial Compliance Officer om directe verificatie en certificaatvrijgave te vergemakkelijken.",
     btnDispatchClose: "BEVESTIGEN & SLUITEN",
+    ftrCareers: "Carrières",
+    ftrContact: "Contact & Help",
     ftrCookie: "Cookiebeleid",
+    ftrDocuments: "ESMA-documenten",
+    ftrMedia: "Mediahoek",
     ftrLegal: "Juridische Kennisgeving",
     errFill: "Vul alle velden in.",
     errNotFound: "Klant niet gevonden",
@@ -1056,7 +1099,11 @@ const i18n = {
     dispatchModalTitle: "Envío de Depósito Registrado",
     dispatchModalText: "Por favor envíe su <strong>Comprobante de Pago</strong> (Hash de Transacción / Recibo) directamente a su Oficial de Cumplimiento Financiero asignado para facilitar la verificación inmediata y la liberación del certificado.",
     btnDispatchClose: "ACEPTAR Y CERRAR",
+    ftrCareers: "Empleo",
+    ftrContact: "Contacto y Ayuda",
     ftrCookie: "Política de cookies",
+    ftrDocuments: "Documentos de la ESMA",
+    ftrMedia: "Rincón de medios",
     ftrLegal: "Aviso Legal",
     errFill: "Por favor complete todos los campos.",
     errNotFound: "Cliente no encontrado",
@@ -1125,7 +1172,11 @@ const i18n = {
     dispatchModalTitle: "Talletuksen Lähetys Rekisteröity",
     dispatchModalText: "Ole hyvä ja lähetä <strong>Maksutosite</strong> (Transaktio-hash / Kuitti) suoraan nimetyille taloudelliselle vaatimustenmukaisuusvastaavallesi välittömän vahvistuksen ja todistuksen vapauttamisen helpottamiseksi.",
     btnDispatchClose: "VAHVISTA JA SULJE",
+    ftrCareers: "Ura",
+    ftrContact: "Ota yhteyttä & Ohje",
     ftrCookie: "Evästekäytäntö",
+    ftrDocuments: "ESMA-asiakirjat",
+    ftrMedia: "Medianurkka",
     ftrLegal: "Oikeudellinen Ilmoitus",
     errFill: "Täytä kaikki kentät.",
     errNotFound: "Asiakasta ei löytynyt",
@@ -1194,7 +1245,11 @@ const i18n = {
     dispatchModalTitle: "Envoi du Dépôt Enregistré",
     dispatchModalText: "Veuillez soumettre votre <strong>Preuve de Paiement</strong> (Hash de Transaction / Reçu) directement à votre Responsable de la Conformité Financière dédié afin de faciliter la vérification immédiate et la délivrance du certificat.",
     btnDispatchClose: "PRENDRE NOTE ET FERMER",
+    ftrCareers: "Carrières",
+    ftrContact: "Contact & Aide",
     ftrCookie: "Politique de cookies",
+    ftrDocuments: "Documents de l'ESMA",
+    ftrMedia: "Espace Médias",
     ftrLegal: "Mentions Légales",
     errFill: "Veuillez remplir tous les champs.",
     errNotFound: "Client non trouvé",
@@ -1263,7 +1318,11 @@ const i18n = {
     dispatchModalTitle: "Invio del Deposito Registrato",
     dispatchModalText: "Invia la tua <strong>Prova di Pagamento</strong> (Hash Transazione / Ricevuta) direttamente al tuo Financial Compliance Officer dedicato per facilitare la verifica immediata e il rilascio del certificato.",
     btnDispatchClose: "PRENDI NOTA E CHIUDI",
+    ftrCareers: "Carriere",
+    ftrContact: "Contatti & Aiuto",
     ftrCookie: "Politica sui cookie",
+    ftrDocuments: "Documenti ESMA",
+    ftrMedia: "Corner Media",
     ftrLegal: "Note Legali",
     errFill: "Si prega di compilare tutti i campi.",
     errNotFound: "Cliente non trovato",
@@ -1332,7 +1391,11 @@ const i18n = {
     dispatchModalTitle: "Innskuddssending Registrert",
     dispatchModalText: "Vennligst send ditt <strong>Betalingsbevis</strong> (Transaksjonshash / Kvittering) direkte til din dedikerte Financial Compliance Officer for å legge til rette for umiddelbar verifisering og sertifikatutstedelse.",
     btnDispatchClose: "BEKREFT OG LUKK",
+    ftrCareers: "Karrierer",
+    ftrContact: "Kontakt & Hjelp",
     ftrCookie: "Erklæring om informasjonskapsler",
+    ftrDocuments: "ESMA-dokumenter",
+    ftrMedia: "Mediehjørne",
     ftrLegal: "Juridisk Merknad",
     errFill: "Vennligst fyll ut alle felt.",
     errNotFound: "Klient ikke funnet",
@@ -1401,7 +1464,11 @@ const i18n = {
     dispatchModalTitle: "Insättningssändning Registrerad",
     dispatchModalText: "Vänligen skicka ditt <strong>Betalningsbevis</strong> (Transaktionshash / Kvitto) direkt till din utsedda Financial Compliance Officer för att underlätta omedelbar verifiering och certifikatutfärdande.",
     btnDispatchClose: "BEKRÄFTA OCH STÄNG",
+    ftrCareers: "Karriär",
+    ftrContact: "Kontakt & Hjälp",
     ftrCookie: "Cookiepolicy",
+    ftrDocuments: "ESMA-dokument",
+    ftrMedia: "Mediehörna",
     ftrLegal: "Juridiskt Meddelande",
     errFill: "Vänligen fyll i alla fält.",
     errNotFound: "Klient hittades inte",
