@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliance Officer Details - ESMA / European Commission</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --eu-blue: #003399;
+  --eu-yellow: #FFCC00;
+  --bg-light: #f3f6f7;
+  --text-dark: #333333;
+  --text-muted: #666666;
+  --border: #d8dee4;
+  --danger: #d43c39;
+  --success: #2e7d32;
+  --warning: #f59e0b;
+}
+
+body { 
+  background-color: #fff; 
+  color: var(--text-dark); 
+  font-family: 'Roboto', sans-serif; 
+  margin: 0; 
+  line-height: 1.5; 
+}
+
+.eu-top-banner { 
+  background: #fff; 
+  padding: 8px 10%; 
+  border-bottom: 1px solid var(--border); 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  font-size: 12px; 
+  color: var(--text-muted); 
+}
+
+.lang-select { 
+  padding: 3px 8px; 
+  font-size: 12px; 
+  border: 1px solid var(--border); 
+  border-radius: 2px; 
+  background: #fff; 
+  cursor: pointer; 
+  color: var(--text-dark); 
+}
+
+header { 
+  padding: 20px 10%; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  background: #fff; 
+  border-bottom: 1px solid var(--border); 
+}
+
+.brand { 
+  display: flex; 
+  align-items: center; 
+  gap: 20px; 
+}
+
+.brand img { 
+  width: 75px; 
+}
+
+.brand-titles { 
+  border-left: 1px solid var(--border); 
+  padding-left: 20px; 
+}
+
+.brand-titles h1 { 
+  margin: 0; 
+  font-size: 20px; 
+  color: var(--eu-blue); 
+  font-weight: 700; 
+}
+
+/* Center Content Area */
+.main-content { 
+  max-width: 800px; 
+  margin: 60px auto; 
+  padding: 0 20px; 
+  min-height: 500px; 
+}
+
+.card { 
+  background: #fff; 
+  border: 1px solid var(--border); 
+  padding: 40px; 
+  border-radius: 4px; 
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06); 
+}
+
+.officer-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 2px solid var(--eu-blue);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.officer-avatar {
+  width: 70px;
+  height: 70px;
+  background-color: var(--eu-blue);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.officer-title-group h2 {
+  margin: 0;
+  color: var(--eu-blue);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.officer-title-group p {
+  margin: 4px 0 0 0;
+  font-size: 16px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background: #f8fafc;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  position: relative;
+}
+
+.info-item i.icon-left {
+  font-size: 20px;
+  color: var(--eu-blue);
+  margin-top: 3px;
+}
+
+.info-text label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.info-text span, .info-text a {
+  font-size: 16px;
+  color: var(--text-dark);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.info-text a:hover {
+  color: var(--eu-blue);
+  text-decoration: underline;
+}
+
+/* Copy Button */
+.copy-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--eu-blue);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+  align-self: center;
+}
+
+.copy-btn:hover {
+  background-color: #e0e8f5;
+  color: #002673;
+}
+
+/* ESMA Footer Styles */
+.esma-footer {
+  background-color: #E2E2EC;
+  padding: 40px 10%;
+  margin-top: 80px;
+  font-family: "Open Sans", Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 30px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.footer-logo {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+.eu-banner {
+  background-color: #2A00A0;
+  color: #FFFFFF;
+  font-size: 12px;
+  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eu-flag-icon {
+  width: 22px;
+  height: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, auto));
+  column-gap: 50px;
+  row-gap: 25px;
+  align-items: center;
+}
+
+.footer-links a, .footer-links a:visited, .footer-links a:hover, .footer-links a:active {
+  color: #0055CC !important;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.footer-links a:hover {
+  text-decoration: underline !important;
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-heading {
+  color: #0055CC;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.social-icons a {
+  color: #E65100;
+  font-size: 24px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.social-icons a:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-links {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+</style>
+</head>
+<body onload="initPortal()">
+
+<div class="eu-top-banner">
+  <span><i class="fas fa-landmark"></i> <span data-i18n="topBanner">Official database of the European Securities and Markets Authority</span></span>
+  <div>
+    <i class="fas fa-globe"></i>
+    <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)">
+      <option value="ENG">English (ENG)</option>
+      <option value="DA">Dansk (DA)</option>
+      <option value="DE">Deutsch (DE)</option>
+      <option value="DU">Nederlands (DU)</option>
+      <option value="ES">Español (ES)</option>
+      <option value="FI">Suomi (FI)</option>
+      <option value="FR">Français (FR)</option>
+      <option value="IT">Italiano (IT)</option>
+      <option value="NO">Norsk (NO)</option>
+      <option value="SV">Svenska (SV)</option>
+    </select>
+  </div>
+</div>
+
+<header>
+  <div class="brand">
+    <a href="https://www.esma.europa.eu/" target="_blank">
+      <img src="https://www.esma.europa.eu/sites/default/files/inline-images/ESMA%20-%20New%20Logo.png" alt="ESMA Logo">
+    </a>
+    <div class="brand-titles">
+      <h1>ESMA</h1>
+      <div style="font-size: 14px; color: var(--text-muted);" data-i18n="subHeader">European Securities and Markets Authority</div>
+    </div>
+  </div>
+  <a href="https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/markets-crypto-assets-regulation-mica" target="_blank">
+    <img src="https://raw.githubusercontent.com/MiCA-ESMA/assets-claim-portal/refs/heads/main/MiCA-Logo.jpg" style="height:55px;" alt="MiCA Logo">
+  </a>
+</header>
+
+<div class="main-content">
+  <div class="card">
+    
+    <div class="officer-profile-header">
+      <div class="officer-avatar">
+        <i class="fas fa-user-shield"></i>
+      </div>
+      <div class="officer-title-group">
+        <h2>Edwin Evison</h2>
+        <p>Financial Compliance Officer</p>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <i class="fas fa-clock icon-left"></i>
+        <div class="info-text">
+          <label>Hours of Operation</label>
+          <span>Weekdays 09:00 - 17:00 CET</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <i class="fas fa-envelope icon-left"></i>
+        <div class="info-text">
+          <label>Direct Email Address</label>
+          <a href="mailto:edwin.evison@mica-ch.info" id="edwinEmail">edwin.evison@mica-ch.info</a>
+        </div>
+        <button class="copy-btn" onclick="copyText('edwinEmail')" title="Copy Direct Email"><i class="fas fa-copy"></i></button>
+      </div>
+
+      <div class="info-item">
+        <i class="fas fa-headset icon-left"></i>
+        <div class="info-text">
+          <label>General Support Email</label>
+          <a href="mailto:support@mica-ch.info" id="supportEmail">support@mica-ch.info</a>
+        </div>
+        <button class="copy-btn" onclick="copyText('supportEmail')" title="Copy Support Email"><i class="fas fa-copy"></i></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="esma-footer">
+  <div class="footer-content">
+    
+    <!-- 1. Left side: Logo & Tagline Banner -->
+    <div class="footer-brand">
+      <a href="https://www.esma.europa.eu/" target="_blank">
+        <img src="https://www.esma.europa.eu/themes/custom/esma_webst_theme/assets/images/ESMALogo.png" alt="ESMA Logo" class="footer-logo">
+      </a>
+      <div class="eu-banner">
+        <span>ESMA is an authority of the European Union</span>
+        
+        <!-- EU Flag SVG -->
+        <svg class="eu-flag-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 270 180" aria-label="EU Flag">
+          <rect width="270" height="180" fill="#003399"/>
+          <g id="star">
+            <g id="half">
+              <path id="point" d="M0-1V0h1" transform="rotate(18,0,-1)" fill="#ffcc00"/>
+              <use xlink:href="#point" transform="scale(-1,1)"/>
+            </g>
+            <use xlink:href="#half" transform="rotate(72)"/>
+            <use xlink:href="#half" transform="rotate(144)"/>
+            <use xlink:href="#half" transform="rotate(-144)"/>
+            <use xlink:href="#half" transform="rotate(-72)"/>
+          </g>
+          <g transform="translate(135,90) scale(9)">
+            <use xlink:href="#star" y="-6"/>
+            <use xlink:href="#star" transform="rotate(30)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(60)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(90)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(120)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(150)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(180)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(210)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(240)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(270)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(300)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(330)" y="-6"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 2. Middle side: 6 Links in 3 Columns -->
+    <div class="footer-links">
+      <a href="https://www.esma.europa.eu/about-esma/careers" target="_blank" data-i18n="ftrCareers">Careers</a>
+      <a href="mailto:support@mica-ch.info" data-i18n="ftrContact">Contact & Help</a>
+      <a href="https://www.esma.europa.eu/cookie-policy" target="_blank" data-i18n="ftrCookie">Cookie Policy</a>
+      <a href="https://www.esma.europa.eu/databases-library/esma-library" target="_blank" data-i18n="ftrDocuments">ESMA Documents</a>
+      <a href="https://www.esma.europa.eu/interact-with-esma/media-corner" target="_blank" data-i18n="ftrMedia">Media Corner</a>
+      <a href="https://www.esma.europa.eu/legal-notice" target="_blank" data-i18n="ftrLegal">Legal Notice</a>
+    </div>
+
+    <!-- 3. Right side: Social Media Header & Icons -->
+    <div class="footer-social">
+      <h4 class="social-heading">Social Media</h4>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/company/european-securities-and-markets-authority-esma/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://instagram.com/esmacomms/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
+        <a href="https://twitter.com/ESMAComms" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-square-x-twitter"></i></a>
+        <a href="https://www.youtube.com/channel/UCe5tFtIMPE5BbFGdqT330WQ" target="_blank" aria-label="YouTube"><i class="fa-brands fa-square-youtube"></i></a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+let currentLang = "ENG";
+
+const i18n = {
+  ENG: {
+    topBanner: "Official database of the European Securities and Markets Authority",
+    subHeader: "European Securities and Markets Authority",
+    ftrCareers: "Careers",
+    ftrContact: "Contact & Help",
+    ftrCookie: "Cookie Policy",
+    ftrDocuments: "ESMA Documents",
+    ftrMedia: "Media Corner",
+    ftrLegal: "Legal Notice",
+    msgCopied: "Email address copied to clipboard."
+  },
+  DA: {
+    topBanner: "Officiel database for Den Europæiske Værdipapir- og Markedstilsynsmyndighed",
+    subHeader: "Den Europæiske Værdipapir- og Markedstilsynsmyndighed",
+    ftrCareers: "Karriere",
+    ftrContact: "Kontakt & Hjælp",
+    ftrCookie: "Cookiepolitik",
+    ftrDocuments: "ESMA-dokumenter",
+    ftrMedia: "Mediehjørne",
+    ftrLegal: "Juridisk Meddelelse",
+    msgCopied: "E-mailadresse kopieret til udklipsholder."
+  },
+  DE: {
+    topBanner: "Offizielle Datenbank der Europäischen Wertpapier- und Marktaufsichtsbehörde",
+    subHeader: "Europäische Wertpapier- und Marktaufsichtsbehörde",
+    ftrCareers: "Karriere",
+    ftrContact: "Kontakt & Hilfe",
+    ftrCookie: "Cookie-Richtlinie",
+    ftrDocuments: "ESMA-Dokumente",
+    ftrMedia: "Medienbereich",
+    ftrLegal: "Impressum",
+    msgCopied: "E-Mail-Adresse in die Zwischenablage kopiert."
+  },
+  DU: {
+    topBanner: "Officiële database van de Europese Autoriteit voor effecten en markten",
+    subHeader: "Europese Autoriteit voor effecten en markten",
+    ftrCareers: "Carrières",
+    ftrContact: "Contact & Help",
+    ftrCookie: "Cookiebeleid",
+    ftrDocuments: "ESMA-documenten",
+    ftrMedia: "Mediahoek",
+    ftrLegal: "Juridische Kennisgeving",
+    msgCopied: "E-mailadres gekopieerd naar klembord."
+  },
+  ES: {
+    topBanner: "Base de datos oficial de la Autoridad Europea de Valores y Mercados",
+    subHeader: "Autoridad Europea de Valores y Mercados",
+    ftrCareers: "Empleo",
+    ftrContact: "Contacto y Ayuda",
+    ftrCookie: "Política de cookies",
+    ftrDocuments: "Documentos de la ESMA",
+    ftrMedia: "Rincón de medios",
+    ftrLegal: "Aviso Legal",
+    msgCopied: "Correo electrónico copiado al portapapeles."
+  },
+  FI: {
+    topBanner: "Euroopan arvopaperimarkkinaviranomaisen virallinen tietokanta",
+    subHeader: "Euroopan arvopaperimarkkinaviranomainen",
+    ftrCareers: "Ura",
+    ftrContact: "Ota yhteyttä & Ohje",
+    ftrCookie: "Evästekäytäntö",
+    ftrDocuments: "ESMA-asiakirjat",
+    ftrMedia: "Medianurkka",
+    ftrLegal: "Oikeudellinen Ilmoitus",
+    msgCopied: "Sähköpostiosoite kopioitu leikepöydälle."
+  },
+  FR: {
+    topBanner: "Base de données officielle de l'Autorité européenne des marchés financiers",
+    subHeader: "Autorité européenne des marchés financiers",
+    ftrCareers: "Carrières",
+    ftrContact: "Contact & Aide",
+    ftrCookie: "Politique de cookies",
+    ftrDocuments: "Documents de l'ESMA",
+    ftrMedia: "Espace Médias",
+    ftrLegal: "Mentions Légales",
+    msgCopied: "Adresse e-mail copiée dans le presse-papiers."
+  },
+  IT: {
+    topBanner: "Database ufficiale dell'Autorità europea degli strumenti finanziari e dei mercati",
+    subHeader: "Autorità europea degli strumenti finanziari e dei mercati",
+    ftrCareers: "Carriere",
+    ftrContact: "Contatti & Aiuto",
+    ftrCookie: "Politica sui cookie",
+    ftrDocuments: "Documenti ESMA",
+    ftrMedia: "Corner Media",
+    ftrLegal: "Note Legali",
+    msgCopied: "Indirizzo e-mail copiato negli appunti."
+  },
+  NO: {
+    topBanner: "Offisiell database for Den europeiske verdipapir- og markedstilsynsmyndighet",
+    subHeader: "Den europeiske verdipapir- og markedstilsynsmyndighet",
+    ftrCareers: "Karrierer",
+    ftrContact: "Kontakt & Hjelp",
+    ftrCookie: "Erklæring om informasjonskapsler",
+    ftrDocuments: "ESMA-dokumenter",
+    ftrMedia: "Mediehjørne",
+    ftrLegal: "Juridisk Merknad",
+    msgCopied: "E-postadresse kopiert til utklippstavlen."
+  },
+  SV: {
+    topBanner: "Officiell databas för Europeiska värdepappers- och marknadsmyndigheten",
+    subHeader: "Europeiska värdepappers- och marknadsmyndigheten",
+    ftrCareers: "Karriär",
+    ftrContact: "Kontakt & Hjälp",
+    ftrCookie: "Cookiepolicy",
+    ftrDocuments: "ESMA-dokument",
+    ftrMedia: "Mediehörna",
+    ftrLegal: "Juridiskt Meddelande",
+    msgCopied: "E-postadress kopierad till urklipp."
+  }
+};
+
+function initPortal() {
+  const userLang = (navigator.language || navigator.userLanguage || "").substring(0, 2).toLowerCase();
+  const langMap = { 
+    "da": "DA", "de": "DE", "nl": "DU", "es": "ES", 
+    "fi": "FI", "fr": "FR", "it": "IT", "no": "NO", 
+    "nb": "NO", "nn": "NO", "sv": "SV" 
+  };
+  
+  if (langMap[userLang]) {
+    currentLang = langMap[userLang];
+    document.getElementById('langSelect').value = currentLang;
+  }
+  changeLanguage(currentLang);
+}
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  const dict = i18n[lang] || i18n.ENG;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) {
+      el.innerHTML = dict[key];
+    }
+  });
+}
+
+function copyText(elementId) {
+  const emailText = document.getElementById(elementId).innerText;
+  navigator.clipboard.writeText(emailText);
+  const dict = i18n[currentLang] || i18n.ENG;
+  alert(dict.msgCopied || "Email address copied to clipboard.");
+}
+</script>
+</body>
+</html>
