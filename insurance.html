@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESMA Insurance Form for Digital Assets - ESMA / European Commission</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Flag Icons CSS for Country Flags -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --eu-blue: #003399;
+  --eu-yellow: #FFCC00;
+  --bg-light: #f3f6f7;
+  --text-dark: #333333;
+  --text-muted: #666666;
+  --border: #d8dee4;
+  --danger: #d43c39;
+  --success: #2e7d32;
+  --warning: #f59e0b;
+  --primary-accent: #0055CC;
+}
+
+body { 
+  background-color: #fff; 
+  color: var(--text-dark); 
+  font-family: 'Roboto', sans-serif; 
+  margin: 0; 
+  line-height: 1.5; 
+}
+
+/* Top Banner */
+.eu-top-banner { 
+  background: #fff; 
+  padding: 8px 10%; 
+  border-bottom: 1px solid var(--border); 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  font-size: 12px; 
+  color: var(--text-muted); 
+}
+
+.lang-select { 
+  padding: 3px 8px; 
+  font-size: 12px; 
+  border: 1px solid var(--border); 
+  border-radius: 2px; 
+  background: #fff; 
+  cursor: pointer; 
+  color: var(--text-dark); 
+}
+
+/* Header */
+header { 
+  padding: 20px 10%; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  background: #fff; 
+  border-bottom: 1px solid var(--border); 
+}
+
+.brand { 
+  display: flex; 
+  align-items: center; 
+  gap: 20px; 
+}
+
+.brand img { 
+  width: 75px; 
+}
+
+.brand-titles { 
+  border-left: 1px solid var(--border); 
+  padding-left: 20px; 
+}
+
+.brand-titles h1 { 
+  margin: 0; 
+  font-size: 20px; 
+  color: var(--eu-blue); 
+  font-weight: 700; 
+}
+
+/* Main Form Area */
+.main-content { 
+  max-width: 800px; 
+  margin: 40px auto; 
+  padding: 0 20px; 
+  min-height: 500px; 
+}
+
+.card { 
+  background: #fff; 
+  border: 1px solid var(--border); 
+  padding: 40px; 
+  border-radius: 4px; 
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06); 
+}
+
+/* Wizard Steps Indicator */
+.steps-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.step-item.active {
+  color: var(--eu-blue);
+  font-weight: 700;
+}
+
+.step-node {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.step-item.active .step-node {
+  background: var(--eu-blue);
+  color: #fff;
+  border-color: var(--eu-blue);
+}
+
+.step-item.completed .step-node {
+  background: var(--success);
+  color: #fff;
+  border-color: var(--success);
+}
+
+/* Form Styles */
+.phase-step {
+  display: none;
+}
+
+.phase-step.active {
+  display: block;
+}
+
+.section-header {
+  margin-bottom: 25px;
+  border-bottom: 2px solid var(--eu-blue);
+  padding-bottom: 10px;
+}
+
+.section-header h2 {
+  margin: 0;
+  color: var(--eu-blue);
+  font-size: 22px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.form-group.full {
+  grid-column: span 2;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+textarea,
+select {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--eu-blue);
+  box-shadow: 0 0 0 2px rgba(0, 51, 153, 0.1);
+}
+
+/* Searchable Nationality Custom Dropdown */
+.custom-select-container {
+  position: relative;
+  width: 100%;
+}
+
+.select-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.select-options-panel {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 100;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.select-options-panel.open {
+  display: block;
+}
+
+.search-input-wrapper {
+  padding: 8px;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-input-wrapper input {
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.option-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.option-item:hover {
+  background-color: var(--bg-light);
+  color: var(--eu-blue);
+}
+
+/* Phone Input Combo Grid */
+.phone-input-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.dial-code-container {
+  position: relative;
+  width: 140px;
+  flex-shrink: 0;
+}
+
+/* Option Radio Pills */
+.option-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.pill-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.pill-label input {
+  accent-color: var(--eu-blue);
+}
+
+/* Plans Cards */
+.plans-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.plan-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  cursor: pointer;
+  background: #f8fafc;
+  transition: border-color 0.2s;
+}
+
+.plan-card:hover {
+  border-color: var(--eu-blue);
+}
+
+.plan-card input[type="radio"] {
+  margin-top: 4px;
+  accent-color: var(--eu-blue);
+}
+
+.plan-info {
+  flex-grow: 1;
+}
+
+.plan-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.plan-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--eu-blue);
+}
+
+.plan-cost {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--text-dark);
+}
+
+.plan-meta {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.plan-risks {
+  font-size: 12px;
+  color: var(--text-dark);
+  border-top: 1px dashed var(--border);
+  padding-top: 8px;
+}
+
+.declaration-box {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-top: 20px;
+}
+
+/* Navigation Buttons */
+.nav-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.btn {
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+}
+
+.btn-primary {
+  background: var(--eu-blue);
+  color: #ffffff;
+  margin-left: auto;
+}
+
+.btn-primary:hover {
+  background: #002673;
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  color: var(--text-dark);
+}
+
+.btn-secondary:hover {
+  background: #cbd5e1;
+}
+
+.btn-submit {
+  background: var(--success);
+  color: #ffffff;
+  margin-left: auto;
+}
+
+.btn-submit:hover {
+  background: #1b5e20;
+}
+
+/* Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 4px;
+  max-width: 450px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-top: 6px solid var(--eu-blue);
+}
+
+.policy-badge {
+  background: #f8fafc;
+  border: 1px dashed var(--eu-blue);
+  padding: 16px;
+  border-radius: 4px;
+  margin: 20px 0 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+}
+
+.policy-number {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--danger);
+}
+
+.copy-policy-btn {
+  background: var(--eu-blue);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.copy-policy-btn:hover {
+  background: #002673;
+}
+
+.payment-note {
+  font-size: 13px;
+  color: var(--eu-blue);
+  background: #e0e8f5;
+  border: 1px solid #b3c6e7;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.payment-note i {
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+/* Footer Styles (Fixed in English) */
+.esma-footer {
+  background-color: #E2E2EC;
+  padding: 40px 10%;
+  margin-top: 80px;
+  font-family: "Open Sans", Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 30px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.footer-logo {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+.eu-banner {
+  background-color: #2A00A0;
+  color: #FFFFFF;
+  font-size: 12px;
+  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eu-flag-icon {
+  width: 22px;
+  height: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, auto));
+  column-gap: 50px;
+  row-gap: 25px;
+  align-items: center;
+}
+
+.footer-links a, .footer-links a:visited, .footer-links a:hover, .footer-links a:active {
+  color: #0055CC !important;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.footer-links a:hover {
+  text-decoration: underline !important;
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-heading {
+  color: #0055CC;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.social-icons a {
+  color: #E65100;
+  font-size: 24px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.social-icons a:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-links {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-group.full {
+    grid-column: span 1;
+  }
+}
+</style>
+</head>
+<body onload="initPortal()">
+
+<!-- Top Banner -->
+<div class="eu-top-banner">
+  <span><i class="fas fa-landmark"></i> <span data-i18n="topBanner">Official database of the European Securities and Markets Authority</span></span>
+  <div>
+    <i class="fas fa-globe"></i>
+    <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)">
+      <option value="ENG">English (ENG)</option>
+      <option value="DA">Dansk (DA)</option>
+      <option value="DE">Deutsch (DE)</option>
+      <option value="DU">Nederlands (DU)</option>
+      <option value="ES">Español (ES)</option>
+      <option value="FI">Suomi (FI)</option>
+      <option value="FR">Français (FR)</option>
+      <option value="IT">Italiano (IT)</option>
+      <option value="NO">Norsk (NO)</option>
+      <option value="SV">Svenska (SV)</option>
+    </select>
+  </div>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="brand">
+    <a href="https://www.esma.europa.eu/" target="_blank">
+      <img src="https://www.esma.europa.eu/sites/default/files/inline-images/ESMA%20-%20New%20Logo.png" alt="ESMA Logo">
+    </a>
+    <div class="brand-titles">
+      <h1>ESMA</h1>
+      <div style="font-size: 14px; color: var(--text-muted);" data-i18n="subHeader">European Securities and Markets Authority</div>
+    </div>
+  </div>
+  <a href="https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/markets-crypto-assets-regulation-mica" target="_blank">
+    <img src="https://raw.githubusercontent.com/MiCA-ESMA/assets-claim-portal/refs/heads/main/MiCA-Logo.jpg" style="height:55px;" alt="MiCA Logo">
+  </a>
+</header>
+
+<!-- Main Form Section -->
+<div class="main-content">
+  <div class="card">
+    
+    <!-- Progress Indicator -->
+    <div class="steps-wrapper">
+      <div class="step-item active" id="node-1">
+        <div class="step-node">1</div>
+        <span data-i18n="step1">1. Personal Information</span>
+      </div>
+      <div class="step-item" id="node-2">
+        <div class="step-node">2</div>
+        <span data-i18n="step2">2. Plan Selection</span>
+      </div>
+      <div class="step-item" id="node-3">
+        <div class="step-node">3</div>
+        <span data-i18n="step3">3. Crypto Wallet</span>
+      </div>
+    </div>
+
+    <form id="insuranceForm">
+
+      <!-- PHASE 1: PERSONAL INFORMATION -->
+      <div class="phase-step active" id="phase-1">
+        <div class="section-header">
+          <h2 data-i18n="hdrPersonalInfo">Personal Information</h2>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="fullname" data-i18n="lblFullName">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required>
+          </div>
+
+          <div class="form-group">
+            <label for="dob" data-i18n="lblDob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+          </div>
+
+          <!-- Searchable Nationality Menu -->
+          <div class="form-group">
+            <label data-i18n="lblNationality">Nationality:</label>
+            <input type="hidden" id="nationality" name="nationality" required>
+            <div class="custom-select-container">
+              <div class="select-box" id="natSelectBox" onclick="toggleDropdown('natDropdown')">
+                <span id="natSelectedText" data-i18n="phSelectCountry">Select Country...</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="select-options-panel" id="natDropdown">
+                <div class="search-input-wrapper">
+                  <input type="text" id="natSearch" placeholder="Search country..." oninput="filterOptions('natSearch', 'natOptionsList')" data-i18n-ph="phSearch">
+                </div>
+                <div id="natOptionsList"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label for="address" data-i18n="lblAddress">Full Address:</label>
+            <input type="text" id="address" name="address" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email" data-i18n="lblEmail">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <!-- Country Code + Phone Number Input -->
+          <div class="form-group">
+            <label for="phone" data-i18n="lblPhone">Phone Number:</label>
+            <div class="phone-input-wrapper">
+              <input type="hidden" id="countryCode" name="countryCode" value="+33">
+              <div class="dial-code-container">
+                <div class="select-box" id="codeSelectBox" onclick="toggleDropdown('codeDropdown')">
+                  <span id="codeSelectedText"><span class="fi fi-fr"></span> +33</span>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="select-options-panel" id="codeDropdown">
+                  <div class="search-input-wrapper">
+                    <input type="text" id="codeSearch" placeholder="Search..." oninput="filterOptions('codeSearch', 'codeOptionsList')" data-i18n-ph="phSearch">
+                  </div>
+                  <div id="codeOptionsList"></div>
+                </div>
+              </div>
+              <input type="text" id="phone" name="phone" placeholder="123456789" required>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label data-i18n="lblMarital">Marital Situation:</label>
+            <div class="option-pills">
+              <label class="pill-label"><input type="radio" name="marital" value="Single" checked> <span data-i18n="optSingle">Single</span></label>
+              <label class="pill-label"><input type="radio" name="marital" value="Married"> <span data-i18n="optMarried">Married</span></label>
+              <label class="pill-label"><input type="radio" name="marital" value="Divorced"> <span data-i18n="optDivorced">Divorced</span></label>
+              <label class="pill-label"><input type="radio" name="marital" value="Other"> <span data-i18n="optOther">Other</span></label>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label data-i18n="lblProfession">Profession:</label>
+            <div class="option-pills">
+              <label class="pill-label"><input type="radio" name="profession" value="Employed" checked> <span data-i18n="optEmployed">Employed or self-employed</span></label>
+              <label class="pill-label"><input type="radio" name="profession" value="Unemployed"> <span data-i18n="optUnemployed">Unemployed</span></label>
+              <label class="pill-label"><input type="radio" name="profession" value="Student/Retired"> <span data-i18n="optStudentRetired">Student or retired</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-actions">
+          <button type="button" class="btn btn-primary" onclick="nextPhase(1)"><span data-i18n="btnContinue">Continue</span> &rarr;</button>
+        </div>
+      </div>
+
+      <!-- PHASE 2: PLAN SELECTION -->
+      <div class="phase-step" id="phase-2">
+        <div class="section-header">
+          <h2 data-i18n="hdrSelectPlan">Select Your Crypto Cover</h2>
+        </div>
+
+        <div class="plans-wrapper">
+          <label class="plan-card">
+            <input type="radio" name="plan" value="1" checked>
+            <div class="plan-info">
+              <div class="plan-top">
+                <span class="plan-title">PACK ESSENTIEL</span>
+                <span class="plan-cost">$2,000</span>
+              </div>
+              <div class="plan-meta"><strong data-i18n="lblDuration">Duration:</strong> <span data-i18n="dur1Mo">1 month</span> &nbsp;|&nbsp; <strong data-i18n="lblCoverage">Coverage:</strong> <span data-i18n="cov50k">up to $50,000</span></div>
+              <div class="plan-risks"><strong data-i18n="lblCoveredRisks">Covered Risks:</strong> <span data-i18n="riskPack1">Wallet hacking, Theft on centralized exchange</span></div>
+            </div>
+          </label>
+
+          <label class="plan-card">
+            <input type="radio" name="plan" value="2">
+            <div class="plan-info">
+              <div class="plan-top">
+                <span class="plan-title">PACK PREMIUM</span>
+                <span class="plan-cost">$5,000</span>
+              </div>
+              <div class="plan-meta"><strong data-i18n="lblDuration">Duration:</strong> <span data-i18n="dur6Mo">6 months</span> &nbsp;|&nbsp; <strong data-i18n="lblCoverage">Coverage:</strong> <span data-i18n="cov100k">up to $100,000</span></div>
+              <div class="plan-risks"><strong data-i18n="lblCoveredRisks">Covered Risks:</strong> <span data-i18n="riskPack2">Hacking & theft, Exchange failure, Temporary loss of access</span></div>
+            </div>
+          </label>
+
+          <label class="plan-card">
+            <input type="radio" name="plan" value="3">
+            <div class="plan-info">
+              <div class="plan-top">
+                <span class="plan-title">PACK ULTIME</span>
+                <span class="plan-cost">$10,000</span>
+              </div>
+              <div class="plan-meta"><strong data-i18n="lblDuration">Duration:</strong> <span data-i18n="dur12Mo">12 months</span> &nbsp;|&nbsp; <strong data-i18n="lblCoverage">Coverage:</strong> <span data-i18n="cov500k">up to $500,000</span></div>
+              <div class="plan-risks"><strong data-i18n="lblCoveredRisks">Covered Risks:</strong> <span data-i18n="riskPack3">Hacking, theft, exchange collapse, Lost seed phrase, Wrong address transfer</span></div>
+            </div>
+          </label>
+        </div>
+
+        <div class="nav-actions">
+          <button type="button" class="btn btn-secondary" onclick="prevPhase(2)">&larr; <span data-i18n="btnBack">Back</span></button>
+          <button type="button" class="btn btn-primary" onclick="nextPhase(2)"><span data-i18n="btnContinue">Continue</span> &rarr;</button>
+        </div>
+      </div>
+
+      <!-- PHASE 3: CRYPTO WALLET & DECLARATION -->
+      <div class="phase-step" id="phase-3">
+        <div class="section-header">
+          <h2 data-i18n="hdrCryptoWallet">Your Crypto Wallet</h2>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="platform_name" data-i18n="lblPlatform">On Crypto Platform Name:</label>
+            <input type="text" id="platform_name" name="platform_name" placeholder="e.g. Binance, Coinbase">
+          </div>
+
+          <div class="form-group full">
+            <label for="trading_id" data-i18n="lblTradingId">Automatic Trading Account ID:</label>
+            <input type="text" id="trading_id" name="trading_id" placeholder="Account ID">
+          </div>
+
+          <div class="form-group full">
+            <label for="other_info" data-i18n="lblPublicWallet">Public Wallet Address / Other Details:</label>
+            <textarea id="other_info" name="other_info" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="signature" data-i18n="lblSignature">Signature (Full Name):</label>
+            <input type="text" id="signature" name="signature" placeholder="Type full name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="date" data-i18n="lblDate">Date:</label>
+            <input type="date" id="date" name="date" required>
+          </div>
+        </div>
+
+        <div class="declaration-box" data-i18n="declarationText">
+          We applicant declare that the submitted information is true, accurate, complete and not misleading and we have disclosed any other information, which might reasonably be considered relevant for the purpose of the application.
+        </div>
+
+        <div class="nav-actions">
+          <button type="button" class="btn btn-secondary" onclick="prevPhase(3)">&larr; <span data-i18n="btnBack">Back</span></button>
+          <button type="submit" class="btn btn-submit" data-i18n="btnSendRequest">Send Request</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<!-- Modal Dialog -->
+<div class="modal-overlay" id="resultModal">
+  <div class="modal-card">
+    <h3 style="margin: 0 0 10px 0; color: var(--eu-blue);" data-i18n="hdrModalSubmitted">Application Submitted</h3>
+    <p style="font-size: 14px; color: var(--text-muted); margin: 0;" data-i18n="msgModalSubmitted">Your application has been received. Your unique insurance reference ID is:</p>
+    
+    <div class="policy-badge">
+      <div class="policy-number" id="insuranceNumberDisplay">-------</div>
+      <button class="copy-policy-btn" onclick="copyPolicyNumber()" id="copyPolicyBtn">
+        <i class="fas fa-copy"></i> <span data-i18n="btnCopy">Copy</span>
+      </button>
+    </div>
+
+    <div class="payment-note">
+      <i class="fas fa-info-circle"></i>
+      <span data-i18n="msgPaymentNote">Please include this insurance policy number as the transaction reference when making your policy payment.</span>
+    </div>
+
+    <button class="btn btn-primary" style="width: 100%;" onclick="closeModal()" data-i18n="btnClose">Close</button>
+  </div>
+</div>
+
+<!-- Footer (Fixed in English) -->
+<footer class="esma-footer">
+  <div class="footer-content">
+    
+    <!-- 1. Left side: Logo & Tagline Banner -->
+    <div class="footer-brand">
+      <a href="https://www.esma.europa.eu/" target="_blank">
+        <img src="https://www.esma.europa.eu/themes/custom/esma_webst_theme/assets/images/ESMALogo.png" alt="ESMA Logo" class="footer-logo">
+      </a>
+      <div class="eu-banner">
+        <span>ESMA is an authority of the European Union</span>
+        
+        <!-- EU Flag SVG -->
+        <svg class="eu-flag-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 270 180" aria-label="EU Flag">
+          <rect width="270" height="180" fill="#003399"/>
+          <g id="star">
+            <g id="half">
+              <path id="point" d="M0-1V0h1" transform="rotate(18,0,-1)" fill="#ffcc00"/>
+              <use xlink:href="#point" transform="scale(-1,1)"/>
+            </g>
+            <use xlink:href="#half" transform="rotate(72)"/>
+            <use xlink:href="#half" transform="rotate(144)"/>
+            <use xlink:href="#half" transform="rotate(-144)"/>
+            <use xlink:href="#half" transform="rotate(-72)"/>
+          </g>
+          <g transform="translate(135,90) scale(9)">
+            <use xlink:href="#star" y="-6"/>
+            <use xlink:href="#star" transform="rotate(30)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(60)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(90)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(120)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(150)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(180)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(210)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(240)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(270)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(300)" y="-6"/>
+            <use xlink:href="#star" transform="rotate(330)" y="-6"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 2. Middle side: 6 Links in 3 Columns -->
+    <div class="footer-links">
+      <a href="https://www.esma.europa.eu/about-esma/careers" target="_blank">Careers</a>
+      <a href="support.html" target="_blank" data-i18n="ftrContact">Contact & Help</a>
+      <a href="https://www.esma.europa.eu/cookie-policy" target="_blank">Cookie Policy</a>
+      <a href="https://www.esma.europa.eu/databases-library/esma-library" target="_blank">ESMA Documents</a>
+      <a href="https://www.esma.europa.eu/interact-with-esma/media-corner" target="_blank">Media Corner</a>
+      <a href="https://www.esma.europa.eu/legal-notice" target="_blank">Legal Notice</a>
+    </div>
+
+    <!-- 3. Right side: Social Media Header & Icons -->
+    <div class="footer-social">
+      <h4 class="social-heading">Social Media</h4>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/company/european-securities-and-markets-authority-esma/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://instagram.com/esmacomms/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
+        <a href="https://twitter.com/ESMAComms" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-square-x-twitter"></i></a>
+        <a href="https://www.youtube.com/channel/UCe5tFtIMPE5BbFGdqT330WQ" target="_blank" aria-label="YouTube"><i class="fa-brands fa-square-youtube"></i></a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+let currentLang = "ENG";
+
+// Comprehensive Country dataset featuring all global ISO countries
+const countryData = [
+  { name: "Afghanistan", code: "af", dial: "+93" },
+  { name: "Albania", code: "al", dial: "+355" },
+  { name: "Algeria", code: "dz", dial: "+213" },
+  { name: "Andorra", code: "ad", dial: "+376" },
+  { name: "Angola", code: "ao", dial: "+244" },
+  { name: "Antigua and Barbuda", code: "ag", dial: "+1268" },
+  { name: "Argentina", code: "ar", dial: "+54" },
+  { name: "Armenia", code: "am", dial: "+374" },
+  { name: "Australia", code: "au", dial: "+61" },
+  { name: "Austria", code: "at", dial: "+43" },
+  { name: "Azerbaijan", code: "az", dial: "+994" },
+  { name: "Bahamas", code: "bs", dial: "+1242" },
+  { name: "Bahrain", code: "bh", dial: "+973" },
+  { name: "Bangladesh", code: "bd", dial: "+880" },
+  { name: "Barbados", code: "bb", dial: "+1246" },
+  { name: "Belarus", code: "by", dial: "+375" },
+  { name: "Belgium", code: "be", dial: "+32" },
+  { name: "Belize", code: "bz", dial: "+501" },
+  { name: "Benin", code: "bj", dial: "+229" },
+  { name: "Bhutan", code: "bt", dial: "+975" },
+  { name: "Bolivia", code: "bo", dial: "+591" },
+  { name: "Bosnia and Herzegovina", code: "ba", dial: "+387" },
+  { name: "Botswana", code: "bw", dial: "+267" },
+  { name: "Brazil", code: "br", dial: "+55" },
+  { name: "Brunei", code: "bn", dial: "+673" },
+  { name: "Bulgaria", code: "bg", dial: "+359" },
+  { name: "Burkina Faso", code: "bf", dial: "+226" },
+  { name: "Burundi", code: "bi", dial: "+257" },
+  { name: "Cambodia", code: "kh", dial: "+855" },
+  { name: "Cameroon", code: "cm", dial: "+237" },
+  { name: "Canada", code: "ca", dial: "+1" },
+  { name: "Cape Verde", code: "cv", dial: "+238" },
+  { name: "Central African Republic", code: "cf", dial: "+236" },
+  { name: "Chad", code: "td", dial: "+235" },
+  { name: "Chile", code: "cl", dial: "+56" },
+  { name: "China", code: "cn", dial: "+86" },
+  { name: "Colombia", code: "co", dial: "+57" },
+  { name: "Comoros", code: "km", dial: "+269" },
+  { name: "Congo (Brazzaville)", code: "cg", dial: "+242" },
+  { name: "Congo (Kinshasa)", code: "cd", dial: "+243" },
+  { name: "Costa Rica", code: "cr", dial: "+506" },
+  { name: "Croatia", code: "hr", dial: "+385" },
+  { name: "Cuba", code: "cu", dial: "+53" },
+  { name: "Cyprus", code: "cy", dial: "+357" },
+  { name: "Czech Republic", code: "cz", dial: "+420" },
+  { name: "Denmark", code: "dk", dial: "+45" },
+  { name: "Djibouti", code: "dj", dial: "+253" },
+  { name: "Dominica", code: "dm", dial: "+1767" },
+  { name: "Dominican Republic", code: "do", dial: "+1809" },
+  { name: "Ecuador", code: "ec", dial: "+593" },
+  { name: "Egypt", code: "eg", dial: "+20" },
+  { name: "El Salvador", code: "sv", dial: "+503" },
+  { name: "Equatorial Guinea", code: "gq", dial: "+240" },
+  { name: "Eritrea", code: "er", dial: "+291" },
+  { name: "Estonia", code: "ee", dial: "+372" },
+  { name: "Eswatini", code: "sz", dial: "+268" },
+  { name: "Ethiopia", code: "et", dial: "+251" },
+  { name: "Fiji", code: "fj", dial: "+679" },
+  { name: "Finland", code: "fi", dial: "+358" },
+  { name: "France", code: "fr", dial: "+33" },
+  { name: "Gabon", code: "ga", dial: "+241" },
+  { name: "Gambia", code: "gm", dial: "+220" },
+  { name: "Georgia", code: "ge", dial: "+995" },
+  { name: "Germany", code: "de", dial: "+49" },
+  { name: "Ghana", code: "gh", dial: "+233" },
+  { name: "Greece", code: "gr", dial: "+30" },
+  { name: "Grenada", code: "gd", dial: "+1473" },
+  { name: "Guatemala", code: "gt", dial: "+502" },
+  { name: "Guinea", code: "gn", dial: "+224" },
+  { name: "Guinea-Bissau", code: "gw", dial: "+245" },
+  { name: "Guyana", code: "gy", dial: "+592" },
+  { name: "Haiti", code: "ht", dial: "+509" },
+  { name: "Honduras", code: "hn", dial: "+504" },
+  { name: "Hungary", code: "hu", dial: "+36" },
+  { name: "Iceland", code: "is", dial: "+354" },
+  { name: "India", code: "in", dial: "+91" },
+  { name: "Indonesia", code: "id", dial: "+62" },
+  { name: "Iran", code: "ir", dial: "+98" },
+  { name: "Iraq", code: "iq", dial: "+964" },
+  { name: "Ireland", code: "ie", dial: "+353" },
+  { name: "Israel", code: "il", dial: "+972" },
+  { name: "Italy", code: "it", dial: "+39" },
+  { name: "Jamaica", code: "jm", dial: "+1876" },
+  { name: "Japan", code: "jp", dial: "+81" },
+  { name: "Jordan", code: "jo", dial: "+962" },
+  { name: "Kazakhstan", code: "kz", dial: "+7" },
+  { name: "Kenya", code: "ke", dial: "+254" },
+  { name: "Kiribati", code: "ki", dial: "+686" },
+  { name: "Kuwait", code: "kw", dial: "+965" },
+  { name: "Kyrgyzstan", code: "kg", dial: "+996" },
+  { name: "Laos", code: "la", dial: "+856" },
+  { name: "Latvia", code: "lv", dial: "+371" },
+  { name: "Lebanon", code: "lb", dial: "+961" },
+  { name: "Lesotho", code: "ls", dial: "+266" },
+  { name: "Liberia", code: "lr", dial: "+231" },
+  { name: "Libya", code: "ly", dial: "+218" },
+  { name: "Liechtenstein", code: "li", dial: "+423" },
+  { name: "Lithuania", code: "lt", dial: "+370" },
+  { name: "Luxembourg", code: "lu", dial: "+352" },
+  { name: "Madagascar", code: "mg", dial: "+261" },
+  { name: "Malawi", code: "mw", dial: "+265" },
+  { name: "Malaysia", code: "my", dial: "+60" },
+  { name: "Maldives", code: "mv", dial: "+960" },
+  { name: "Mali", code: "ml", dial: "+223" },
+  { name: "Malta", code: "mt", dial: "+356" },
+  { name: "Marshall Islands", code: "mh", dial: "+692" },
+  { name: "Mauritania", code: "mr", dial: "+222" },
+  { name: "Mauritius", code: "mu", dial: "+230" },
+  { name: "Mexico", code: "mx", dial: "+52" },
+  { name: "Micronesia", code: "fm", dial: "+691" },
+  { name: "Moldova", code: "md", dial: "+373" },
+  { name: "Monaco", code: "mc", dial: "+377" },
+  { name: "Mongolia", code: "mn", dial: "+976" },
+  { name: "Montenegro", code: "me", dial: "+382" },
+  { name: "Morocco", code: "ma", dial: "+212" },
+  { name: "Mozambique", code: "mz", dial: "+258" },
+  { name: "Myanmar", code: "mm", dial: "+95" },
+  { name: "Namibia", code: "na", dial: "+264" },
+  { name: "Nauru", code: "nr", dial: "+674" },
+  { name: "Nepal", code: "np", dial: "+977" },
+  { name: "Netherlands", code: "nl", dial: "+31" },
+  { name: "New Zealand", code: "nz", dial: "+64" },
+  { name: "Nicaragua", code: "ni", dial: "+505" },
+  { name: "Niger", code: "ne", dial: "+227" },
+  { name: "Nigeria", code: "ng", dial: "+234" },
+  { name: "North Korea", code: "kp", dial: "+850" },
+  { name: "North Macedonia", code: "mk", dial: "+389" },
+  { name: "Norway", code: "no", dial: "+47" },
+  { name: "Oman", code: "om", dial: "+968" },
+  { name: "Pakistan", code: "pk", dial: "+92" },
+  { name: "Palau", code: "pw", dial: "+680" },
+  { name: "Palestine", code: "ps", dial: "+970" },
+  { name: "Panama", code: "pa", dial: "+507" },
+  { name: "Papua New Guinea", code: "pg", dial: "+675" },
+  { name: "Paraguay", code: "py", dial: "+595" },
+  { name: "Peru", code: "pe", dial: "+51" },
+  { name: "Philippines", code: "ph", dial: "+63" },
+  { name: "Poland", code: "pl", dial: "+48" },
+  { name: "Portugal", code: "pt", dial: "+351" },
+  { name: "Qatar", code: "qa", dial: "+974" },
+  { name: "Romania", code: "ro", dial: "+40" },
+  { name: "Russia", code: "ru", dial: "+7" },
+  { name: "Rwanda", code: "rw", dial: "+250" },
+  { name: "Saint Kitts and Nevis", code: "kn", dial: "+1869" },
+  { name: "Saint Lucia", code: "lc", dial: "+1758" },
+  { name: "Saint Vincent and the Grenadines", code: "vc", dial: "+1784" },
+  { name: "Samoa", code: "ws", dial: "+685" },
+  { name: "San Marino", code: "sm", dial: "+378" },
+  { name: "Sao Tome and Principe", code: "st", dial: "+239" },
+  { name: "Saudi Arabia", code: "sa", dial: "+966" },
+  { name: "Senegal", code: "sn", dial: "+221" },
+  { name: "Serbia", code: "rs", dial: "+381" },
+  { name: "Seychelles", code: "sc", dial: "+248" },
+  { name: "Sierra Leone", code: "sl", dial: "+232" },
+  { name: "Singapore", code: "sg", dial: "+65" },
+  { name: "Slovakia", code: "sk", dial: "+421" },
+  { name: "Slovenia", code: "si", dial: "+386" },
+  { name: "Solomon Islands", code: "sb", dial: "+677" },
+  { name: "Somalia", code: "so", dial: "+252" },
+  { name: "South Africa", code: "za", dial: "+27" },
+  { name: "South Korea", code: "kr", dial: "+82" },
+  { name: "South Sudan", code: "ss", dial: "+211" },
+  { name: "Spain", code: "es", dial: "+34" },
+  { name: "Sri Lanka", code: "lk", dial: "+94" },
+  { name: "Sudan", code: "sd", dial: "+249" },
+  { name: "Suriname", code: "sr", dial: "+597" },
+  { name: "Sweden", code: "se", dial: "+46" },
+  { name: "Switzerland", code: "ch", dial: "+41" },
+  { name: "Syria", code: "sy", dial: "+963" },
+  { name: "Taiwan", code: "tw", dial: "+886" },
+  { name: "Tajikistan", code: "tj", dial: "+992" },
+  { name: "Tanzania", code: "tz", dial: "+255" },
+  { name: "Thailand", code: "th", dial: "+66" },
+  { name: "Timor-Leste", code: "tl", dial: "+670" },
+  { name: "Togo", code: "tg", dial: "+228" },
+  { name: "Tonga", code: "to", dial: "+676" },
+  { name: "Trinidad and Tobago", code: "tt", dial: "+1868" },
+  { name: "Tunisia", code: "tn", dial: "+216" },
+  { name: "Turkey", code: "tr", dial: "+90" },
+  { name: "Turkmenistan", code: "tm", dial: "+993" },
+  { name: "Tuvalu", code: "tv", dial: "+688" },
+  { name: "Uganda", code: "ug", dial: "+256" },
+  { name: "Ukraine", code: "ua", dial: "+380" },
+  { name: "United Arab Emirates", code: "ae", dial: "+971" },
+  { name: "United Kingdom", code: "gb", dial: "+44" },
+  { name: "United States", code: "us", dial: "+1" },
+  { name: "Uruguay", code: "uy", dial: "+598" },
+  { name: "Uzbekistan", code: "uz", dial: "+998" },
+  { name: "Vanuatu", code: "vu", dial: "+678" },
+  { name: "Vatican City", code: "va", dial: "+379" },
+  { name: "Venezuela", code: "ve", dial: "+58" },
+  { name: "Vietnam", code: "vn", dial: "+84" },
+  { name: "Yemen", code: "ye", dial: "+967" },
+  { name: "Zambia", code: "zm", dial: "+260" },
+  { name: "Zimbabwe", code: "zw", dial: "+263" }
+];
+
+const i18n = {
+  ENG: {
+    topBanner: "Official database of the European Securities and Markets Authority",
+    subHeader: "European Securities and Markets Authority",
+    step1: "1. Personal Information",
+    step2: "2. Plan Selection",
+    step3: "3. Crypto Wallet",
+    hdrPersonalInfo: "Personal Information",
+    lblFullName: "Full Name:",
+    lblDob: "Date of Birth:",
+    lblNationality: "Nationality:",
+    phSelectCountry: "Select Country...",
+    phSearch: "Search...",
+    lblAddress: "Full Address:",
+    lblEmail: "Email Address:",
+    lblPhone: "Phone Number:",
+    lblMarital: "Marital Situation:",
+    optSingle: "Single",
+    optMarried: "Married",
+    optDivorced: "Divorced",
+    optOther: "Other",
+    lblProfession: "Profession:",
+    optEmployed: "Employed or self-employed",
+    optUnemployed: "Unemployed",
+    optStudentRetired: "Student or retired",
+    btnContinue: "Continue",
+    btnBack: "Back",
+    btnSendRequest: "Send Request",
+    hdrSelectPlan: "Select Your Crypto Cover",
+    lblDuration: "Duration:",
+    dur1Mo: "1 month",
+    dur6Mo: "6 months",
+    dur12Mo: "12 months",
+    lblCoverage: "Coverage:",
+    cov50k: "up to $50,000",
+    cov100k: "up to $100,000",
+    cov500k: "up to $500,000",
+    lblCoveredRisks: "Covered Risks:",
+    riskPack1: "Wallet hacking, Theft on centralized exchange",
+    riskPack2: "Hacking & theft, Exchange failure, Temporary loss of access",
+    riskPack3: "Hacking, theft, exchange collapse, Lost seed phrase, Wrong address transfer",
+    hdrCryptoWallet: "Your Crypto Wallet",
+    lblPlatform: "On Crypto Platform Name:",
+    lblTradingId: "Automatic Trading Account ID:",
+    lblPublicWallet: "Public Wallet Address / Other Details:",
+    lblSignature: "Signature (Full Name):",
+    lblDate: "Date:",
+    declarationText: "We applicant declare that the submitted information is true, accurate, complete and not misleading and we have disclosed any other information, which might reasonably be considered relevant for the purpose of the application.",
+    hdrModalSubmitted: "Application Submitted",
+    msgModalSubmitted: "Your application has been received. Your unique insurance reference ID is:",
+    lblInsuranceNum: "Insurance Number",
+    btnCopy: "Copy",
+    btnCopied: "Copied!",
+    msgPaymentNote: "Please include this insurance policy number as the transaction reference when making your policy payment.",
+    btnClose: "Close"
+  },
+  DA: {
+    topBanner: "Officiel database for Den Europæiske Værdipapir- og Markedstilsynsmyndighed",
+    subHeader: "Den Europæiske Værdipapir- og Markedstilsynsmyndighed",
+    step1: "1. Personlige oplysninger",
+    step2: "2. Valg af plan",
+    step3: "3. Krypto-tegnebog",
+    hdrPersonalInfo: "Personlige oplysninger",
+    lblFullName: "Fulde navn:",
+    lblDob: "Fødselsdato:",
+    lblNationality: "Nationalitet:",
+    phSelectCountry: "Vælg land...",
+    phSearch: "Søg...",
+    lblAddress: "Fuld adresse:",
+    lblEmail: "E-mailadresse:",
+    lblPhone: "Telefonnummer:",
+    lblMarital: "Civilstand:",
+    optSingle: "Ugift",
+    optMarried: "Gift",
+    optDivorced: "Skilt",
+    optOther: "Andet",
+    lblProfession: "Erhverv:",
+    optEmployed: "Lønmodtager eller selvstændig",
+    optUnemployed: "Arbejdsløs",
+    optStudentRetired: "Studerende eller pensionist",
+    btnContinue: "Fortsæt",
+    btnBack: "Tilbage",
+    btnSendRequest: "Send anmodning",
+    hdrSelectPlan: "Vælg din kryptodækning",
+    lblDuration: "Varighed:",
+    dur1Mo: "1 måned",
+    dur6Mo: "6 måneder",
+    dur12Mo: "12 måneder",
+    lblCoverage: "Dækning:",
+    cov50k: "op til $50.000",
+    cov100k: "op til $100.000",
+    cov500k: "op til $500.000",
+    lblCoveredRisks: "Dækkede risici:",
+    riskPack1: "Wallet-hacking, tyveri på centraliseret børs",
+    riskPack2: "Hacking og tyveri, børssvigt, midlertidigt tab af adgang",
+    riskPack3: "Hacking, tyveri, børskollaps, mistet seed-phrase, forkert adresseoverførsel",
+    hdrCryptoWallet: "Din krypto-tegnebog",
+    lblPlatform: "Navn på krypto-platform:",
+    lblTradingId: "Automatisk handelskonto-ID:",
+    lblPublicWallet: "Offentlig wallet-adresse / Andre detaljer:",
+    lblSignature: "Underskrift (fulde navn):",
+    lblDate: "Dato:",
+    declarationText: "Vi erklærer som ansøger, at de indsendte oplysninger er sande, nøjagtige, fuldstændige og ikke vildledende, og at vi har oplyst alle andre oplysninger, der med rimelighed kan anses for relevante for ansøgningen.",
+    hdrModalSubmitted: "Ansøgning indsendt",
+    msgModalSubmitted: "Din ansøgning er modtaget. Dit unikke forsikringsreferencenummer er:",
+    lblInsuranceNum: "Forsikringsnummer",
+    btnCopy: "Kopier",
+    btnCopied: "Kopieret!",
+    msgPaymentNote: "Inkluder venligst dette forsikringspolicenummer som transaktionsreference, når du foretager din policebetaling.",
+    btnClose: "Luk"
+  },
+  DE: {
+    topBanner: "Offizielle Datenbank der Europäischen Wertpapier- und Marktaufsichtsbehörde",
+    subHeader: "Europäische Wertpapier- und Marktaufsichtsbehörde",
+    step1: "1. Persönliche Daten",
+    step2: "2. Tarifauswahl",
+    step3: "3. Crypto-Wallet",
+    hdrPersonalInfo: "Persönliche Daten",
+    lblFullName: "Vollständiger Name:",
+    lblDob: "Geburtsdatum:",
+    lblNationality: "Staatsangehörigkeit:",
+    phSelectCountry: "Land auswählen...",
+    phSearch: "Suchen...",
+    lblAddress: "Vollständige Adresse:",
+    lblEmail: "E-Mail-Adresse:",
+    lblPhone: "Telefonnummer:",
+    lblMarital: "Familienstand:",
+    optSingle: "Ledig",
+    optMarried: "Verheiratet",
+    optDivorced: "Geschieden",
+    optOther: "Sonstiges",
+    lblProfession: "Beruf:",
+    optEmployed: "Angestellt oder selbstständig",
+    optUnemployed: "Arbeitslos",
+    optStudentRetired: "Student oder Rentner",
+    btnContinue: "Weiter",
+    btnBack: "Zurück",
+    btnSendRequest: "Anfrage senden",
+    hdrSelectPlan: "Wählen Sie Ihren Krypto-Schutz",
+    lblDuration: "Laufzeit:",
+    dur1Mo: "1 Monat",
+    dur6Mo: "6 Monate",
+    dur12Mo: "12 Monate",
+    lblCoverage: "Deckung:",
+    cov50k: "bis zu $50.000",
+    cov100k: "bis zu $100.000",
+    cov500k: "bis zu $500.000",
+    lblCoveredRisks: "Abgedeckte Risiken:",
+    riskPack1: "Wallet-Hacking, Diebstahl auf zentralisierter Börse",
+    riskPack2: "Hacking & Diebstahl, Börsenausfall, vorübergehender Zugriffsverlust",
+    riskPack3: "Hacking, Diebstahl, Börsenkollaps, verlorene Seed-Phrase, falsche Überweisung",
+    hdrCryptoWallet: "Ihre Krypto-Wallet",
+    lblPlatform: "Name der Krypto-Plattform:",
+    lblTradingId: "Automatische Trading-Konto-ID:",
+    lblPublicWallet: "Öffentliche Wallet-Adresse / Weitere Details:",
+    lblSignature: "Unterschrift (Vollständiger Name):",
+    lblDate: "Datum:",
+    declarationText: "Wir als Antragsteller erklären, dass die übermittelten Informationen wahr, genau, vollständig und nicht irreführend sind und dass wir alle anderen Informationen offengelegt haben, die für den Zweck des Antrags als relevant angesehen werden können.",
+    hdrModalSubmitted: "Antrag eingereicht",
+    msgModalSubmitted: "Ihr Antrag ist eingegangen. Ihre eindeutige Versicherungs-Referenz-ID lautet:",
+    lblInsuranceNum: "Versicherungsnummer",
+    btnCopy: "Kopieren",
+    btnCopied: "Kopiert!",
+    msgPaymentNote: "Bitte geben Sie diese Versicherungsscheinnummer als Transaktionsreferenz an, wenn Sie Ihre Policenzahlung leisten.",
+    btnClose: "Schließen"
+  },
+  DU: {
+    topBanner: "Officiële database van de Europese Autoriteit voor effecten en markten",
+    subHeader: "Europese Autoriteit voor effecten en markten",
+    step1: "1. Persoonlijke informatie",
+    step2: "2. Plan selectie",
+    step3: "3. Crypto-wallet",
+    hdrPersonalInfo: "Persoonlijke informatie",
+    lblFullName: "Volledige naam:",
+    lblDob: "Geboortedatum:",
+    lblNationality: "Nationaliteit:",
+    phSelectCountry: "Selecteer land...",
+    phSearch: "Zoeken...",
+    lblAddress: "Volledig adres:",
+    lblEmail: "E-mailadres:",
+    lblPhone: "Telefoonnummer:",
+    lblMarital: "Burgerlijke staat:",
+    optSingle: "Ongehuwd",
+    optMarried: "Gehuwd",
+    optDivorced: "Gescheiden",
+    optOther: "Anders",
+    lblProfession: "Beroep:",
+    optEmployed: "In loondienst of zelfstandig",
+    optUnemployed: "Werkloos",
+    optStudentRetired: "Student of gepensioneerd",
+    btnContinue: "Doorgaan",
+    btnBack: "Terug",
+    btnSendRequest: "Aanvraag versturen",
+    hdrSelectPlan: "Selecteer uw krypto-dekking",
+    lblDuration: "Loooptijd:",
+    dur1Mo: "1 maand",
+    dur6Mo: "6 maanden",
+    dur12Mo: "12 maanden",
+    lblCoverage: "Dekking:",
+    cov50k: "tot $50.000",
+    cov100k: "tot $100.000",
+    cov500k: "tot $500.000",
+    lblCoveredRisks: "Gedekte risico's:",
+    riskPack1: "Wallet-hacking, diefstal op gecentraliseerde beurs",
+    riskPack2: "Hacking & diefstal, beursfout, tijdelijk verlies van toegang",
+    riskPack3: "Hacking, diefstal, beurscollapse, verloren seed phrase, verkeerde overboeking",
+    hdrCryptoWallet: "Uw crypto-wallet",
+    lblPlatform: "Naam crypto-platform:",
+    lblTradingId: "Automatisch trading account ID:",
+    lblPublicWallet: "Publiek wallet-adres / Overige details:",
+    lblSignature: "Handtekening (Volledige naam):",
+    lblDate: "Datum:",
+    declarationText: "Wij als aanvrager verklaren dat de verstrekte informatie juist, nauwkeurig, volledig en niet misleidend is en dat we alle andere informatie hebben bekendgemaakt die redelijkerwijs relevant kan worden geacht voor de aanvraag.",
+    hdrModalSubmitted: "Aanvraag ingediend",
+    msgModalSubmitted: "Uw aanvraag is ontvangen. Uw unieke verzekeringsreferentie-ID is:",
+    lblInsuranceNum: "Verzekeringsnummer",
+    btnCopy: "Kopiëren",
+    btnCopied: "Gekopieerd!",
+    msgPaymentNote: "Vermeld dit polisnummer als transactiereferentie wanneer u de polisbetaling voldoet.",
+    btnClose: "Sluiten"
+  },
+  ES: {
+    topBanner: "Base de datos oficial de la Autoridad Europea de Valores y Mercados",
+    subHeader: "Autoridad Europea de Valores y Mercados",
+    step1: "1. Información personal",
+    step2: "2. Selección de plan",
+    step3: "3. Monedero cripto",
+    hdrPersonalInfo: "Información personal",
+    lblFullName: "Nombre completo:",
+    lblDob: "Fecha de nacimiento:",
+    lblNationality: "Nacionalidad:",
+    phSelectCountry: "Seleccionar país...",
+    phSearch: "Buscar...",
+    lblAddress: "Dirección completa:",
+    lblEmail: "Correo electrónico:",
+    lblPhone: "Número de teléfono:",
+    lblMarital: "Estado civil:",
+    optSingle: "Soltero/a",
+    optMarried: "Casado/a",
+    optDivorced: "Divorciado/a",
+    optOther: "Otro",
+    lblProfession: "Profesión:",
+    optEmployed: "Empleado o autónomo",
+    optUnemployed: "Desempleado",
+    optStudentRetired: "Estudiante o jubilado",
+    btnContinue: "Continuar",
+    btnBack: "Atrás",
+    btnSendRequest: "Enviar solicitud",
+    hdrSelectPlan: "Seleccione su cobertura cripto",
+    lblDuration: "Duración:",
+    dur1Mo: "1 mes",
+    dur6Mo: "6 meses",
+    dur12Mo: "12 meses",
+    lblCoverage: "Cobertura:",
+    cov50k: "hasta $50,000",
+    cov100k: "hasta $100,000",
+    cov500k: "hasta $500,000",
+    lblCoveredRisks: "Riesgos cubiertos:",
+    riskPack1: "Hacking de billetera, robo en exchange centralizado",
+    riskPack2: "Hacking y robo, fallo de exchange, pérdida temporal de acceso",
+    riskPack3: "Hacking, robo, colapso de exchange, frase semilla perdida, transferencia a dirección errónea",
+    hdrCryptoWallet: "Su monedero cripto",
+    lblPlatform: "Nombre de la plataforma cripto:",
+    lblTradingId: "ID de cuenta de trading automático:",
+    lblPublicWallet: "Dirección pública de billetera / Otros detalles:",
+    lblSignature: "Firma (Nombre completo):",
+    lblDate: "Fecha:",
+    declarationText: "Nosotros como solicitantes declaramos que la información presentada es verdadera, precisa, completa y no engañosa y hemos revelado cualquier otra información que pueda considerarse razonablemente relevante para la solicitud.",
+    hdrModalSubmitted: "Solicitud enviada",
+    msgModalSubmitted: "Se ha recibido su solicitud. Su ID de referencia de seguro único es:",
+    lblInsuranceNum: "Número de seguro",
+    btnCopy: "Copiar",
+    btnCopied: "¡Copiado!",
+    msgPaymentNote: "Incluya este número de póliza de seguro como referencia de transacción al realizar el pago de su póliza.",
+    btnClose: "Cerrar"
+  },
+  FI: {
+    topBanner: "Euroopan arvopaperimarkkinaviranomaisen virallinen tietokanta",
+    subHeader: "Euroopan arvopaperimarkkinaviranomainen",
+    step1: "1. Henkilötiedot",
+    step2: "2. Suunnitelman valinta",
+    step3: "3. Kryptolompakko",
+    hdrPersonalInfo: "Henkilötiedot",
+    lblFullName: "Koko nimi:",
+    lblDob: "Syntymäaika:",
+    lblNationality: "Kansallisuus:",
+    phSelectCountry: "Valitse maa...",
+    phSearch: "Hae...",
+    lblAddress: "Täydellinen osoite:",
+    lblEmail: "Sähköpostiosoite:",
+    lblPhone: "Puhelinnumero:",
+    lblMarital: "Siviilisääty:",
+    optSingle: "Naimaton",
+    optMarried: "Naimisissa",
+    optDivorced: "Eronnut",
+    optOther: "Muu",
+    lblProfession: "Ammatti:",
+    optEmployed: "Työntekijä tai ammatinharjoittaja",
+    optUnemployed: "Työtön",
+    optStudentRetired: "Opiskelija tai eläkeläinen",
+    btnContinue: "Jatka",
+    btnBack: "Takaisin",
+    btnSendRequest: "Lähetä pyyntö",
+    hdrSelectPlan: "Valitse kryptosuojauksesi",
+    lblDuration: "Kesto:",
+    dur1Mo: "1 kuukausi",
+    dur6Mo: "6 kuukautta",
+    dur12Mo: "12 kuukautta",
+    lblCoverage: "Kattavuus:",
+    cov50k: "enintään $50 000",
+    cov100k: "enintään $100 000",
+    cov500k: "enintään $500 000",
+    lblCoveredRisks: "Katetut riskit:",
+    riskPack1: "Lompakon hakkerointi, varkaus keskitetyssä pörssissä",
+    riskPack2: "Hakkerointi ja varkaus, pörssin toimintahäiriö, tilapäinen pääsyn menetys",
+    riskPack3: "Hakkerointi, varkaus, pörssin romahtaminen, kadotettu seed-lauseke, väärä osoitesiirto",
+    hdrCryptoWallet: "Kryptolompakkosi",
+    lblPlatform: "Kryptoalustan nimi:",
+    lblTradingId: "Automaattisen kaupankäyntitilin ID:",
+    lblPublicWallet: "Julkinen lompakko-osoite / Muut tiedot:",
+    lblSignature: "Allekirjoitus (Koko nimi):",
+    lblDate: "Päivämäärä:",
+    declarationText: "Me hakijana vakuutamme, että annetut tiedot ovat totuudenmukaisia, tarkkoja, täydellisiä eivätkä harhaanjohtavia, ja olemme ilmoittaneet kaikki muut tiedot, joita voidaan kohtuudella pitää hakemuksen kannalta olennaisina.",
+    hdrModalSubmitted: "Hakemus lähetetty",
+    msgModalSubmitted: "Hakemuksesi on vastaanotettu. Ainutkertainen vakuutusviitteesi on:",
+    lblInsuranceNum: "Vakuutusnumero",
+    btnCopy: "Kopioi",
+    btnCopied: "Kopioitu!",
+    msgPaymentNote: "Sisällytä tämä vakuutuksen numero maksun viitteeksi suorittaessasi vakuutusmaksua.",
+    btnClose: "Sulje"
+  },
+  FR: {
+    topBanner: "Base de données officielle de l'Autorité européenne des marchés financiers",
+    subHeader: "Autorité européenne des marchés financiers",
+    step1: "1. Informations personnelles",
+    step2: "2. Sélection de la formule",
+    step3: "3. Portefeuille crypto",
+    hdrPersonalInfo: "Informations personnelles",
+    lblFullName: "Nom complet :",
+    lblDob: "Date de naissance :",
+    lblNationality: "Nationalité :",
+    phSelectCountry: "Sélectionnez le pays...",
+    phSearch: "Rechercher...",
+    lblAddress: "Adresse complète :",
+    lblEmail: "Adresse e-mail :",
+    lblPhone: "Numéro de téléphone :",
+    lblMarital: "Situation matrimoniale :",
+    optSingle: "Célibataire",
+    optMarried: "Marié(e)",
+    optDivorced: "Divorcé(e)",
+    optOther: "Autre",
+    lblProfession: "Profession :",
+    optEmployed: "Employé ou indépendant",
+    optUnemployed: "Sans emploi",
+    optStudentRetired: "Étudiant ou retraité",
+    btnContinue: "Continuer",
+    btnBack: "Retour",
+    btnSendRequest: "Envoyer la demande",
+    hdrSelectPlan: "Sélectionnez votre couverture crypto",
+    lblDuration: "Durée :",
+    dur1Mo: "1 mois",
+    dur6Mo: "6 mois",
+    dur12Mo: "12 mois",
+    lblCoverage: "Couverture :",
+    cov50k: "jusqu'à 50 000 $",
+    cov100k: "jusqu'à 100 000 $",
+    cov500k: "jusqu'à 500 000 $",
+    lblCoveredRisks: "Risques couverts :",
+    riskPack1: "Piratage de portefeuille, vol sur plateforme centralisée",
+    riskPack2: "Piratage et vol, défaillance de la plateforme, perte temporaire d'accès",
+    riskPack3: "Piratage, vol, effondrement de plateforme, perte de phrase graine, erreur de destinataire",
+    hdrCryptoWallet: "Votre portefeuille crypto",
+    lblPlatform: "Nom de la plateforme crypto :",
+    lblTradingId: "ID du compte de trading automatique :",
+    lblPublicWallet: "Adresse publique du portefeuille / Autres détails :",
+    lblSignature: "Signature (Nom complet) :",
+    lblDate: "Date :",
+    declarationText: "Nous demandeur déclarons que les informations soumises sont vraies, exactes, complètes et non trompeuses et que nous avons divulgué toute autre information qui pourrait raisonnablement être considérée comme pertinente aux fins de la demande.",
+    hdrModalSubmitted: "Demande envoyée",
+    msgModalSubmitted: "Votre demande a été reçue. Votre identifiant de référence d'assurance unique est :",
+    lblInsuranceNum: "Numéro d'assurance",
+    btnCopy: "Copier",
+    btnCopied: "Copié !",
+    msgPaymentNote: "Veuillez inclure ce numéro de police d'assurance comme référence de transaction lors du paiement de votre police.",
+    btnClose: "Fermer"
+  },
+  IT: {
+    topBanner: "Database ufficiale dell'Autorità europea degli strumenti finanziari e dei mercati",
+    subHeader: "Autorità europea degli strumenti finanziari e dei mercati",
+    step1: "1. Informazioni personali",
+    step2: "2. Selezione del piano",
+    step3: "3. Portafoglio crypto",
+    hdrPersonalInfo: "Informazioni personali",
+    lblFullName: "Nome completo:",
+    lblDob: "Data di nascita:",
+    lblNationality: "Nazionalità:",
+    phSelectCountry: "Seleziona paese...",
+    phSearch: "Cerca...",
+    lblAddress: "Indirizzo completo:",
+    lblEmail: "Indirizzo email:",
+    lblPhone: "Numero di telefono:",
+    lblMarital: "Stato civile:",
+    optSingle: "Single",
+    optMarried: "Coniugato/a",
+    optDivorced: "Separato/a",
+    optOther: "Altro",
+    lblProfession: "Professione:",
+    optEmployed: "Impiegato o lavoratore autonomo",
+    optUnemployed: "Disoccupato",
+    optStudentRetired: "Studente o pensionato",
+    btnContinue: "Continua",
+    btnBack: "Indietro",
+    btnSendRequest: "Invia richiesta",
+    hdrSelectPlan: "Seleziona la tua copertura crypto",
+    lblDuration: "Durata:",
+    dur1Mo: "1 mese",
+    dur6Mo: "6 mesi",
+    dur12Mo: "12 mesi",
+    lblCoverage: "Copertura:",
+    cov50k: "fino a $50.000",
+    cov100k: "fino a $100.000",
+    cov500k: "fino a $500.000",
+    lblCoveredRisks: "Rischi coperti:",
+    riskPack1: "Hacking del portafoglio, furto su exchange centralizzato",
+    riskPack2: "Hacking e furto, fallimento exchange, perdita temporanea di accesso",
+    riskPack3: "Hacking, furto, crollo exchange, frase seed smarrita, trasferimento a indirizzo errato",
+    hdrCryptoWallet: "Il tuo portafoglio crypto",
+    lblPlatform: "Nome piattaforma crypto:",
+    lblTradingId: "ID account di trading automatico:",
+    lblPublicWallet: "Indirizzo pubblico del portafoglio / Altri dettagli:",
+    lblSignature: "Firma (Nome completo):",
+    lblDate: "Data:",
+    declarationText: "Noi richiedenti dichiariamo che le informazioni inviate sono vere, accurate, complete e non fuorvianti e abbiamo divulgato qualsiasi altra informazione che potrebbe essere ragionevolmente considerata rilevante ai fini della domanda.",
+    hdrModalSubmitted: "Domanda inviata",
+    msgModalSubmitted: "La tua domanda è stata ricevuta. Il tuo ID di riferimento assicurativo unico è:",
+    lblInsuranceNum: "Numero di assicurazione",
+    btnCopy: "Copia",
+    btnCopied: "Copiato!",
+    msgPaymentNote: "Si prega di includere questo numero di polizza assicurativa come riferimento della transazione durante il pagamento della polizza.",
+    btnClose: "Chiudi"
+  },
+  NO: {
+    topBanner: "Offisiell database for Den europeiske verdipapir- og markedstilsynsmyndighet",
+    subHeader: "Den europeiske verdipapir- og markedstilsynsmyndighet",
+    step1: "1. Personlig informasjon",
+    step2: "2. Valg av plan",
+    step3: "3. Krypto-lommebok",
+    hdrPersonalInfo: "Personlig informasjon",
+    lblFullName: "Fullt navn:",
+    lblDob: "Fødselsdato:",
+    lblNationality: "Nasjonalitet:",
+    phSelectCountry: "Velg land...",
+    phSearch: "Søk...",
+    lblAddress: "Full adresse:",
+    lblEmail: "E-postadresse:",
+    lblPhone: "Telefonnummer:",
+    lblMarital: "Sivilstand:",
+    optSingle: "Ugift",
+    optMarried: "Gift",
+    optDivorced: "Skilt",
+    optOther: "Annet",
+    lblProfession: "Yrke:",
+    optEmployed: "Ansatt eller selvstendig næringsdrivende",
+    optUnemployed: "Arbeidsledig",
+    optStudentRetired: "Student eller pensjonist",
+    btnContinue: "Fortsett",
+    btnBack: "Tilbake",
+    btnSendRequest: "Send forespørsel",
+    hdrSelectPlan: "Velg din kryptodekning",
+    lblDuration: "Varighet:",
+    dur1Mo: "1 måned",
+    dur6Mo: "6 måneder",
+    dur12Mo: "12 måneder",
+    lblCoverage: "Dekning:",
+    cov50k: "opptil $50 000",
+    cov100k: "opptil $100 000",
+    cov500k: "opptil $500 000",
+    lblCoveredRisks: "Dekkede risikoer:",
+    riskPack1: "Wallet-hacking, tyveri på sentralisert børs",
+    riskPack2: "Hacking og tyveri, børssvikt, midlertidig tap av tilgang",
+    riskPack3: "Hacking, tyveri, børskollaps, tapt seed-phrase, feil adresseoverføring",
+    hdrCryptoWallet: "Din krypto-lommebok",
+    lblPlatform: "Navn på krypto-plattform:",
+    lblTradingId: "Automatisk trading-konto ID:",
+    lblPublicWallet: "Offentlig lommebokadresse / Andre detaljer:",
+    lblSignature: "Signatur (Fullt navn):",
+    lblDate: "Dato:",
+    declarationText: "Vi som søker erklærer at den innsendte informasjonen er sann, nøyaktig, fullstendig og ikke misvisende, og vi har oppgitt all annen informasjon som med rimelighet kan anses som relevant for søknaden.",
+    hdrModalSubmitted: "Søknad sendt",
+    msgModalSubmitted: "Søknaden din er mottatt. Din unike forsikringsreferanse-ID er:",
+    lblInsuranceNum: "Forsikringsnummer",
+    btnCopy: "Kopier",
+    btnCopied: "Kopiert!",
+    msgPaymentNote: "Vennligst oppgi dette forsikringspolisenummeret som transaksjonsreferanse når du betaler polisen.",
+    btnClose: "Lukk"
+  },
+  SV: {
+    topBanner: "Officiell databas för Europeiska värdepappers- och marknadsmyndigheten",
+    subHeader: "Europeiska värdepappers- och marknadsmyndigheten",
+    step1: "1. Personuppgifter",
+    step2: "2. Val av plan",
+    step3: "3. Krypto-plånbok",
+    hdrPersonalInfo: "Personuppgifter",
+    lblFullName: "Fullständigt namn:",
+    lblDob: "Födelsedatum:",
+    lblNationality: "Nationalitet:",
+    phSelectCountry: "Välj land...",
+    phSearch: "Sök...",
+    lblAddress: "Fullständig adress:",
+    lblEmail: "E-postadress:",
+    lblPhone: "Telefonnummer:",
+    lblMarital: "Civilstånd:",
+    optSingle: "Ogift",
+    optMarried: "Gift",
+    optDivorced: "Skild",
+    optOther: "Annat",
+    lblProfession: "Yrke:",
+    optEmployed: "Anställd eller egenföretagare",
+    optUnemployed: "Arbetslös",
+    optStudentRetired: "Student eller pensionär",
+    btnContinue: "Fortsätt",
+    btnBack: "Tillbaka",
+    btnSendRequest: "Skicka begäran",
+    hdrSelectPlan: "Välj ditt kryptoskydd",
+    lblDuration: "Varaktighet:",
+    dur1Mo: "1 månad",
+    dur6Mo: "6 månader",
+    dur12Mo: "12 månader",
+    lblCoverage: "Täckning:",
+    cov50k: "upp till $50 000",
+    cov100k: "upp till $100 000",
+    cov500k: "upp till $500 000",
+    lblCoveredRisks: "Täckta risker:",
+    riskPack1: "Plånbokshackning, stöld på centraliserad börs",
+    riskPack2: "Hackning & stöld, börsfel, tillfällig förlust av åtkomst",
+    riskPack3: "Hackning, stöld, börskollaps, förlorad seed-phrase, felaktig adressöverföring",
+    hdrCryptoWallet: "Din krypto-plånbok",
+    lblPlatform: "Kryptoplattformens namn:",
+    lblTradingId: "Automatiskt handelskonto-ID:",
+    lblPublicWallet: "Offentlig plånboksadress / Andra detaljer:",
+    lblSignature: "Signatur (Fullständigt namn):",
+    lblDate: "Datum:",
+    declarationText: "Vi sökande förklarar att den insända informationen är sann, korrekt, fullständig och inte vilseledande och att vi har lämnat all annan information som rimligen kan anses vara relevant för ansökan.",
+    hdrModalSubmitted: "Ansökan insänd",
+    msgModalSubmitted: "Din ansökan har mottagits. Ditt unika försäkringsreferens-ID är:",
+    lblInsuranceNum: "Försäkringsnummer",
+    btnCopy: "Kopiera",
+    btnCopied: "Kopierad!",
+    msgPaymentNote: "Vänligen ange detta försäkringsbrevnummer som transaktionsreferens när du gör din försäkringsbetalning.",
+    btnClose: "Stäng"
+  }
+};
+
+function initPortal() {
+  populateDropdowns();
+  
+  const userLang = (navigator.language || navigator.userLanguage || "").substring(0, 2).toLowerCase();
+  const langMap = { 
+    "da": "DA", "de": "DE", "nl": "DU", "es": "ES", 
+    "fi": "FI", "fr": "FR", "it": "IT", "no": "NO", 
+    "nb": "NO", "nn": "NO", "sv": "SV" 
+  };
+  
+  if (langMap[userLang]) {
+    currentLang = langMap[userLang];
+    document.getElementById('langSelect').value = currentLang;
+  }
+  changeLanguage(currentLang);
+}
+
+function populateDropdowns() {
+  const natList = document.getElementById('natOptionsList');
+  const codeList = document.getElementById('codeOptionsList');
+  
+  natList.innerHTML = '';
+  codeList.innerHTML = '';
+
+  countryData.forEach(c => {
+    // Nationality Items
+    const natDiv = document.createElement('div');
+    natDiv.className = 'option-item';
+    natDiv.innerHTML = `<span class="fi fi-${c.code}"></span> ${c.name}`;
+    natDiv.onclick = () => selectNationality(c.name, c.code);
+    natList.appendChild(natDiv);
+
+    // Country Code Items
+    const codeDiv = document.createElement('div');
+    codeDiv.className = 'option-item';
+    codeDiv.innerHTML = `<span class="fi fi-${c.code}"></span> ${c.dial} (${c.name})`;
+    codeDiv.onclick = () => selectCountryCode(c.dial, c.code);
+    codeList.appendChild(codeDiv);
+  });
+}
+
+function toggleDropdown(id) {
+  const dropdown = document.getElementById(id);
+  const isOpen = dropdown.classList.contains('open');
+  closeAllDropdowns();
+  if (!isOpen) {
+    dropdown.classList.add('open');
+  }
+}
+
+function closeAllDropdowns() {
+  document.querySelectorAll('.select-options-panel').forEach(p => p.classList.remove('open'));
+}
+
+window.onclick = function(e) {
+  if (!e.target.closest('.custom-select-container') && !e.target.closest('.dial-code-container')) {
+    closeAllDropdowns();
+  }
+};
+
+function filterOptions(inputId, listId) {
+  const query = document.getElementById(inputId).value.toLowerCase();
+  const options = document.getElementById(listId).getElementsByClassName('option-item');
+  Array.from(options).forEach(opt => {
+    const text = opt.innerText.toLowerCase();
+    opt.style.display = text.includes(query) ? 'flex' : 'none';
+  });
+}
+
+function selectNationality(countryName, code) {
+  document.getElementById('nationality').value = countryName;
+  document.getElementById('natSelectedText').innerHTML = `<span class="fi fi-${code}"></span> ${countryName}`;
+  closeAllDropdowns();
+}
+
+function selectCountryCode(dial, code) {
+  document.getElementById('countryCode').value = dial;
+  document.getElementById('codeSelectedText').innerHTML = `<span class="fi fi-${code}"></span> ${dial}`;
+  closeAllDropdowns();
+}
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  const dict = i18n[lang] || i18n.ENG;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) {
+      el.innerHTML = dict[key];
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.getAttribute('data-i18n-ph');
+    if (dict[key]) {
+      el.placeholder = dict[key];
+    }
+  });
+}
+
+/* Phase Navigation Script */
+let currentPhase = 1;
+
+function updateStepUI(phase) {
+  document.querySelectorAll('.phase-step').forEach(el => el.classList.remove('active'));
+  document.getElementById(`phase-${phase}`).classList.add('active');
+
+  for (let i = 1; i <= 3; i++) {
+    const node = document.getElementById(`node-${i}`);
+    if (i === phase) {
+      node.className = 'step-item active';
+    } else if (i < phase) {
+      node.className = 'step-item completed';
+    } else {
+      node.className = 'step-item';
+    }
+  }
+}
+
+function nextPhase(fromPhase) {
+  const activePhase = document.getElementById(`phase-${fromPhase}`);
+  
+  if (fromPhase === 1) {
+    if (!document.getElementById('nationality').value) {
+      alert("Please select your nationality.");
+      return;
+    }
+  }
+
+  const inputs = activePhase.querySelectorAll('input[required]');
+  let isValid = true;
+
+  inputs.forEach(input => {
+    if (!input.checkValidity()) {
+      input.reportValidity();
+      isValid = false;
+      return;
+    }
+  });
+
+  if (isValid && currentPhase < 3) {
+    currentPhase++;
+    updateStepUI(currentPhase);
+  }
+}
+
+function prevPhase(fromPhase) {
+  if (currentPhase > 1) {
+    currentPhase--;
+    updateStepUI(currentPhase);
+  }
+}
+
+/* Insurance Code Generator & Clipboard Script */
+document.getElementById('insuranceForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
+  const randomDigits = Math.floor(1000000 + Math.random() * 9000000).toString().substring(1);
+  const finalInsuranceNumber = selectedPlan + randomDigits;
+
+  document.getElementById('insuranceNumberDisplay').innerText = finalInsuranceNumber;
+  document.getElementById('resultModal').style.display = 'flex';
+});
+
+function copyPolicyNumber() {
+  const policyNum = document.getElementById('insuranceNumberDisplay').innerText;
+  navigator.clipboard.writeText(policyNum);
+  
+  const dict = i18n[currentLang] || i18n.ENG;
+  const btn = document.getElementById('copyPolicyBtn');
+  btn.innerHTML = `<i class="fas fa-check"></i> <span>${dict.btnCopied}</span>`;
+  
+  setTimeout(() => {
+    btn.innerHTML = `<i class="fas fa-copy"></i> <span>${dict.btnCopy}</span>`;
+  }, 2000);
+}
+
+function closeModal() {
+  document.getElementById('resultModal').style.display = 'none';
+  document.getElementById('insuranceForm').reset();
+  document.getElementById('nationality').value = '';
+  document.getElementById('natSelectedText').innerText = i18n[currentLang]?.phSelectCountry || "Select Country...";
+  currentPhase = 1;
+  updateStepUI(1);
+}
+</script>
+</body>
+</html>
