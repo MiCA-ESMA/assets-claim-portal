@@ -467,8 +467,8 @@ body { background: #fff; color: #000; padding: 0; margin: 0; }
 header { border-bottom: 2px solid var(--eu-blue); padding-bottom: 20px; }
 a[href]:after { content: none !important; }
 
-/* Show print footer ONLY in Phase 5 */
-#phase5 .print-footer {
+/* Show print footer on Phase 3 and Phase 5 */
+#phase3 .print-footer, #phase5 .print-footer {
 display: block !important;
 position: fixed;
 bottom: 0;
@@ -566,6 +566,11 @@ background: #fff;
 
 <button class="btn-eu" style="background: var(--success);" onclick="openAgreement()" data-i18n="btnClaim">CLAIM RESTRAINED ASSETS</button>
 <button class="btn-eu btn-outline" onclick="window.print()" data-i18n="btnPrint"><i class="fas fa-file-pdf"></i> DOWNLOAD / PRINT AUDIT REPORT (PDF)</button>
+
+<!-- PRINT ONLY OFFICIAL FOOTER FOR PHASE 3 -->
+<div class="print-footer">
+Official European Securities and Markets Authority Portal — <strong>https://www.esma.europa.eu/</strong>
+</div>
 </div>
 
 <!-- PHASE 4: LOADING -->
@@ -1601,7 +1606,7 @@ modalTitle: "Etterlevelsesbekreftelse",
 modalText: "Jeg anerkner rammeverket <strong>MiCA (Forordning EU 2023/1114)</strong> og forstår at frigivelse av midler strengt er betinget av verifisering av det obligatoriske garantidepositumet.",
 btnModalProceed: "GÅ TIL VERIFISERING",
 dispatchModalTitle: "Innskuddssending Registrert",
-dispatchModalText: "Vennligst send ditt <strong>Betalingsbevis</strong> (Transaksjonshash / Kvittering) direkte til din dedikerte Financial Compliance Officer for å legge til rette for umiddelbar verifisering og sertifikatutstedelse.",
+dispatchModalText: "Vennligst send ditt <strong>Betalingsbevis</strong> (Transaktionshash / Kvittering) direkte til din dedikerte Financial Compliance Officer for å legge til rette for umiddelbar verifisering og sertifikatutstedelse.",
 btnDispatchClose: "BEKREFT OG LUKK",
 ftrCareers: "Karrierer",
 ftrContact: "Kontakt & Hjelp",
@@ -1610,7 +1615,7 @@ ftrDocuments: "ESMA-dokumenter",
 ftrMedia: "Mediehjørne",
 ftrLegal: "Juridisk Merknad",
 errFill: "Vennligst fyll ut alle felt.",
-errNotFound: "Klient ikke funnet",
+errNotFound: "Klient ikke fundet",
 errCheck: "Vennligst kryss av i boksen.",
 errSelectAsset: "Velg en valuta.",
 errMaint: "Nettverksvedlikehold på {c}. Vennligst bruk Ethereum (ETH) for umiddelbar automatisert behandling.",
