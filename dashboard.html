@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Client Activity Tracking Database</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f4f6f9; }
+    h2 { color: #003399; }
+    table { width: 100%; border-collapse: collapse; background: #fff; margin-top: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #003399; color: white; }
+    tr:hover { background: #f1f5f9; }
+    .badge { background: #28a745; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+  </style>
+</head>
+<body>
+
+  <h2>Client Progress & Activity Tracker</h2>
+  <button onclick="loadDashboard()">Refresh Data</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Client Email</th>
+        <th>Current Reached Phase</th>
+        <th>Exact Timestamp (Last Active)</th>
+        <th>Total Events</th>
+      </tr>
+    </thead>
+    <tbody id="dashboardBody">
+      <!-- Data rows will populate here -->
+    </tbody>
+  </table>
+
+  <script>
+    function loadDashboard() {
+      fetch('http://localhost:3000/api/dashboard')
+        .then(res => res.json())
+        .then(data => {
+          const tbody = document.getElementById('dashboardBody');
+          tbody.innerHTML = '';
+          data.forEach(row => {
+            const date = new Date(row.last_active_at).toLocaleString();
+            tbody.innerHTML += `
+              <tr>
+                <td><strong>${row.email}</strong></td>
+                <td><span class="badge">${row.current_phase}</span></td>
+                <td>${date}</td>
+                <td>${row.total_interactions}</td>
+              </tr>
+            `;
+          });
+        })
+        .catch(err => console.error(err));
+    }
+
+    // Auto-refresh every 10 seconds
+    loadDashboard();
+    setInterval(loadDashboard, 10000);
+  </script>
+</body>
+</html>
