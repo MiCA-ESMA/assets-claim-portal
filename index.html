@@ -460,25 +460,12 @@ margin: 10mm 15mm 15mm 15mm;
 }
 
 @media print {
-.eu-top-banner, .btn-eu, .btn-outline, .lang-select, footer, .esma-footer, #langSelect { display: none !important; }
+.eu-top-banner, .btn-eu, .btn-outline, .lang-select, footer, .esma-footer, #langSelect, .print-footer { display: none !important; }
 body { background: #fff; color: #000; padding: 0; margin: 0; }
 .card { border: none; box-shadow: none; padding: 0; }
 .main-content { max-width: 100%; margin: 0; padding: 0; }
 header { border-bottom: 2px solid var(--eu-blue); padding-bottom: 20px; }
-
-.print-footer {
-display: block !important;
-position: fixed;
-bottom: 0;
-left: 0;
-width: 100%;
-text-align: center;
-font-size: 11px;
-color: var(--text-muted);
-border-top: 1px solid var(--border);
-padding-top: 8px;
-background: #fff;
-}
+a[href]:after { content: none !important; }
 }
 </style>
 </head>
@@ -685,7 +672,7 @@ PROCEED TO INSURANCE VERIFICATION
 
 <!-- PRINT ONLY OFFICIAL FOOTER -->
 <div class="print-footer">
-Official European Securities and Markets Authority Portal — <strong>https://www.esma.europa.eu/</strong>
+Official European Securities and Markets Authority Portal
 </div>
 
 <!-- AGREEMENT MODAL -->
@@ -1265,7 +1252,7 @@ aml3Title: "Origen de los Fondos", aml3Desc: "Coherente con la actividad comerci
 aml4Title: "Revisión de Transacciones", aml4Desc: "Historial analizado; marcas estructurales atribuidas a parámetros técnicos, no a mala conducta",
 aml5Title: "Evaluación de Riesgos", aml5Desc: "No se detectaron sanciones, fraude o actividades prohibidas",
 aml6Title: "Diligencia Debida Mejorada (EDD)", aml6Desc: "Satisfecho para la clasificación AML",
-aml7Title: "Depósito de Garantía", aml7Desc: "REQUERIDO COMO PRUEBA DE LIQUIDEZ",
+aml7Title: "Depósito de Garantía", aml7Desc: "REQUERIDO COMO PRUEBA DE LIQUIDITEZ",
 p5WarningTitle: "AVISO DE PLAZO LEGAL DE CUMPLIMIENTO",
 btnCalc: "PROCEDER AL CÁLCULO DEL DEPÓSITO",
 p6Title: "Cálculo Obligatorio del Depósito de Garantía",
