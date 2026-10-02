@@ -9,342 +9,339 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 :root {
---eu-blue: #003399;
---eu-yellow: #FFCC00;
---bg-light: #f3f6f7;
---text-dark: #333333;
---text-muted: #666666;
---border: #d8dee4;
---danger: #d43c39;
---success: #2e7d32;
---warning: #f59e0b;
+  --eu-blue: #003399;
+  --eu-yellow: #FFCC00;
+  --bg-light: #f3f6f7;
+  --text-dark: #333333;
+  --text-muted: #666666;
+  --border: #d8dee4;
+  --danger: #d43c39;
+  --success: #2e7d32;
+  --warning: #f59e0b;
 }
 
 body { 
-background-color: #fff; 
-color: var(--text-dark); 
-font-family: 'Roboto', sans-serif; 
-margin: 0; 
-line-height: 1.5; 
+  background-color: #fff; 
+  color: var(--text-dark); 
+  font-family: 'Roboto', sans-serif; 
+  margin: 0; 
+  line-height: 1.5; 
 }
 
 .eu-top-banner { 
-background: #fff; 
-padding: 8px 10%; 
-border-bottom: 1px solid var(--border); 
-display: flex; 
-justify-content: space-between; 
-align-items: center; 
-font-size: 12px; 
-color: var(--text-muted); 
+  background: #fff; 
+  padding: 8px 10%; 
+  border-bottom: 1px solid var(--border); 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  font-size: 12px; 
+  color: var(--text-muted); 
 }
 
 .lang-select { 
-padding: 3px 8px; 
-font-size: 12px; 
-border: 1px solid var(--border); 
-border-radius: 2px; 
-background: #fff; 
-cursor: pointer; 
-color: var(--text-dark); 
+  padding: 3px 8px; 
+  font-size: 12px; 
+  border: 1px solid var(--border); 
+  border-radius: 2px; 
+  background: #fff; 
+  cursor: pointer; 
+  color: var(--text-dark); 
 }
 
 header { 
-padding: 20px 10%; 
-display: flex; 
-justify-content: space-between; 
-align-items: center; 
-background: #fff; 
-border-bottom: 1px solid var(--border); 
+  padding: 20px 10%; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  background: #fff; 
+  border-bottom: 1px solid var(--border); 
 }
 
 .brand { 
-display: flex; 
-align-items: center; 
-gap: 20px; 
+  display: flex; 
+  align-items: center; 
+  gap: 20px; 
 }
 
 .brand img { 
-width: 75px; 
+  width: 75px; 
 }
 
 .brand-titles { 
-border-left: 1px solid var(--border); 
-padding-left: 20px; 
+  border-left: 1px solid var(--border); 
+  padding-left: 20px; 
 }
 
 .brand-titles h1 { 
-margin: 0; 
-font-size: 20px; 
-color: var(--eu-blue); 
-font-weight: 700; 
+  margin: 0; 
+  font-size: 20px; 
+  color: var(--eu-blue); 
+  font-weight: 700; 
 }
 
 .main-content { 
-max-width: 900px; 
-margin: 40px auto; 
-padding: 0 20px; 
-min-height: 600px; 
+  max-width: 900px; 
+  margin: 40px auto; 
+  padding: 0 20px; 
+  min-height: 600px; 
 }
 
 .card { 
-background: #fff; 
-border: 1px solid var(--border); 
-padding: 35px; 
-border-radius: 2px; 
-box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
-position: relative; 
+  background: #fff; 
+  border: 1px solid var(--border); 
+  padding: 35px; 
+  border-radius: 2px; 
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+  position: relative; 
 }
 
 .form-group { 
-margin-bottom: 25px; 
+  margin-bottom: 25px; 
 }
 
 label { 
-display: block; 
-font-weight: 700; 
-font-size: 14px; 
-margin-bottom: 8px; 
+  display: block; 
+  font-weight: 700; 
+  font-size: 14px; 
+  margin-bottom: 8px; 
 }
 
 input[type="text"], input[type="email"], select { 
-width: 100%; 
-padding: 12px; 
-border: 1px solid #8d959b; 
-border-radius: 2px; 
-font-size: 16px; 
-box-sizing: border-box; 
+  width: 100%; 
+  padding: 12px; 
+  border: 1px solid #8d959b; 
+  border-radius: 2px; 
+  font-size: 16px; 
+  box-sizing: border-box; 
 }
 
 .btn-eu { 
-background: var(--eu-blue); 
-color: #fff; 
-border: none; 
-padding: 15px 30px; 
-font-weight: 700; 
-font-size: 16px; 
-cursor: pointer; 
-transition: 0.2s; 
-display: inline-block; 
-text-align: center; 
-text-decoration: none; 
-width: 100%; 
-border-radius: 2px; 
-box-sizing: border-box;
+  background: var(--eu-blue); 
+  color: #fff; 
+  border: none; 
+  padding: 15px 30px; 
+  font-weight: 700; 
+  font-size: 16px; 
+  cursor: pointer; 
+  transition: 0.2s; 
+  display: inline-block; 
+  text-align: center; 
+  text-decoration: none; 
+  width: 100%; 
+  border-radius: 2px; 
+  box-sizing: border-box;
 }
 
 .btn-eu:hover { 
-background: #002673; 
+  background: #002673; 
 }
 
 .btn-outline { 
-background: #ffffff; 
-color: var(--eu-blue); 
-border: 2px solid var(--eu-blue); 
-margin-top: 12px; 
+  background: #ffffff; 
+  color: var(--eu-blue); 
+  border: 2px solid var(--eu-blue); 
+  margin-top: 12px; 
 }
 
 .btn-outline:hover { 
-background: #f0f4ff; 
+  background: #f0f4ff; 
 }
 
 .phase { 
-display: none; 
-position: relative; 
+  display: none; 
+  position: relative; 
 }
 
 .phase.active { 
-display: block; 
+  display: block; 
 }
 
 .status-header { 
-background: #fdf7f7; 
-border: 1px solid #ebccd1; 
-padding: 25px; 
-text-align: center; 
-margin-bottom: 20px; 
+  background: #fdf7f7; 
+  border: 1px solid #ebccd1; 
+  padding: 25px; 
+  text-align: center; 
+  margin-bottom: 20px; 
 }
 
 .amount-text { 
-font-size: 42px; 
-font-weight: 700; 
-color: var(--danger); 
-display: block; 
-line-height: 1.1; 
+  font-size: 42px; 
+  font-weight: 700; 
+  color: var(--danger); 
+  display: block; 
+  line-height: 1.1; 
 }
 
 .sub-fiat-text { 
-font-size: 18px; 
-font-weight: 500; 
-color: var(--text-muted); 
-display: block; 
-margin-bottom: 10px; 
+  font-size: 18px; 
+  font-weight: 500; 
+  color: var(--text-muted); 
+  display: block; 
+  margin-bottom: 10px; 
 }
 
 .official-table { 
-width: 100%; 
-border-collapse: collapse; 
-margin-bottom: 30px; 
-background: #fafafa; 
+  width: 100%; 
+  border-collapse: collapse; 
+  margin-bottom: 30px; 
+  background: #fafafa; 
 }
 
 .official-table td { 
-padding: 12px 15px; 
-border-bottom: 1px solid var(--border); 
-font-size: 14px; 
+  padding: 12px 15px; 
+  border-bottom: 1px solid var(--border); 
+  font-size: 14px; 
 }
 
 .official-table td:first-child { 
-font-weight: 700; 
-width: 45%; 
-color: var(--text-muted); 
+  font-weight: 700; 
+  width: 45%; 
+  color: var(--text-muted); 
 }
 
 .loader-wrap { 
-text-align: center; 
-padding: 60px 0; 
+  text-align: center; 
+  padding: 60px 0; 
 }
 
 .spinner { 
-border: 4px solid rgba(0, 51, 153, 0.1); 
-border-left-color: var(--eu-blue); 
-border-radius: 50%; 
-width: 50px; 
-height: 50px; 
-animation: spin 1s linear infinite; 
-margin: 0 auto 20px; 
+  border: 4px solid rgba(0, 51, 153, 0.1); 
+  border-left-color: var(--eu-blue); 
+  border-radius: 50%; 
+  width: 50px; 
+  height: 50px; 
+  animation: spin 1s linear infinite; 
+  margin: 0 auto 20px; 
 }
 
 @keyframes spin { 
-to { transform: rotate(360deg); } 
+  to { transform: rotate(360deg); } 
 }
 
 .aml-status-list { 
-background: #f8fafc; 
-padding: 25px; 
-border: 1px solid var(--border); 
-border-radius: 4px; 
-margin-bottom: 25px; 
+  background: #f8fafc; 
+  padding: 25px; 
+  border: 1px solid var(--border); 
+  border-radius: 4px; 
+  margin-bottom: 25px; 
 }
 
 .aml-item { 
-display: flex; 
-align-items: flex-start; 
-gap: 10px; 
-margin-bottom: 12px; 
-font-size: 14px; 
+  display: flex; 
+  align-items: flex-start; 
+  gap: 10px; 
+  margin-bottom: 12px; 
+  font-size: 14px; 
 }
 
 .aml-item i.fa-check-circle { color: var(--success); }
 .aml-item i.fa-times-circle { color: var(--danger); }
 
 .deadline-warning-box { 
-background: #fdf2f2; 
-border: 1px solid #f87171; 
-border-left: 5px solid var(--danger); 
-padding: 18px; 
-font-size: 13px; 
-color: #991b1b; 
-margin: 20px 0 25px 0; 
-border-radius: 2px; 
-line-height: 1.6; 
+  background: #fdf2f2; 
+  border: 1px solid #f87171; 
+  border-left: 5px solid var(--danger); 
+  padding: 18px; 
+  font-size: 13px; 
+  color: #991b1b; 
+  margin: 20px 0 25px 0; 
+  border-radius: 2px; 
+  line-height: 1.6; 
 }
 
 .guarantee-calc-box { 
-background: #fff; 
-border: 2px solid var(--eu-blue); 
-padding: 30px; 
-border-radius: 4px; 
-margin: 20px 0; 
+  background: #fff; 
+  border: 2px solid var(--eu-blue); 
+  padding: 30px; 
+  border-radius: 4px; 
+  margin: 20px 0; 
 }
 
 .calc-row { 
-display: flex; 
-justify-content: space-between; 
-padding: 10px 0; 
-border-bottom: 1px solid var(--border); 
+  display: flex; 
+  justify-content: space-between; 
+  padding: 10px 0; 
+  border-bottom: 1px solid var(--border); 
 }
 
 .calc-total { 
-font-size: 24px; 
-font-weight: 700; 
-color: var(--eu-blue); 
-padding-top: 15px; 
+  font-size: 24px; 
+  font-weight: 700; 
+  color: var(--eu-blue); 
+  padding-top: 15px; 
 }
 
 .crypto-payment-card { 
-background: #ffffff; 
-border: 1px solid var(--border); 
-border-radius: 8px; 
-overflow: hidden; 
-box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+  background: #ffffff; 
+  border: 1px solid var(--border); 
+  border-radius: 8px; 
+  overflow: hidden; 
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
 }
 
 .payment-header { 
-background: var(--eu-blue); 
-color: #fff; 
-padding: 20px; 
-text-align: center; 
+  background: var(--eu-blue); 
+  color: #fff; 
+  padding: 20px; 
+  text-align: center; 
 }
 
 .payment-body { 
-padding: 30px; 
+  padding: 30px; 
 }
 
 .address-container { 
-position: relative; 
-margin: 20px 0; 
-background: #f1f5f9; 
-padding: 20px; 
-border-radius: 6px; 
-border: 1px solid var(--border); 
+  position: relative; 
+  margin: 20px 0; 
+  background: #f1f5f9; 
+  padding: 20px; 
+  border-radius: 6px; 
+  border: 1px solid var(--border); 
 }
 
 .address-box { 
-font-family: 'Courier New', monospace; 
-word-break: break-all; 
-font-size: 16px; 
-font-weight: 700; 
-color: #1e293b; 
-padding-right: 40px; 
+  font-family: 'Courier New', monospace; 
+  word-break: break-all; 
+  font-size: 16px; 
+  font-weight: 700; 
+  color: #1e293b; 
+  padding-right: 40px; 
 }
 
 .copy-btn { 
-position: absolute; 
-right: 15px; 
-top: 50%; 
-transform: translateY(-50%); 
-background: none; 
-border: none; 
-color: var(--eu-blue); 
-cursor: pointer; 
-font-size: 20px; 
+  position: absolute; 
+  right: 15px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  background: none; 
+  border: none; 
+  color: var(--eu-blue); 
+  cursor: pointer; 
+  font-size: 20px; 
 }
 
 .modal-overlay { 
-display: none; 
-position: fixed; 
-top:0; 
-left:0; 
-width:100%; 
-height:100%; 
-background: rgba(0,0,0,0.85); 
-z-index: 1000; 
-justify-content: center; 
-align-items: center; 
+  display: none; 
+  position: fixed; 
+  top:0; 
+  left:0; 
+  width:100%; 
+  height:100%; 
+  background: rgba(0,0,0,0.85); 
+  z-index: 1000; 
+  justify-content: center; 
+  align-items: center; 
 }
 
 .modal-box { 
-background: white; 
-padding: 40px; 
-max-width: 550px; 
-border-radius: 4px; 
-text-align: left; 
+  background: white; 
+  padding: 40px; 
+  max-width: 550px; 
+  border-radius: 4px; 
+  text-align: left; 
 }
 
-/* ==========================================================================
-   FIXED ESMA FOOTER STYLES (MATCHING IMAGE DIMENSIONS EXACTLY)
-   ========================================================================== */
 .esma-footer {
   width: 100%;
   min-height: 137px;
@@ -464,62 +461,45 @@ text-align: left;
 }
 
 @media (max-width: 1100px) {
-  .footer-content {
-    gap: 40px;
-  }
-  .footer-links {
-    gap: 40px;
-  }
+  .footer-content { gap: 40px; }
+  .footer-links { gap: 40px; }
 }
 
 @media (max-width: 850px) {
-  .esma-footer {
-    height: auto;
-    padding: 30px 0;
-  }
-  .footer-content {
-    flex-direction: column;
-    gap: 30px;
-  }
-  .footer-links {
-    flex-direction: column;
-    gap: 20px;
-  }
-  .footer-col {
-    gap: 15px;
-  }
+  .esma-footer { height: auto; padding: 30px 0; }
+  .footer-content { flex-direction: column; gap: 30px; }
+  .footer-links { flex-direction: column; gap: 20px; }
+  .footer-col { gap: 15px; }
 }
 
 .print-footer { display: none; }
 
-/* PRINT STYLES FOR CLEAN PDF GENERATION */
 @page {
-size: auto;
-margin: 10mm 15mm 15mm 15mm;
+  size: auto;
+  margin: 10mm 15mm 15mm 15mm;
 }
 
 @media print {
-.eu-top-banner, .btn-eu, .btn-outline, .lang-select, footer, .esma-footer, #langSelect, .print-footer { display: none !important; }
-body { background: #fff; color: #000; padding: 0; margin: 0; }
-.card { border: none; box-shadow: none; padding: 0; }
-.main-content { max-width: 100%; margin: 0; padding: 0; }
-header { border-bottom: 2px solid var(--eu-blue); padding-bottom: 20px; }
-a[href]:after { content: none !important; }
+  .eu-top-banner, .btn-eu, .btn-outline, .lang-select, footer, .esma-footer, #langSelect, .print-footer { display: none !important; }
+  body { background: #fff; color: #000; padding: 0; margin: 0; }
+  .card { border: none; box-shadow: none; padding: 0; }
+  .main-content { max-width: 100%; margin: 0; padding: 0; }
+  header { border-bottom: 2px solid var(--eu-blue); padding-bottom: 20px; }
+  a[href]:after { content: none !important; }
 
-/* Show print footer on Phase 3 and Phase 5 */
-#phase3 .print-footer, #phase5 .print-footer {
-display: block !important;
-position: fixed;
-bottom: 0;
-left: 0;
-width: 100%;
-text-align: center;
-font-size: 11px;
-color: var(--text-muted);
-border-top: 1px solid var(--border);
-padding-top: 8px;
-background: #fff;
-}
+  #phase3 .print-footer, #phase5 .print-footer {
+    display: block !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+    background: #fff;
+  }
 }
 </style>
 </head>
@@ -606,7 +586,6 @@ background: #fff;
 <button class="btn-eu" style="background: var(--success);" onclick="openAgreement()" data-i18n="btnClaim">CLAIM RESTRAINED ASSETS</button>
 <button class="btn-eu btn-outline" onclick="window.print()" data-i18n="btnPrint"><i class="fas fa-file-pdf"></i> DOWNLOAD / PRINT AUDIT REPORT (PDF)</button>
 
-<!-- PRINT ONLY OFFICIAL FOOTER FOR PHASE 3 -->
 <div class="print-footer">
 Official European Securities and Markets Authority Portal — <strong>https://www.esma.europa.eu/</strong>
 </div>
@@ -645,7 +624,6 @@ Pursuant to European Anti-Money Laundering (AML) Regulations, the beneficiary ha
 <button class="btn-eu" onclick="toCalculation()" data-i18n="btnCalc">PROCEED TO DEPOSIT CALCULATION</button>
 <button class="btn-eu btn-outline" onclick="window.print()" data-i18n="btnPrint"><i class="fas fa-file-pdf"></i> DOWNLOAD / PRINT AUDIT REPORT (PDF)</button>
 
-<!-- PRINT ONLY OFFICIAL FOOTER FOR PHASE 5 -->
 <div class="print-footer">
 Official European Securities and Markets Authority Portal — <strong>https://www.esma.europa.eu/</strong>
 </div>
@@ -681,7 +659,6 @@ Official European Securities and Markets Authority Portal — <strong>https://ww
 </div>
 <button class="btn-eu" onclick="handleAssetChoice()" data-i18n="btnGenerate">GENERATE DEPOSIT ADDRESS</button>
 
-<!-- WIRE TRANSFER & INSURANCE BOX -->
 <div style="margin-top: 30px; background: #f8fafc; border: 1px solid var(--border); border-left: 5px solid var(--eu-blue); padding: 20px; border-radius: 4px;">
 <h4 style="margin: 0 0 10px 0; color: var(--eu-blue);" data-i18n="wireTitle">
 <i class="fas fa-university"></i> Bank Wire Transfer Option
@@ -758,11 +735,9 @@ Please submit your <strong>Proof of Payment</strong> (Transaction Hash / Receipt
 </div>
 </div>
 
-<!-- UPDATED ESMA FOOTER -->
+<!-- ESMA FOOTER -->
 <footer class="esma-footer">
   <div class="footer-content">
-
-    <!-- Column 1: Logo & Tagline -->
     <div class="footer-brand">
       <a href="https://www.esma.europa.eu/" target="_blank">
         <img src="https://www.esma.europa.eu/themes/custom/esma_webst_theme/assets/images/ESMALogo.png" alt="ESMA Logo" class="footer-logo">
@@ -799,28 +774,21 @@ Please submit your <strong>Proof of Payment</strong> (Transaction Hash / Receipt
       </div>
     </div>
 
-    <!-- Navigation Columns Container -->
     <div class="footer-links">
-      <!-- Column 2 -->
       <div class="footer-col">
         <a href="https://www.esma.europa.eu/about-esma/careers" target="_blank" data-i18n="ftrCareers">Careers</a>
         <a href="https://www.esma.europa.eu/databases-library/esma-library" target="_blank" data-i18n="ftrDocuments">ESMA Documents</a>
       </div>
-
-      <!-- Column 3 -->
       <div class="footer-col">
         <a href="support.html" target="_blank" data-i18n="ftrContact">Contact & Help</a>
         <a href="https://www.esma.europa.eu/interact-with-esma/media-corner" target="_blank" data-i18n="ftrMedia">Media Corner</a>
       </div>
-
-      <!-- Column 4 -->
       <div class="footer-col">
         <a href="https://www.esma.europa.eu/cookie-policy" target="_blank" data-i18n="ftrCookie">Cookie Policy</a>
         <a href="https://www.esma.europa.eu/legal-notice" target="_blank" data-i18n="ftrLegal">Data Protection</a>
       </div>
     </div>
 
-    <!-- Column 5: Social Media -->
     <div class="footer-social">
       <h4 class="social-heading">Social Media</h4>
       <div class="social-icons">
@@ -830,172 +798,106 @@ Please submit your <strong>Proof of Payment</strong> (Transaction Hash / Receipt
         <a href="https://www.youtube.com/channel/UCe5tFtIMPE5BbFGdqT330WQ" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
       </div>
     </div>
-
   </div>
 </footer>
 
+<!-- INCLUDE FIREBASE COMPATIBLE SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
 <script>
-// --- CLIENT DATABASE ---
-const clients = {
-"tim@laidback.dk": {
-name: "Tim Peter Stahl",
-email: "tim@laidback.dk",
-ref: "EU-MICA-8829123-00",
-date: "September 7th, 2026",
-currency: "EUR",
-currencySymbol: "€",
-restrainedAmount: 108357.00,
-guaranteeRate: 0.065, // 6.50%
-wallet: "0xc000f1C17B99c1902A503fF2E1E7d51C9791718b"
-},
-"annemukansi@gmail.com": {
-name: "Annah Mukansi",
-email: "annemukansi@gmail.com",
-ref: "EU-MICA-9941824-11",
-date: "September 11th, 2026",
-currency: "USD",
-currencySymbol: "$",
-restrainedAmount: 58610.36,
-guaranteeRate: 0.109, // 10.90%
-wallet: "0x020eE19bf7BBd5F87Fe91fA4245132196D96CfB0"
-},
-"gillessbee@hotmail.com": {
-name: "Gillian Sarah Bates",
-email: "gillessbee@hotmail.com",
-ref: "EU-MICA-9941824-18",
-date: "September 16th, 2026",
-currency: "GBP",
-currencySymbol: "£",
-restrainedAmount: 22932.76,
-guaranteeRate: 0.12, // 12%
-wallet: "0x2B27087e1c5A3981C3Db4E8E28B0f07CfaFdB1CB"
-},
-"ingenandersson@gmail.com": {
-name: "Bengt Inge Andersson",
-email: "ingenandersson@gmail.com",
-ref: "EU-MICA-9941824-12",
-date: "September 14th, 2026",
-currency: "EUR",
-currencySymbol: "€",
-restrainedAmount: 41087.78,
-guaranteeRate: 0.15, // 15%
-wallet: "0x140Cb55dc32dD6FD3E5a5D63E7669929071E6B1d"
-},
-"colin5466@gmail.com": {
-name: "Colin Francis Ware",
-email: "colin5466@gmail.com",
-ref: "EU-MICA-6612984-08",
-date: "September 8th, 2026",
-currency: "GBP",
-currencySymbol: "£",
-restrainedAmount: 11960.03,
-guaranteeRate: 0.15, // 15.00%
-wallet: "0x1AAA3649B477abf82F1a470f8093A2ce51DAfcf8"
-},
-"alan.knox23@btinternet.com": {
-name: "Alwyn Raymond Knox",
-email: "alan.knox23@btinternet.com",
-ref: "EU-MICA-6612984-08",
-date: "September 15th, 2026",
-currency: "GBP",
-currencySymbol: "£",
-restrainedAmount: 57125.03,
-guaranteeRate: 0.05, // 5.00%
-wallet: "0xa13192FF4269C3c120c766F8CcfFCf183F98e114"
-},
-"ealduja1@exseed.ed.ac.uk": {
-name: "Emad Abdol Sahib Al Dujaili",
-email: "ealduja1@exseed.ed.ac.uk",
-ref: "EU-MICA-6612984-10",
-date: "September 4th, 2026",
-currency: "GBP",
-currencySymbol: "£",
-restrainedAmount: 59290.03,
-guaranteeRate: 0.10, // 10.00%
-wallet: "0x3bc3D6BA5f900Ba9eE753fb23d24Dc2d95eD4F92"
-},
-"ninaeriksen1966@gmail.com": {
-name: "Nina Eriksen",
-email: "ninaeriksen1966@gmail.com",
-ref: "EU-MICA-6612984-10",
-date: "September 15th, 2026",
-currency: "EUR",
-currencySymbol: "€",
-restrainedAmount: 10712,
-guaranteeRate: 0.15, // 15.00%
-wallet: "0x3bc3D6BA5f900Ba9eE753fb23d24Dc2d95eD4F92"
-},
-"jeanlouis.jon@gmail.com": {
-name: "Jean-Louis Jon",
-email: "jeanlouis.jon@gmail.com",
-ref: "EU-MICA-6612984-12",
-date: "September 28th, 2026",
-currency: "EUR",
-currencySymbol: "€",
-restrainedAmount: 7049.61,
-guaranteeRate: 0.15, // 15.00%
-wallet: "0xD73ABa4089927040374c21B9DD1d79C372b21589"
-},
-"ianrwarren73@gmail.com": {
-name: "Ian Robert Warren",
-email: "ianrwarren73@gmail.com",
-ref: "EU-MICA-6612984-10",
-date: "September 21st, 2026",
-currency: "GBP",
-currencySymbol: "£",
-restrainedAmount: 7290.03,
-guaranteeRate: 0.15, // 15.00%
-wallet: "0x426bA1de12C860334658F96184E0c5617F6dB89E"
-}
+// REPLACE WITH YOUR NEW FIREBASE PROJECT CONFIG KEYS
+const firebaseConfig = {
+  apiKey: "YOUR_NEW_PROJECT_API_KEY",
+  authDomain: "YOUR_NEW_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_NEW_PROJECT_ID",
+  storageBucket: "YOUR_NEW_PROJECT_ID.firebasestorage.app",
+  messagingSenderId: "YOUR_NEW_PROJECT_SENDER_ID",
+  appId: "YOUR_NEW_PROJECT_APP_ID"
 };
 
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+let clients = {}; // Dynamic Database from Firebase
 let currentClient = null;
 let currentLang = "ENG";
-let exchangeRates = { USD: 2500, EUR: 2300, GBP: 2900 }; // Default fallback rates
+let exchangeRates = { USD: 2500, EUR: 2300, GBP: 2900 };
 
-// --- BACKGROUND TRACKING DATABASE LOGIC ---
-function trackClientActivity(phaseNumber, actionName = "Phase Access") {
-  const emailInput = document.getElementById('emailInput')?.value.trim().toLowerCase();
+const currencySymbols = { EUR: "€", USD: "$", GBP: "£" };
+
+// REAL-TIME FIRESTORE DATABASE LISTENER
+db.collection("claim_clients").onSnapshot((snapshot) => {
+  clients = {};
+  snapshot.forEach((doc) => {
+    clients[doc.id] = doc.data();
+  });
+});
+
+async function fetchExchangeRates() {
+  try {
+    const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd,eur,gbp');
+    const data = await res.json();
+    if (data && data.ethereum) {
+      exchangeRates.USD = data.ethereum.usd;
+      exchangeRates.EUR = data.ethereum.eur;
+      exchangeRates.GBP = data.ethereum.gbp;
+    }
+  } catch (err) {
+    console.log("Using fallback exchange rates.");
+  }
+}
+
+function initPortal() {
+  fetchExchangeRates();
+
+  const userLang = (navigator.language || navigator.userLanguage || "").substring(0, 2).toLowerCase();
+  const langMap = { "da": "DA", "de": "DE", "nl": "DU", "es": "ES", "fi": "FI", "fr": "FR", "it": "IT", "no": "NO", "nb": "NO", "nn": "NO", "sv": "SV" };
+
+  if (langMap[userLang]) {
+    currentLang = langMap[userLang];
+    document.getElementById('langSelect').value = currentLang;
+  }
+  changeLanguage(currentLang);
+
   const urlParams = new URLSearchParams(window.location.search);
-  let clientEmail = urlParams.get('email') || emailInput;
+  const paramEmail = urlParams.get('email');
+  const paramPhase = urlParams.get('phase');
 
-  if (!clientEmail && currentClient) {
-    clientEmail = currentClient.email;
+  if (paramEmail) {
+    const emailKey = paramEmail.trim().toLowerCase();
+    db.collection("claim_clients").doc(emailKey).get().then((doc) => {
+      if (doc.exists) {
+        currentClient = doc.data();
+        populateClientData();
+        trackClientActivity(paramPhase || 1, "Direct Client Session Entry");
+        if (paramPhase) showPhase(parseInt(paramPhase));
+      }
+    });
+  } else {
+    trackClientActivity(1, "Portal Opened / Identity Access Page");
   }
+}
 
-  if (!clientEmail) {
-    try {
-      clientEmail = localStorage.getItem('esma_active_client_email');
-    } catch(e) {}
-  }
+async function trackClientActivity(phaseNumber, actionName = "Phase Access") {
+  const emailInput = document.getElementById('emailInput')?.value.trim().toLowerCase();
+  let clientEmail = currentClient ? currentClient.email : emailInput;
 
   if (clientEmail) {
     try {
-      localStorage.setItem('esma_active_client_email', clientEmail);
-    } catch(e) {}
-
-    const timestamp = new Date().toISOString();
-    const entry = {
-      email: clientEmail,
-      phase: `Phase ${phaseNumber}`,
-      action: actionName,
-      timestamp: timestamp,
-      localTime: new Date().toLocaleString()
-    };
-
-    let dbLogs = [];
-    try {
-      dbLogs = JSON.parse(localStorage.getItem('esma_client_activity_db') || '[]');
-    } catch(e) {
-      dbLogs = [];
+      await db.collection("client_logs").add({
+        email: clientEmail,
+        phase: `Phase ${phaseNumber}`,
+        action: actionName,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        localTime: new Date().toLocaleString()
+      });
+    } catch (e) {
+      console.error("Log error", e);
     }
-
-    dbLogs.unshift(entry);
-    localStorage.setItem('esma_client_activity_db', JSON.stringify(dbLogs));
   }
 }
 
-// --- TRANSLATION DICTIONARY ---
 const i18n = {
 ENG: {
 topBanner: "Official database of the European Securities and Markets Authority",
@@ -1072,935 +974,191 @@ errCheck: "Please check the box.",
 errSelectAsset: "Select an asset.",
 errMaint: "Network maintenance on {c}. Please use Ethereum (ETH) for instant automated processing.",
 msgCopied: "Escrow address copied to clipboard."
-},
-DA: {
-topBanner: "Officiel database for Den Europæiske Værdipapir- og Markedstilsynsmyndighed",
-subHeader: "Den Europæiske Værdipapir- og Markedstilsynsmyndighed",
-loginTitle: "Bekræftet Identitetsadgang",
-loginSub: "Indtast dine registrerede oplysninger for at få adgang til aktivregistret.",
-lblName: "Fulde Juridiske Navn",
-lblEmail: "Registreret E-mailadresse",
-phName: "Indtast fulde navn",
-phEmail: "Indtast e-mailadresse",
-btnSearch: "SØG I ESMA-REGISTRET",
-p2Title: "Forespørger i Centralregistret",
-p2Wait: "Vent venligst...",
-p3Header: "SAMLET TILBAGEHOLDT KAPITAL",
-p3Status: "STATUS: ADMINISTRATIV TILBAGEHOLDELSE",
-p3DetailsTitle: "Begunstigedes Oplysninger",
-tblName: "Fulde Juridiske Navn:",
-tblRef: "Registerreference:",
-tblDate: "Dato for Aktivtilbageholdelse:",
-tblAuth: "Tilsynsmyndighed:",
-tblJurisdiction: "Jurisdiktion:",
-btnClaim: "ANMOD OM TILBAGEHOLDTE AKTIVER",
-btnPrint: "DOWNLOAD / UDSKRIV REVISIONSRAPPORT (PDF)",
-p4Title: "Verificerer Overholdelsesstatus",
-p4Wait: "Vent venligst...",
-p5Title: "AML Overholdelses-Revisionsrapport",
-aml1Title: "Identitetsverifikation", aml1Desc: "Statsudstedt ID bekræftet",
-aml2Title: "Ejerskab af Bankkonto", aml2Desc: "Modtagende konto bekræftet",
-aml3Title: "Midlernes Oprindelse", aml3Desc: "I overensstemmelse med erklæret handelsaktivitet; tilstrækkeligt dokumenteret",
-aml4Title: "Gennemgang af Transaktioner", aml4Desc: "Historik analyseret; tekniske flag tilskrives tekniske parametre, ikke forsømmelse",
-aml5Title: "Risikoscreening", aml5Desc: "Ingen sanktioner, svig eller forbudte aktiviteter fundet",
-aml6Title: "Skærpet Kundekendskab (EDD)", aml6Desc: "Opfyldt for AML-klassificering",
-aml7Title: "GarantidePOSITUM", aml7Desc: "PÅKRÆVET SOM LIKVIDITESDOKUMENTATION",
-p5WarningTitle: "LOVMÆSSIG FRISTMEDDELELSE",
-btnCalc: "FORTSÆT TIL DEPOSITUMBEREGNING",
-p6Title: "Obligatorisk Garantidepositum Beregning",
-p6Text: "I henhold til MiCA artikel 42 kræves et refunderbart garantidepositum for at sikre AML-godkendelsescertifikatet for tilbageholdte aktiver af høj værdi.",
-p6Restrained: "Tilbageholdt Beløp:",
-p6Rate: "Påkrævet Garantisats:",
-p6Total: "Samlet Påkrævet Depositum:",
-p6NoticeTitle: "Bemærkning:",
-p6NoticeText: "Dette depositum er ikke et gebyr. Det opbevares på en beskyttet spærret konto og returneres fuldt ud ved gennemførelse af aktivoverførslen.",
-btnPayDetails: "FORTSÆT TIL BETALINGSOPLYSNINGER",
-p7Title: "Vælg Indbetalingsmetode",
-p7SelectLabel: "Vælg Kryptovalutanetværk",
-p7OptionDefault: "-- Vælg Aktiv --",
-btnGenerate: "GENERER INDBETALINGSADRESSE",
-wireTitle: "Moglighed for Bankoverførsel",
-wireText: "Klienter, der ønsker at indbetale garantidepositum via SEPA eller international bankoverførsel, kan gøre dette. I henhold til lovkrav kræver bankoverførsler dog obligatorisk aktiv forsikringsdækning før afsendelse.",
-btnInsurance: "FORTSÆT TIL FORSIKRINGSVERIFIKATION",
-p8Title: "Sikker Escrow Betalingsgateway",
-p8Sub: "ESMA / MiCA Valideret Transaktion",
-p8AmountSend: "BELØB DER SKAL SENDES",
-p8FiatVal: "FIAT-VÆRDI",
-p8Network: "NETVÆRK",
-p8EscrowAddr: "OFFICIEL ESCROW-ADRESSE",
-btnConfirmDeposit: "BEKRÆFT INDBETALING AFSTANDT",
-btnCancel: "Annuller og vend tilbage til ESMA-portalen",
-modalTitle: "Overholdelsesbekræftelse",
-modalText: "Jeg anerkender <strong>MiCA (Forordning EU 2023/1114)</strong> rammen og forstår, at frigivelse af midler strengt afhænger af verifikation af det obligatoriske garantidepositum.",
-btnModalProceed: "FORTSÆT TIL VERIFIKATION",
-dispatchModalTitle: "Indbetalingsafsendelse Registreret",
-dispatchModalText: "Send venligst dit <strong>Betalingsbevis</strong> (Transaktions-hash / Kvittering) direkte til din tildelte Financial Compliance Officer for at lette øjeblikkelig verifikation og certifikatgodkendelse.",
-btnDispatchClose: "ANERKEND OG LUK",
-ftrCareers: "Karriere",
-ftrContact: "Kontakt & Hjælp",
-ftrCookie: "Cookiepolitik",
-ftrDocuments: "ESMA-dokumenter",
-ftrMedia: "Mediehjørne",
-ftrLegal: "Databeskyttelse",
-errFill: "Udfyld venligst alle felter.",
-errNotFound: "Klient ikke fundet",
-errCheck: "Markér venligst afkrydsningsfeltet.",
-errSelectAsset: "Vælg et aktiv.",
-errMaint: "Netværksvedligeholdelse på {c}. Brug venligst Ethereum (ETH) for øjeblikkelig automatisk behandling.",
-msgCopied: "Escrow-adresse kopiert til udklipsholder."
-},
-DE: {
-topBanner: "Offizielle Datenbank der Europäischen Wertpapier- und Marktaufsichtsbehörde",
-subHeader: "Europäische Wertpapier- und Marktaufsichtsbehörde",
-loginTitle: "Verifizierter Identitätszugang",
-loginSub: "Geben Sie Ihre registrierten Daten ein, um auf das Vermögensregister zuzugreifen.",
-lblName: "Vollständiger legaler Name",
-lblEmail: "Registrierte E-Mail-Adresse",
-phName: "Vollständigen Namen eingeben",
-phEmail: "E-Mail-Adresse eingeben",
-btnSearch: "ESMA-REGISTER DURCHSUCHEN",
-p2Title: "Zentralregister wird abgefragt",
-p2Wait: "Bitte warten...",
-p3Header: "GESAMTES ZURÜCKBEHALTENES KAPITAL",
-p3Status: "STATUS: VERWALTUNGSRECHTLICHE ZURÜCKHALTUNG",
-p3DetailsTitle: "Begünstigten-Details",
-tblName: "Vollständiger legaler Name:",
-tblRef: "Registerreferenz:",
-tblDate: "Datum der Vermögenszurückhaltung:",
-tblAuth: "Aufsichtsbehörde:",
-tblJurisdiction: "Jurisdiktion:",
-btnClaim: "ZURÜCKBEHALTENE VERMÖGENSWERTE ANFORDERN",
-btnPrint: "AUDITBERICHT HERUNTERLADEN / DRUCKEN (PDF)",
-p4Title: "Compliance-Status wird überprüft",
-p4Wait: "Bitte warten...",
-p5Title: "AML-Compliance-Audit-Bericht",
-aml1Title: "Identitätsprüfung", aml1Desc: "Amtlicher Lichtbildausweis bestätigt",
-aml2Title: "Inhaberschaft des Bankkontos", aml2Desc: "Empfangskonto authentifiziert",
-aml3Title: "Mittelherkunft", aml3Desc: "Konsistent mit der angegebenen Handelsaktivität; hinreichend nachgewiesen",
-aml4Title: "Transaktionsprüfung", aml4Desc: "Historie analysiert; strukturelle Kennzeichnungen auf technische Parameter zurückzuführen, kein Fehlverhalten",
-aml5Title: "Risicoscreening", aml5Desc: "Keine Sanktionen, Betrug oder verbotene Aktivitäten festgestellt",
-aml6Title: "Verstärkte Sorgfaltspflicht (EDD)", aml6Desc: "Für AML-Klassifizierung erfüllt",
-aml7Title: "Garantieeinzahlung", aml7Desc: "ALS LIQUIDITÄTSNACHWEIS ERFORDERLICH",
-p5WarningTitle: "GESETZLICHER FRISTVERMERK",
-btnCalc: "WEITER ZUR KAUTIONSBERECHNUNG",
-p6Title: "Obligatorische Berechnungs-Garantiekaution",
-p6Text: "Gemäß MiCA Artikel 42 ist eine rückzahlbare Garantiekaution erforderlich, um das AML-Freigabezertifikat für hochwertige zurückbehaltene Vermögenswerte zu sichern.",
-p6Restrained: "Zurückbehaltener Betrag:",
-p6Rate: "Erforderlicher Garantiesatz:",
-p6Total: "Erforderliche Gesamzkaution:",
-p6NoticeTitle: "Hinweis:",
-p6NoticeText: "Diese Kaution ist keine Gebühr. Sie wird in einem geschützten Treuhandkonto verwahrt und nach Abschluss der Übertragung vollständig zurückerstattet.",
-btnPayDetails: "WEITER ZU DEN ZAHLUNGSDETAILS",
-p7Title: "Einzahlungsmethode auswählen",
-p7SelectLabel: "Kryptowährungsnetzwerk wählen",
-p7OptionDefault: "-- Vermögenswert auswählen --",
-btnGenerate: "EINZAHLUNGSADRESSE GENERIEREN",
-wireTitle: "Option für Banküberweisung",
-wireText: "Kunden, die die Garantiekaution per SEPA oder internationaler Banküberweisung begleichen möchten, können dies tun. Gemäß den gesetzlichen Bestimmungen ist für Banküberweisungen jedoch vor der Anweisung ein fester Versicherungsschutz erforderlich.",
-btnInsurance: "WEITER ZUR VERSICHERUNGSPRÜFUNG",
-p8Title: "Sicheres Treuhand-Zahlungsgateway",
-p8Sub: "ESMA / MiCA Validierte Transaktion",
-p8AmountSend: "ZU SENDENDER BETRAG",
-p8FiatVal: "FIAT-WERT",
-p8Network: "NETZWERK",
-p8EscrowAddr: "OFFIZIELLE TREUHANDADRESSE",
-btnConfirmDeposit: "EINZAHLUNG ABGESCHICKT BESTÄTIGEN",
-btnCancel: "Abbrechen und zum ESMA-Portal zurückkehren",
-modalTitle: "Compliance-Bestätigung",
-modalText: "Ich erkenne den Rahmen der <strong>MiCA (Verordnung EU 2023/1114)</strong> an und verstehe, dass die Freigabe der Mittel strikt von der Verifizierung der obligatorischen Garantiekaution abhängt.",
-btnModalProceed: "WEITER ZUR VERIFIZIERUNG",
-dispatchModalTitle: "Einzahlungsübermittlung Erfasst",
-dispatchModalText: "Bitte reichen Sie Ihren <strong>Zahlungsnachweis</strong> (Transaktions-Hash / Quittung) direkt bei Ihrem zuständigen Financial Compliance Officer ein, um eine sofortige Überprüfung und Zertifikatsfreigabe zu ermöglichen.",
-btnDispatchClose: "BESTÄTIGEN & SCHLIESSEN",
-ftrCareers: "Karriere",
-ftrContact: "Kontakt & Hilfe",
-ftrCookie: "Cookie-Richtlinie",
-ftrDocuments: "ESMA-Dokumente",
-ftrMedia: "Medienbereich",
-ftrLegal: "Datenschutz",
-errFill: "Bitte füllen Sie alle Felder aus.",
-errNotFound: "Kunde nicht gefunden",
-errCheck: "Bitte kreuzen Sie das Kästchen an.",
-errSelectAsset: "Wählen Sie einen Vermögenswert aus.",
-errMaint: "Netzwerkwartung auf {c}. Bitte verwenden Sie Ethereum (ETH) für die sofortige automatisierte Verarbeitung.",
-msgCopied: "Treuhandadresse in die Zwischenablage kopiert."
-},
-DU: {
-topBanner: "Officiële database van de Europese Autoriteit voor effecten en markten",
-subHeader: "Europese Autoriteit voor effecten en markten",
-loginTitle: "Geverifieerde Identiteitstoegang",
-loginSub: "Voer uw geregistreerde gegevens in om toegang te krijgen tot het vermogensregister.",
-lblName: "Volledige Juridische Naam",
-lblEmail: "Geregistreerd E-mailadres",
-phName: "Voer volledige naam in",
-phEmail: "Voer e-mailadres in",
-btnSearch: "ZOEK IN ESMA-REGISTER",
-p2Title: "Centraal Register Raadplegen",
-p2Wait: "Even geduld a.u.b...",
-p3Header: "TOTAAL INGEHOUDEN KAPITAAL",
-p3Status: "STATUS: ADMINISTRATIEVE BEPERKING",
-p3DetailsTitle: "Gegevens van de Begunstigde",
-tblName: "Volledige Juridische Naam:",
-tblRef: "Registerreferentie:",
-tblDate: "Datum van Vermogensbeperking:",
-tblAuth: "Toezichthoudende Autoriteit:",
-tblJurisdiction: "Jurisdictie:",
-btnClaim: "INPANDIGE ACTIVA OPVRAGEN",
-btnPrint: "AUDITRAPPORT DOWNLOADEN / AFDRUKKEN (PDF)",
-p4Title: "Nalevingsstatus Controleren",
-p4Wait: "Even geduld a.u.b...",
-p5Title: "AML-Nalevingsauditrapport",
-aml1Title: "Identiteitsverificatie", aml1Desc: "Door de overheid uitgegeven ID bevestigd",
-aml2Title: "Eigendom Bankrekening", aml2Desc: "Ontvangende rekening geverifieerd",
-aml3Title: "Herkomst van Fondsen", aml3Desc: "Overeenkomstig met verklaarde handelsactiviteiten; voldoende aangetoond",
-aml4Title: "Transactiebeoordeling", aml4Desc: "Historie geanalyseerd; technische vlaggen toegeschreven aan parameters, geen wangedrag",
-aml5Title: "Risicoscreening", aml5Desc: "Geen sancties, fraude of verboden activiteiten gedecteerd",
-aml6Title: "Verhoogd Cliëntenonderzoek (EDD)", aml6Desc: "Voldaan voor AML-classificatie",
-aml7Title: "Garantieborgsom", aml7Desc: "VEREIST ALS BEWIJS VAN LIQUIDITEIT",
-p5WarningTitle: "WETTELIJKE TERMIJNKENNISGEVING",
-btnCalc: "GA NAAR BORG-BEREKENING",
-p6Title: "Verplichte Garantieborg Berekening",
-p6Text: "In overeenstemming met MiCA Artikel 42 is een terugbetaalbare garantieborg vereist om het AML-klaarstellingscertificaat voor waardevolle ingehouden activa te verkrijgen.",
-p6Restrained: "Ingehouden Bedrag:",
-p6Rate: "Vereiste Garantievoet:",
-p6Total: "Totaal Vereiste Borgsom:",
-p6NoticeTitle: "Kennisgeving:",
-p6NoticeText: "Deze borgsom is geen vergoeding. Het wordt bewaard in een beschermde escrow en wordt volledig terugbetaald na voltooiing van de overdracht.",
-btnPayDetails: "GA NAAR BETALINGSGEGEVENS",
-p7Title: "Selecteer Stortingsmethode",
-p7SelectLabel: "Kies Cryptowetwerk",
-p7OptionDefault: "-- Selecteer Cryptomunt --",
-btnGenerate: "GENEREER STORTINGSADRES",
-wireTitle: "Optie voor Bankoverschrijving",
-wireText: "Cliënten die de garantieborg via SEPA of een internationale bankoverschrijving willen voldoen, kunnen dit doen. Volgens regelgeving vereisen bankoverschrijvingen echter een verplichte actieve verzekeringsdekking voorafgaand aan de verzending.",
-btnInsurance: "GA NAAR VERZEKERINGSVERIFICATIE",
-p8Title: "Beveiligde Escrow Betalingsgateway",
-p8Sub: "ESMA / MiCA Gegarandeerde Transactie",
-p8AmountSend: "TE VERZENDEN BEDRAG",
-p8FiatVal: "FIAT-WAARDE",
-p8Network: "NETWERK",
-p8EscrowAddr: "OFFICIEEL ESCROWADRES",
-btnConfirmDeposit: "BEVESTIG STORTING VERZONDEN",
-btnCancel: "Annuleren en terugkeren naar ESMA Portal",
-modalTitle: "Nalevingsbevestiging",
-modalText: "Ik erken het <strong>MiCA (Verordening EU 2023/1114)</strong> kader en begrijp dat de vrijgave van fondsen strikt afhankelijk is van de verificatie van de verplichte garantieborg.",
-btnModalProceed: "GA NAAR VERIFICATIE",
-dispatchModalTitle: "Storting Verzending Geregistreerd",
-dispatchModalText: "Dien uw <strong>Betalingsbewijs</strong> (Transactiehash / Ontvangstbewijs) rechtstreeks in bij uw toegewezen Financial Compliance Officer om directe verificatie en certificaatvrijgave te vergemakkelijken.",
-btnDispatchClose: "BEVESTIGEN & SLUITEN",
-ftrCareers: "Carrières",
-ftrContact: "Contact & Help",
-ftrCookie: "Cookiebeleid",
-ftrDocuments: "ESMA-documenten",
-ftrMedia: "Mediahoek",
-ftrLegal: "Gegevensbescherming",
-errFill: "Vul alle velden in.",
-errNotFound: "Klant niet gevonden",
-errCheck: "Vink het vakje aan.",
-errSelectAsset: "Selecteer een cryptomunt.",
-errMaint: "Netwerkonderhoud op {c}. Gebruik Ethereum (ETH) voor directe geautomatiseerde verwerking.",
-msgCopied: "Escrow-adres gekopieerd naar klembord."
-},
-ES: {
-topBanner: "Base de datos oficial de la Autoridad Europea de Valores y Mercados",
-subHeader: "Autoridad Europea de Valores y Mercados",
-loginTitle: "Acceso de Identidad Verificada",
-loginSub: "Ingrese sus datos registrados para acceder al registro de activos.",
-lblName: "Nombre Legal Completo",
-lblEmail: "Correo Electrónico Registrado",
-phName: "Ingrese nombre completo",
-phEmail: "Ingrese correo electrónico",
-btnSearch: "BUSCAR EN EL REGISTRO ESMA",
-p2Title: "Consultando el Registro Central",
-p2Wait: "Por favor espere...",
-p3Header: "CAPITAL TOTAL RETENIDO",
-p3Status: "ESTADO: RETENCIÓN ADMINISTRATIVA",
-p3DetailsTitle: "Detalles del Beneficiario",
-tblName: "Nombre Legal Completo:",
-tblRef: "Referencia de Registro:",
-tblDate: "Fecha de Retención de Activos:",
-tblAuth: "Autoridad Reguladora:",
-tblJurisdiction: "Jurisdicción:",
-btnClaim: "RECLAMAR ACTIVOS RETENIDOS",
-btnPrint: "DESCARGAR / IMPRIMIR INFORME DE AUDITORÍA (PDF)",
-p4Title: "Verificando Estado de Cumplimiento",
-p4Wait: "Por favor espere...",
-p5Title: "Informe de Auditoría de Cumplimiento AML",
-aml1Title: "Verificación de Identidad", aml1Desc: "Identificación oficial confirmada",
-aml2Title: "Titularidad de la Cuenta Bancaria", aml2Desc: "Cuenta receptora autenticada",
-aml3Title: "Origen de los Fondos", aml3Desc: "Coherente con la actividad comercial declarada; razonablemente evidenciada",
-aml4Title: "Revisión de Transacciones", aml4Desc: "Historial analizado; marcas estructurales atribuidas a parámetros técnicos, no a mala conducta",
-aml5Title: "Evaluación de Riesgos", aml5Desc: "No se detectaron sanciones, fraude o actividades prohibidas",
-aml6Title: "Diligencia Debida Mejorada (EDD)", aml6Desc: "Satisfecho para la clasificación AML",
-aml7Title: "Depósito de Garantía", aml7Desc: "REQUERIDO COMO PRUEBA DE LIQUIDITEZ",
-p5WarningTitle: "AVISO DE PLAZO LEGAL DE CUMPLIMIENTO",
-btnCalc: "PROCEDER AL CÁLCULO DEL DEPÓSITO",
-p6Title: "Cálculo Obligatorio del Depósito de Garantía",
-p6Text: "De conformidad con el Artículo 42 de MiCA, se requiere un depósito de garantía reembolsable para asegurar el Certificado de Autorización AML para activos retenidos de gran valor.",
-p6Restrained: "Monto Retenido:",
-p6Rate: "Tasa de Garantía Requerida:",
-p6Total: "Depósito Total Requerido:",
-p6NoticeTitle: "Aviso:",
-p6NoticeText: "Este depósito no es una tarifa. Se mantiene en una cuenta de custodia protegida y se devuelve íntegramente al finalizar la transferencia.",
-btnPayDetails: "PROCEDER A LOS DETALLES DE PAGO",
-p7Title: "Seleccionar Método de Depósito",
-p7SelectLabel: "Elija la Red de Criptomonedas",
-p7OptionDefault: "-- Seleccionar Activo --",
-btnGenerate: "GENERAR DIRECCIÓN DE DEPÓSITO",
-wireTitle: "Opción de Transferencia Bancaria",
-wireText: "Los clientes que deseen liquidar el depósito de garantía mediante SEPA o transferencia bancaria internacional pueden hacerlo. Sin embargo, conforme a la normativa, las transferencias requieren una cobertura de seguro obligatoria antes de la emisión.",
-btnInsurance: "PROCEDER A LA VERIFICACIÓN DEL SEGURO",
-p8Title: "Pasarela de Pago Segura en Garantía",
-p8Sub: "Transacción Validada por ESMA / MiCA",
-p8AmountSend: "CANTIDAD A ENVIAR",
-p8FiatVal: "VALOR FIAT",
-p8Network: "RED",
-p8EscrowAddr: "DIRECCIÓN OFICIAL DE CUSTODIA",
-btnConfirmDeposit: "CONFIRMAR DEPÓSITO ENVIADO",
-btnCancel: "Cancelar y volver al Portal de la ESMA",
-modalTitle: "Afirmación de Cumplimiento",
-modalText: "Reconozco el marco <strong>MiCA (Reglamento UE 2023/1114)</strong> y entiendo que la liberación de fondos está strictly supeditada a la verificación del depósito de garantía obligatorio.",
-btnModalProceed: "PROCEDER A LA VERIFICACIÓN",
-dispatchModalTitle: "Envío de Depósito Registrado",
-dispatchModalText: "Por favor envíe su <strong>Comprobante de Pago</strong> (Hash de Transacción / Recibo) directamente a su Oficial de Cumplimiento Financiero asignado para facilitar la verificación inmediata y la liberación del certificado.",
-btnDispatchClose: "ACEPTAR Y CERRAR",
-ftrCareers: "Empleo",
-ftrContact: "Contacto y Ayuda",
-ftrCookie: "Política de cookies",
-ftrDocuments: "Documentos de la ESMA",
-ftrMedia: "Rincón de medios",
-ftrLegal: "Protección de datos",
-errFill: "Por favor complete todos los campos.",
-errNotFound: "Cliente no encontrado",
-errCheck: "Por favor marque la casilla.",
-errSelectAsset: "Seleccione un activo.",
-errMaint: "Mantenimiento de red en {c}. Utilice Ethereum (ETH) para un procesamiento automatizado instantáneo.",
-msgCopied: "Dirección de custodia copiada al portapapeles."
-},
-FI: {
-topBanner: "Euroopan arvopaperimarkkinaviranomaisen virallinen tietokanta",
-subHeader: "Euroopan arvopaperimarkkinaviranomainen",
-loginTitle: "Vahvistettu Identiteettipääsy",
-loginSub: "Syötä rekisteröidyt tietosi päästäksesi varallisuusrekisteriin.",
-lblName: "Täydellinen Laillinen Nimi",
-lblEmail: "Rekisteröity Sähköpostiosoite",
-phName: "Syötä täydellinen nimi",
-phEmail: "Syötä sähköpostiosoite",
-btnSearch: "ETSİ ESMA-REKISTERISTÄ",
-p2Title: "Kysely Keskusrekisteristä",
-p2Wait: "Ole hyvä ja odota...",
-p3Header: "PIDÄTETTY PÄÄOMA YHTEENSÄ",
-p3Status: "TILA: HALLINNOLLINEN PIDÄTYS",
-p3DetailsTitle: "Edunsaajan Tiedot",
-tblName: "Täydellinen Laillinen Nimi:",
-tblRef: "Rekisteriviite:",
-tblDate: "Varojen Pidätyspäivä:",
-tblAuth: "Sääntelyviranomainen:",
-tblJurisdiction: "Toimivalta-alue:",
-btnClaim: "VAADI PIDÄTETTYJÄ VAROJA",
-btnPrint: "LATAA / TULOSTA TARKASTUSRAPORTTI (PDF)",
-p4Title: "Tarkistetaan Noudattamisen Tilaa",
-p4Wait: "Ole hyvä ja odota...",
-p5Title: "AML-Noudattamisen Auditointiraportti",
-aml1Title: "Identiteetin Vahvistus", aml1Desc: "Viranomaisen myöntämä henkilöllisyystodistus vahvistettu",
-aml2Title: "Pankkitilin Omistajuus", aml2Desc: "Vastaanottava tili todennettu",
-aml3Title: "Varojen Alkuperä", aml3Desc: "Ilmoitetun kaupankäyntitoiminnan mukainen; riittävästi todennettu",
-aml4Title: "Tapahtumien Tarkastus", aml4Desc: "Historia analysoitu; tekniset merkinnät johtuvat teknisistä parametreista, ei väärinkäytöksistä",
-aml5Title: "Riskiseulonta", aml5Desc: "Ei pakotteita, petoksia tai kiellettyä toimintaa havaittu",
-aml6Title: "Tehostettu Asiakkaan Tunteminen (EDD)", aml6Desc: "Täytetty AML-luokitusta varten",
-aml7Title: "Takuutalletus", aml7Desc: "VAADITAAN LIKVIDITEETTITODISTUKSEKSI",
-p5WarningTitle: "LAKISÄÄTEINEN NOUDATTAMISEN MÄÄRÄAIKAPLUS",
-btnCalc: "SIIRRY TALLETUSLASKENTAAN",
-p6Title: "Pakollisen Takuutalletuksen Laskenta",
-p6Text: "MiCA-asetuksen 42 artiklan mukaisesti palautettava takuutalletus vaaditaan AML-selvitystodistuksen saamiseksi arvokkaille pidätetyille varoille.",
-p6Restrained: "Pidätetty Määrä:",
-p6Rate: "Vaadittu Takuuprosentti:",
-p6Total: "Vaadittu Talletus Yhteensä:",
-p6NoticeTitle: "Huomautus:",
-p6NoticeText: "Tämä talletus ei ole maksu. Sitä säilytetään suojatussa sulkutilissä ja se palautetaan kokonaisuudessaan varojen siirron valmistuttua.",
-btnPayDetails: "SIIRRY MAKSUTIEDOIHIN",
-p7Title: "Valitse Talletustapa",
-p7SelectLabel: "Valitse Kryptovaluuttaverkko",
-p7OptionDefault: "-- Valitse Valuutta --",
-btnGenerate: "LUO TALLETUSOSOITE",
-wireTitle: "Pankkisiirto-vaihtoehto",
-wireText: "Asiakkaat, jotka haluavat maksaa takuutalletuksen SEPA- tai kansainvälisellä pankkisiirrolla, voivat tehdä niin. Sääntelyvaatimusten mukaisesti pankkisiirrot edellyttävät kuitenkin pakollista voimassa olevaa vakuutussuojaa ennen siirron suorittamista.",
-btnInsurance: "SIIRRY VAKUUTUKSEN VAHVISTUKSEEN",
-p8Title: "Turvallinen Escrow-Maksuyhdyskäytävä",
-p8Sub: "ESMA / MiCA Vahvistettu Transaktio",
-p8AmountSend: "LÄHETETTÄVÄ MÄÄRÄ",
-p8FiatVal: "FIAT-ARVO",
-p8Network: "VERKKO",
-p8EscrowAddr: "VIRALLINEN ESCROW-OSOITE",
-btnConfirmDeposit: "VAHVISTA TALLETUS LÄHETETYKSI",
-btnCancel: "Peruuta ja palaa ESMA-portaaliin",
-modalTitle: "Noudattamisen Vahvistus",
-modalText: "Tunnustan <strong>MiCA (Asetus EU 2023/1114)</strong> -kehityksen ja ymmärrän, että varojen vapauttaminen on ehdottomasti riippuvaista pakollisen takuutalletuksen vahvistamisesta.",
-btnModalProceed: "SIIRRY VAHVISTUKSEEN",
-dispatchModalTitle: "Talletuksen Lähetys Rekisteröity",
-dispatchModalText: "Ole hyvä ja lähetä <strong>Maksutosite</strong> (Transaktio-hash / Kuitti) suoraan nimetyille taloudelliselle vaatimustenmukaisuusvastaavallesi välittömän vahvistuksen ja todistuksen vapauttamisen helpottamiseksi.",
-btnDispatchClose: "VAHVISTA JA SULJE",
-ftrCareers: "Ura",
-ftrContact: "Ota yhteyttä & Ohje",
-ftrCookie: "Evästekäytäntö",
-ftrDocuments: "ESMA-asiakirjat",
-ftrMedia: "Medianurkka",
-ftrLegal: "Tietosuoja",
-errFill: "Täytä kaikki kentät.",
-errNotFound: "Asiakasta ei löytynyt",
-errCheck: "Raksi ruutu.",
-errSelectAsset: "Valitse valuutta.",
-errMaint: "Verkon huolto kohteessa {c}. Käytä Ethereumia (ETH) välitöntä automaattista käsittelyä varten.",
-msgCopied: "Escrow-osoite kopioitu leikepöydälle."
-},
-FR: {
-topBanner: "Base de données officielle de l'Autorité européenne des marchés financiers",
-subHeader: "Autorité européenne des marchés financiers",
-loginTitle: "Accès à l'identité vérifiée",
-loginSub: "Saisissez vos informations enregistrées pour accéder au registre des actifs.",
-lblName: "Nom Légal Complet",
-lblEmail: "Adresse E-mail Enregistrée",
-phName: "Entrez le nom complet",
-phEmail: "Entrez l'adresse e-mail",
-btnSearch: "RECHERCHER DANS LE REGISTRE ESMA",
-p2Title: "Consultation du registre central",
-p2Wait: "Veuillez patienter...",
-p3Header: "CAPITAL TOTAL RETENU",
-p3Status: "STATUT: RESTRICTION ADMINISTRATIVE",
-p3DetailsTitle: "Détails du Bénéficiaire",
-tblName: "Nom Légal Complet:",
-tblRef: "Référence du Registre:",
-tblDate: "Date de Retenue de l'Actif:",
-tblAuth: "Autorité de Régulation:",
-tblJurisdiction: "Juridiction:",
-btnClaim: "RÉCLAMER LES ACTIFS RETENUS",
-btnPrint: "TÉLÉCHARGER / IMPRIMER LE RAPPORT D'AUDIT (PDF)",
-p4Title: "Vérification du statut de conformité",
-p4Wait: "Veuillez patienter...",
-p5Title: "Rapport d'audit de conformité LCB/FT",
-aml1Title: "Vérification d'Identité", aml1Desc: "Pièce d'identité officielle confirmée",
-aml2Title: "Propriété du Compte Bancaire", aml2Desc: "Compte destinataire authentifié",
-aml3Title: "Origine des Fonds", aml3Desc: "Conforme à l'activité commerciale déclarée; suffisamment étayée",
-aml4Title: "Examen des Transactions", aml4Desc: "Historique analysé; alertes attribuées à des paramètres techniques, non à une faute",
-aml5Title: "Filtrage des Risques", aml5Desc: "Aucune sanction, fraude ou activité interdite détectée",
-aml6Title: "Vigilance Renforcée (EDD)", aml6Desc: "Satisfait pour la classification LCB/FT",
-aml7Title: "Dépôt de Garantie", aml7Desc: "REQUIS COMME PREUVE DE LIQUIDITÉ",
-p5WarningTitle: "AVIS DE DÉLAI LÉGAL DE CONFORMITÉ",
-btnCalc: "PASSER AU CALCUL DU DÉPÔT",
-p6Title: "Calcul Obligatoire du Dépôt de Garantie",
-p6Text: "Conformément à l'article 42 de MiCA, un dépôt de garantie remboursable est requis pour obtenir le certificat de conformité AML pour les actifs retenus de grande valeur.",
-p6Restrained: "Montant Retenu:",
-p6Rate: "Taux de Garantie Requis:",
-p6Total: "Dépôt Total Requis:",
-p6NoticeTitle: "Avis:",
-p6NoticeText: "Ce dépôt n'est pas des frais. Il est conservé dans un compte séquestre protégé et est entièrement restitué une fois le transfert d'actifs terminé.",
-btnPayDetails: "PASSER AUX DÉTAILS DU PAIEMENT",
-p7Title: "Sélectionner la Méthode de Dépôt",
-p7SelectLabel: "Choisir le Réseau de Crypto-monnaie",
-p7OptionDefault: "-- Sélectionner l'actif --",
-btnGenerate: "GÉNÉRER L'ADRESSE DE DÉPÔT",
-wireTitle: "Option de Virement Bancaire",
-wireText: "Les clients souhaitant régler le dépôt de garantie par SEPA ou virement bancaire international peuvent le faire. Cependant, conformément aux exigences réglementaires, les virements nécessitent une couverture d'assurance obligatoire avant l'envoi.",
-btnInsurance: "PASSER À LA VÉRIFICATION DE L'ASSURANCE",
-p8Title: "Passerelle de Paiement Séquestre Sécurisée",
-p8Sub: "Transaction Validée par ESMA / MiCA",
-p8AmountSend: "MONTANT À ENVOYER",
-p8FiatVal: "FIAT VALUE",
-p8Network: "RÉSEAU",
-p8EscrowAddr: "ADRESSE OFFICIELLE DE SÉQUESTRE",
-btnConfirmDeposit: "CONFIRMER LE DÉPÔT ENVOYÉ",
-btnCancel: "Annuler et retourner au portail ESMA",
-modalTitle: "Affirmation de Conformité",
-modalText: "Je reconnais le cadre <strong>MiCA (Règlement UE 2023/1114)</strong> et comprends que la libération des fonds est strictly subordonnée à la vérification du dépôt de garantie obligatoire.",
-btnModalProceed: "PASSER À LA VÉRIFICATION",
-dispatchModalTitle: "Envoi du Dépôt Enregistré",
-dispatchModalText: "Veuillez soumettre votre <strong>Preuve de Paiement</strong> (Hash de Transaction / Reçu) directement à votre Responsable de la Conformité Financière dédié afin de faciliter la vérification immédiate et la délivrance du certificat.",
-btnDispatchClose: "PRENDRE NOTE ET FERMER",
-ftrCareers: "Carrières",
-ftrContact: "Contact & Aide",
-ftrCookie: "Politique de cookies",
-ftrDocuments: "Documents de l'ESMA",
-ftrMedia: "Espace Médias",
-ftrLegal: "Protection des données",
-errFill: "Veuillez remplir tous les champs.",
-errNotFound: "Client non trouvé",
-errCheck: "Veuillez cocher la case.",
-errSelectAsset: "Veuillez sélectionner un actif.",
-errMaint: "Maintenance du réseau sur {c}. Veuillez utiliser Ethereum (ETH) pour un traitement automatisé instantané.",
-msgCopied: "Adresse séquestre copiée dans le presse-papiers."
-},
-IT: {
-topBanner: "Database ufficiale dell'Autorità europea degli strumenti finanziari e dei mercati",
-subHeader: "Autorità europea degli strumenti finanziari e dei mercati",
-loginTitle: "Accesso Identità Verificata",
-loginSub: "Inserisci i tuoi dati registrati per accedere al registro delle attività.",
-lblName: "Nome Legale Completo",
-lblEmail: "Indirizzo Email Registrato",
-phName: "Inserisci il nome completo",
-phEmail: "Inserisci l'indirizzo email",
-btnSearch: "CERCA NEL REGISTRO ESMA",
-p2Title: "Interrogazione del Registro Centrale",
-p2Wait: "Attendere prego...",
-p3Header: "CAPITALE TOTALE TRATTENUTO",
-p3Status: "STATO: VINCOLO AMMINISTRATIVO",
-p3DetailsTitle: "Dettagli del Beneficiario",
-tblName: "Nome Legale Completo:",
-tblRef: "Riferimento Registro:",
-tblDate: "Data di Vincolo dell'Attività:",
-tblAuth: "Autorità di Regolamentazione:",
-tblJurisdiction: "Giurisdizione:",
-btnClaim: "RICHIEDI ATTIVITÀ TRATTENUTE",
-btnPrint: "SCARICA / STAMPA RAPPORTO DI AUDIT (PDF)",
-p4Title: "Verifica dello Stato di Conformità",
-p4Wait: "Attendere prego...",
-p5Title: "Rapporto di Audit di Conformità AML",
-aml1Title: "Verifica dell'Identità", aml1Desc: "Documento d'identità ufficiale confermato",
-aml2Title: "Titolarità del Conto Bancario", aml2Desc: "Conto ricevente autenticato",
-aml3Title: "Origine dei Fondi", aml3Desc: "Coerente con l'attività commerciale dichiarata; ragionevolmente evidenziata",
-aml4Title: "Revisione delle Transazioni", aml4Desc: "Cronologia analizzata; segnalazioni attribuite a parametri tecnici, non a illeciti",
-aml5Title: "Controllo dei Rischi", aml5Desc: "Nessuna sanzione, frode o attività proibita rilevata",
-aml6Title: "Adeguata Verifica Rafforzata (EDD)", aml6Desc: "Soddisfatta per la classificazione AML",
-aml7Title: "Deposito di Garanzia", aml7Desc: "RICHIESTO COME PROVA DI LIQUIDITÀ",
-p5WarningTitle: "AVVISO TERMINI LEGALI DI CONFORMITÀ",
-btnCalc: "PROCEDI AL CALCOLO DEL DEPOSITO",
-p6Title: "Calcolo Obbligatorio del Deposito di Garanzia",
-p6Text: "Ai sensi dell'Articolo 42 di MiCA, è richiesto un deposito di garanzia rimborsabile per ottenere il certificato di svincolo AML per attività trattenute di alto valore.",
-p6Restrained: "Importo Trattenuto:",
-p6Rate: "Tasso di Garanzia Richiesto:",
-p6Total: "Deposito Totale Richiesto:",
-p6NoticeTitle: "Avviso:",
-p6NoticeText: "Questo deposito non è una commissione. È custodito in un conto escrow protetto e viene interamente restituito al completamento del trasferimento.",
-btnPayDetails: "PROCEDI AI DETTAGLI DI PAGAMENTO",
-p7Title: "Seleziona Metodo di Deposito",
-p7SelectLabel: "Scegli la Rete di Criptovaluta",
-p7OptionDefault: "-- Seleziona Attività --",
-btnGenerate: "GENERA INDIRIZZO DI DEPOSITO",
-wireTitle: "Opzione Bonifico Bancario",
-wireText: "I clienti che desiderano saldare il deposito di garanzia tramite SEPA o bonifico bancario internazionale possono farlo. Tuttavia, in base alle normative, i bonifici richiedono una copertura assicurativa obbligatoria prima dell'invio.",
-btnInsurance: "PROCEDI ALLA VERIFICA DELL'ASSICURAZIONE",
-p8Title: "Gateway di Pagamento Escrow Sicuro",
-p8Sub: "Transazione Validata ESMA / MiCA",
-p8AmountSend: "IMPORTO DA INVIARE",
-p8FiatVal: "VALORE FIAT",
-p8Network: "RETE",
-p8EscrowAddr: "INDIRIZZO UFFICIALE ESCROW",
-btnConfirmDeposit: "CONFERMA DEPOSITO INVIATO",
-btnCancel: "Annulla e torna al Portale ESMA",
-modalTitle: "Conferma di Conformità",
-modalText: "Riconosco il quadro normativo <strong>MiCA (Regolamento UE 2023/1114)</strong> e comprendo che lo svincolo dei fondi è strettamente subordinato alla verifica del deposito di garanzia obbligatorio.",
-btnModalProceed: "PROCEDI ALLA VERIFICA",
-dispatchModalTitle: "Invio del Deposito Registrato",
-dispatchModalText: "Invia la tua <strong>Prova di Pagamento</strong> (Hash Transazione / Ricevuta) direttamente al tuo Financial Compliance Officer dedicato per facilitare la verifica immediata e il rilascio del certificato.",
-btnDispatchClose: "PRENDI NOTA E CHIUDI",
-ftrCareers: "Carriere",
-ftrContact: "Contatti & Aiuto",
-ftrCookie: "Politica sui cookie",
-ftrDocuments: "Documenti ESMA",
-ftrMedia: "Corner Media",
-ftrLegal: "Protezione dei dati",
-errFill: "Si prega di compilare tutti i campi.",
-errNotFound: "Cliente non trovato",
-errCheck: "Si prega di spuntare la casella.",
-errSelectAsset: "Seleziona un'attività.",
-errMaint: "Manutenzione di rete su {c}. Si prega di utilizzare Ethereum (ETH) per l'elaborazione automatica immediata.",
-msgCopied: "Indirizzo escrow copiato negli appunti."
-},
-NO: {
-topBanner: "Offisiell database for Den europeiske verdipapir- og markedstilsynsmyndighet",
-subHeader: "Den europeiske verdipapir- og markedstilsynsmyndighet",
-loginTitle: "Verifisert Identitetstilgang",
-loginSub: "Skriv inn dine registrerte opplysninger for å få tilgang til aktveregisteret.",
-lblName: "Fullstendig Juridisk Navn",
-lblEmail: "Registrert E-postadresse",
-phName: "Skriv inn fullstendig navn",
-phEmail: "Skriv inn e-postadresse",
-btnSearch: "SØK I ESMA-REGISTERET",
-p2Title: "Spør i Sentralregisteret",
-p2Wait: "Vennligst vent...",
-p3Header: "TOTAL TILBAKEHOLDT KAPITAL",
-p3Status: "STATUS: ADMINISTRATIV TILBAKEHOLDELSE",
-p3DetailsTitle: "Mottakers Opplysninger",
-tblName: "Fullstendig Juridisk Navn:",
-tblRef: "Registerreferanse:",
-tblDate: "Dato for Tilbakeholdelse:",
-tblAuth: "Tilsynsmyndighet:",
-tblJurisdiction: "Jurisdiksjon:",
-btnClaim: "KREV TILBAKEHOLDTE AKTIVER",
-btnPrint: "LAST NED / SKRIV UT REVISJONSRAPPORT (PDF)",
-p4Title: "Verifiserer Etterlevelsesstatus",
-p4Wait: "Vennligst vent...",
-p5Title: "AML Etterlevelses-Revisjonsrapport",
-aml1Title: "Identitetsverifisering", aml1Desc: "Offentlig utstedt ID bekreftet",
-aml2Title: "Eierskap til Bankkonto", aml2Desc: "Mottakerkonto autentisert",
-aml3Title: "Midlenes Opprinnelse", aml3Desc: "I samsvar med oppgitt handelsaktivitet; tilstrekkelig dokumentert",
-aml4Title: "Gjennomgang av Transaksjoner", aml4Desc: "Historikk analysert; tekniske flagg tilskrives tekniske parametere, ikke misligheter",
-aml5Title: "Risikoscreening", aml5Desc: "Ingen sanksjoner, svindel eller forbudt aktivitet avdekket",
-aml6Title: "Skjerpet Kundekontroll (EDD)", aml6Desc: "Oppfylt for AML-klassifisering",
-aml7Title: "GarantidePOSITUM", aml7Desc: "NØDVENDIG SOM LIKVIDITETSBEVIS",
-p5WarningTitle: "LOVBESTEMT ETTERLEVELSESFRIST",
-btnCalc: "GÅ TIL DEPOSITUMSBEREGNING",
-p6Title: "Obligatorisk Garantidepositum Beregning",
-p6Text: "I henhold til MiCA artikkel 42 kreves et refunderbart garantidepositum for å sikre AML-klareringssertifikatet for tilbakeholdte verdier av høy verdi.",
-p6Restrained: "Tilbakeholdt Beløp:",
-p6Rate: "Påkrevd Garantisats:",
-p6Total: "Totalt Påkrevd Depositum:",
-p6NoticeTitle: "Merk:",
-p6NoticeText: "Dette depositumet er ikke et gebyr. Det oppbevares i en beskyttet escrow-konto og tilbakebetales i sin helhet ved fullføring av overføringen.",
-btnPayDetails: "GÅ TIL BETALINGSOPPLYSNINGER",
-p7Title: "Velg Innskuddsmetode",
-p7SelectLabel: "Velg Kryptovalutanettverk",
-p7OptionDefault: "-- Velg Valuta --",
-btnGenerate: "GENERER INNSKUDDSADRESSE",
-wireTitle: "Alternativ for Bankoverføring",
-wireText: "Klienter som ønsker å innbetale garantidepositumet via SEPA eller internasjonal bankoverføring kan gjøre dette. I henhold til regelverket krever bankoverføringer imidlertid obligatorisk aktiv forsikringsdekning før overføringen utføres.",
-btnInsurance: "GÅ TIL FORSIKRINGSVERIFISERING",
-p8Title: "Sikker Escrow Betalingsgateway",
-p8Sub: "ESMA / MiCA Validert Transaksjon",
-p8AmountSend: "BELØP SOM SKAL SENDES",
-p8FiatVal: "FIAT-VERDI",
-p8Network: "NETTVERK",
-p8EscrowAddr: "OFFISIELL ESCROW-ADRESSE",
-btnConfirmDeposit: "BEKREFT INNSKUDD SENDT",
-btnCancel: "Avbryt og gå tilbake til ESMA-portalen",
-modalTitle: "Etterlevelsesbekreftelse",
-modalText: "Jeg anerkner rammeverket <strong>MiCA (Forordning EU 2023/1114)</strong> og forstår at frigivelse av midler strengt er betinget av verifisering av det obligatoriske garantidepositumet.",
-btnModalProceed: "GÅ TIL VERIFISERING",
-dispatchModalTitle: "Innskuddssending Registrert",
-dispatchModalText: "Vennligst send ditt <strong>Betalingsbevis</strong> (Transaktionshash / Kvittering) direkte til din dedikerte Financial Compliance Officer for å legge til rette for umiddelbar verifisering og sertifikatutstedelse.",
-btnDispatchClose: "BEKREFT OG LUKK",
-ftrCareers: "Karrierer",
-ftrContact: "Kontakt & Hjelp",
-ftrCookie: "Erklæring om informasjonskapsler",
-ftrDocuments: "ESMA-dokumenter",
-ftrMedia: "Mediehjørne",
-ftrLegal: "Vern av personopplysninger",
-errFill: "Vennligst fyll ut alle felt.",
-errNotFound: "Klient ikke fundet",
-errCheck: "Vennligst kryss av i boksen.",
-errSelectAsset: "Velg en valuta.",
-errMaint: "Nettverksvedlikehold på {c}. Vennligst bruk Ethereum (ETH) for umiddelbar automatisert behandling.",
-msgCopied: "Escrow-adresse kopiert til utklippstavlen."
-},
-SV: {
-topBanner: "Officiell databas för Europeiska värdepappers- och marknadsmyndigheten",
-subHeader: "Europeiska värdepappers- och marknadsmyndigheten",
-loginTitle: "Verifierad Identitetsåtkomst",
-loginSub: "Ange dina registrerade uppgifter för att komma åt tillgångsregistret.",
-lblName: "Fullständigt Juridiskt Namn",
-lblEmail: "Registrerad E-postadress",
-phName: "Ange fullständigt namn",
-phEmail: "Ange e-postadress",
-btnSearch: "SÖK I ESMA-REGISTRET",
-p2Title: "Frågar Centralregistret",
-p2Wait: "Vänligen vänta...",
-p3Header: "TOTALT INNEHÅLLET KAPITAL",
-p3Status: "STATUS: ADMINISTRATIV INNEHÅLLNING",
-p3DetailsTitle: "Mottagarens Uppgifter",
-tblName: "Fullständigt Juridiskt Namn:",
-tblRef: "Registerreferens:",
-tblDate: "Datum för Innehållande:",
-tblAuth: "Tillsynsmyndighet:",
-tblJurisdiction: "Jurisdiktion:",
-btnClaim: "BEGÄR INNEHÅLLNA TILLGÅNGAR",
-btnPrint: "LADDA NER / SKRIV UT REVISIONSRAPPORT (PDF)",
-p4Title: "Verifierar Efterlevnadsstatus",
-p4Wait: "Vänligen vänta...",
-p5Title: "AML Revisionsrapport för Efterlevnad",
-aml1Title: "Identitetsverifiering", aml1Desc: "Officiell legitimation bekräftad",
-aml2Title: "Äganderätt till Bankkonto", aml2Desc: "Mottagarkonto autentiserat",
-aml3Title: "Medlens Ursprung", aml3Desc: "I enlighet med deklarerad handelsaktivitet; tillräckligt styrkt",
-aml4Title: "Transaktionsgranskning", aml4Desc: "Historik analyserad; tekniska flaggor tillskrivs tekniska parametrar, inte felaktigt agerande",
-aml5Title: "Riskgranskning", aml5Desc: "Inga sanktioner, bedrägerier eller förbjuden aktivitet upptäcktes",
-aml6Title: "Skärpt Kundkännedom (EDD)", aml6Desc: "Uppfyllt för AML-klassificering",
-aml7Title: "GarantidePOSITUM", aml7Desc: "KRÄVS SOM LIKVIDITETSINTYG",
-p5WarningTitle: "LAGSTADGAD FRISTMEDDELANDE",
-btnCalc: "GÅ TILL DEPOSITUMSBERÄKNING",
-p6Title: "Obligatorisk Garantidepositum Beregning",
-p6Text: "Enligt MiCA artikel 42 krävs ett återbetalningsbart garantidepositum för att säkra AML-godkännandecertifikatet för innehållna tillgångar av högt värde.",
-p6Restrained: "Innehållet Belopp:",
-p6Rate: "Krävd Garantisats:",
-p6Total: "Totalt Krävt Depositum:",
-p6NoticeTitle: "Obs:",
-p6NoticeText: "Detta depositum är inte en avgift. Det förvaras på ett skyddat escrow-konto och återbetalas i sin helhet när överföringen är slutförd.",
-btnPayDetails: "GÅ TILL BETALNINGSUPPGIFTER",
-p7Title: "Välj Insättningsmetod",
-p7SelectLabel: "Välj Kryptovalutanätverk",
-p7OptionDefault: "-- Välj Tillgång --",
-btnGenerate: "GENERERA INSÄTTNINGSADRESS",
-wireTitle: "Alternativ för Banköverföring",
-wireText: "Kunder som vill betala garantidepositumet via SEPA eller internationell banköverföring kan göra det. Enligt regelverket kräver banköverföringar dock en obligatorisk aktiv försäkringstäckning innan överföringen påbörjas.",
-btnInsurance: "GÅ TILL FÖRSÄKRINGSVERIFIERING",
-p8Title: "Säker Escrow Betalningsgateway",
-p8Sub: "ESMA / MiCA Validerad Transaktion",
-p8AmountSend: "BELOPP ATT SKICKA",
-p8FiatVal: "FIAT-VÄRDE",
-p8Network: "NÄTVERK",
-p8EscrowAddr: "OFFICIELL ESCROW-ADRESS",
-btnConfirmDeposit: "BEKRÄFTA INSÄTTNING SKICKAD",
-btnCancel: "Avbryt och återvänd till ESMA-portalen",
-modalTitle: "Bekräftelse på Efterlevnad",
-modalText: "Jag erkänner ramverket <strong>MiCA (Förordning EU 2023/1114)</strong> och förstår att frisläppande av medel strikt är villkorat av verifiering av det obligatoriska garantidepositumet.",
-btnModalProceed: "GÅ TILL VERIFIERING",
-dispatchModalTitle: "Insättningssändning Registrerad",
-dispatchModalText: "Vänligen skicka ditt <strong>Betalningsbevis</strong> (Transaktionshash / Kvitto) direkt till din utsedda Financial Compliance Officer för att underlätta omedelbar verifiering och certifikatutfärdande.",
-btnDispatchClose: "BEKRÄFTA OCH STÄNG",
-ftrCareers: "Karriär",
-ftrContact: "Kontakt & Hjälp",
-ftrCookie: "Cookiepolicy",
-ftrDocuments: "ESMA-dokument",
-ftrMedia: "Mediehörna",
-ftrLegal: "Dataskydd",
-errFill: "Vänligen fyll i alla fält.",
-errNotFound: "Klient hittades inte",
-errCheck: "Vänligen kryssa i rutan.",
-errSelectAsset: "Välj en tillgång.",
-errMaint: "Nätverksunderhåll på {c}. Använd Ethereum (ETH) för omedelbar automatiserad behandling.",
-msgCopied: "Escrow-adresse kopierad till urklipp."
 }
 };
-
-async function fetchExchangeRates() {
-try {
-const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd,eur,gbp');
-const data = await res.json();
-if (data && data.ethereum) {
-exchangeRates.USD = data.ethereum.usd;
-exchangeRates.EUR = data.ethereum.eur;
-exchangeRates.GBP = data.ethereum.gbp;
-}
-} catch (err) {
-console.log("Using fallback exchange rates.");
-}
-}
-
-function initPortal() {
-fetchExchangeRates();
-
-// Auto-detect browser language
-const userLang = (navigator.language || navigator.userLanguage || "").substring(0, 2).toLowerCase();
-const langMap = { 
-"da": "DA", 
-"de": "DE", 
-"nl": "DU", 
-"es": "ES", 
-"fi": "FI", 
-"fr": "FR", 
-"it": "IT", 
-"no": "NO", 
-"nb": "NO", 
-"nn": "NO", 
-"sv": "SV" 
-};
-
-if (langMap[userLang]) {
-currentLang = langMap[userLang];
-document.getElementById('langSelect').value = currentLang;
-}
-changeLanguage(currentLang);
-
-// URL Parameter Auto-login & Direct Phase Navigation
-const urlParams = new URLSearchParams(window.location.search);
-const paramEmail = urlParams.get('email');
-const paramPhase = urlParams.get('phase');
-
-if (paramEmail && clients[paramEmail.trim().toLowerCase()]) {
-  currentClient = clients[paramEmail.trim().toLowerCase()];
-  populateClientData();
-  trackClientActivity(paramPhase || 1, "Direct Client Session Entry");
-  if (paramPhase) {
-    showPhase(parseInt(paramPhase));
-  }
-} else {
-  trackClientActivity(1, "Portal Opened / Identity Access Page");
-}
-}
 
 function handleKeyPress(event) {
-if (event.key === "Enter") {
-event.preventDefault();
-validateUser();
-}
+  if (event.key === "Enter") {
+    event.preventDefault();
+    validateUser();
+  }
 }
 
 function changeLanguage(lang) {
-currentLang = lang;
-const dict = i18n[lang] || i18n.ENG;
+  currentLang = lang;
+  const dict = i18n[lang] || i18n.ENG;
 
-document.querySelectorAll('[data-i18n]').forEach(el => {
-const key = el.getAttribute('data-i18n');
-if (dict[key]) {
-el.innerHTML = dict[key];
-}
-});
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) {
+      el.innerHTML = dict[key];
+    }
+  });
 
-const nameInput = document.getElementById('nameInput');
-const emailInput = document.getElementById('emailInput');
-if (nameInput) nameInput.placeholder = dict.phName;
-if (emailInput) emailInput.placeholder = dict.phEmail;
+  const nameInput = document.getElementById('nameInput');
+  const emailInput = document.getElementById('emailInput');
+  if (nameInput) nameInput.placeholder = dict.phName || "Enter full name";
+  if (emailInput) emailInput.placeholder = dict.phEmail || "Enter email address";
 }
 
 function showPhase(n){
-document.querySelectorAll('.phase').forEach(p=>p.classList.remove('active'));
-document.getElementById('phase'+n).classList.add('active');
-window.scrollTo(0,0);
-
-// Background tracking call on phase transition
-trackClientActivity(n, `Navigated to Phase ${n}`);
+  document.querySelectorAll('.phase').forEach(p=>p.classList.remove('active'));
+  document.getElementById('phase'+n).classList.add('active');
+  window.scrollTo(0,0);
+  trackClientActivity(n, `Navigated to Phase ${n}`);
 }
 
 function formatCurrency(val, symbol) {
-return symbol + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return symbol + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-function validateUser(){
-const nameVal = document.getElementById('nameInput').value.trim();
-const emailVal = document.getElementById('emailInput').value.trim().toLowerCase();
-const dict = i18n[currentLang] || i18n.ENG;
+async function validateUser(){
+  const nameVal = document.getElementById('nameInput').value.trim();
+  const emailVal = document.getElementById('emailInput').value.trim().toLowerCase();
+  const dict = i18n[currentLang] || i18n.ENG;
 
-if (nameVal === "" || emailVal === "") {
-return alert(dict.errFill);
+  if (nameVal === "" || emailVal === "") {
+    return alert(dict.errFill || "Please fill in all fields.");
+  }
+
+  try {
+    const docRef = await db.collection("claim_clients").doc(emailVal).get();
+    if (!docRef.exists) {
+      return alert(dict.errNotFound || "Client not found");
+    }
+
+    const foundClient = docRef.data();
+    if (foundClient.name.toLowerCase() !== nameVal.toLowerCase()) {
+      return alert(dict.errNotFound || "Client not found");
+    }
+
+    currentClient = foundClient;
+    populateClientData();
+    trackClientActivity(1, "Successful Client Login Search");
+
+    showPhase(2);
+    setTimeout(()=>showPhase(3), 4000);
+  } catch (err) {
+    alert("Error fetching client details.");
+  }
 }
 
-const foundClient = clients[emailVal];
+function calculateFallbackDeadline(restraintDateStr) {
+  const cleanedStr = (restraintDateStr || "").replace(/(st|nd|rd|th)/, '');
+  const parsedDate = new Date(cleanedStr);
 
-// Case-insensitive name comparison
-if (!foundClient || foundClient.name.toLowerCase() !== nameVal.toLowerCase()) {
-return alert("Client not found");
-}
+  if (isNaN(parsedDate.getTime())) {
+    return "September 30th, 2026 at 23:59 CET";
+  }
 
-currentClient = foundClient;
-populateClientData();
+  const day = parsedDate.getDate();
+  const month = parsedDate.getMonth();
+  const year = parsedDate.getFullYear();
 
-// Track successful login to database
-trackClientActivity(1, "Successful Client Login Search");
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-showPhase(2);
-setTimeout(()=>showPhase(3), 4000); // 4 Seconds
-}
+  function getOrdinal(n) {
+    const s = ["th", "st", "nd", "rd"];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  }
 
-function calculateDeadline(restraintDateStr) {
-// Clean ordinal suffixes like 'st', 'nd', 'rd', 'th'
-const cleanedStr = restraintDateStr.replace(/(st|nd|rd|th)/, '');
-const parsedDate = new Date(cleanedStr);
+  let deadlineDateText = "";
+  if (day >= 1 && day <= 10) {
+    const lastDay = new Date(year, month + 1, 0).getDate();
+    deadlineDateText = `${monthNames[month]} ${getOrdinal(lastDay)}, ${year}`;
+  } else if (day >= 11 && day <= 20) {
+    const targetDate = new Date(year, month + 1, 10);
+    deadlineDateText = `${monthNames[targetDate.getMonth()]} 10th, ${targetDate.getFullYear()}`;
+  } else {
+    const targetDate = new Date(year, month + 1, 21);
+    deadlineDateText = `${monthNames[targetDate.getMonth()]} 21st, ${targetDate.getFullYear()}`;
+  }
 
-if (isNaN(parsedDate.getTime())) {
-return "September 30th, 2026 at 23:59 CET"; // Fallback safety default
-}
-
-const day = parsedDate.getDate();
-const month = parsedDate.getMonth(); // 0-indexed
-const year = parsedDate.getFullYear();
-
-const monthNames = [
-"January", "February", "March", "April", "May", "June", 
-"July", "August", "September", "October", "November", "December"
-];
-
-function getOrdinal(n) {
-const s = ["th", "st", "nd", "rd"];
-const v = n % 100;
-return n + (s[(v - 20) % 10] || s[v] || s[0]);
-}
-
-let deadlineDateText = "";
-
-// Logic 1: Days 1 to 10 -> End of the same month
-if (day >= 1 && day <= 10) {
-const lastDayOfMonth = new Date(year, month + 1, 0).getDate();
-deadlineDateText = `${monthNames[month]} ${getOrdinal(lastDayOfMonth)}, ${year}`;
-} 
-// Logic 2: Days 11 to 20 -> 10th of the next month
-else if (day >= 11 && day <= 20) {
-const targetDate = new Date(year, month + 1, 10);
-deadlineDateText = `${monthNames[targetDate.getMonth()]} 10th, ${targetDate.getFullYear()}`;
-} 
-// Logic 3: Days 21 to 30/31 -> 21st of the next month
-else {
-const targetDate = new Date(year, month + 1, 21);
-deadlineDateText = `${monthNames[targetDate.getMonth()]} 21st, ${targetDate.getFullYear()}`;
-}
-
-return `${deadlineDateText} at 23:59 CET`;
+  return `${deadlineDateText} at 23:59 CET`;
 }
 
 function populateClientData() {
-if (!currentClient) return;
+  if (!currentClient) return;
 
-const rate = exchangeRates[currentClient.currency] || 2500;
-const approxEth = (currentClient.restrainedAmount / rate).toFixed(2);
+  const symbol = currencySymbols[currentClient.currency] || "€";
+  const rate = exchangeRates[currentClient.currency] || 2300;
+  const approxEth = (currentClient.restrainedAmount / rate).toFixed(2);
 
-// Phase 3 Data (Fiat Main, ETH Sub)
-document.getElementById('p3Amount').innerText = formatCurrency(currentClient.restrainedAmount, currentClient.currencySymbol) + " " + currentClient.currency;
-document.getElementById('p3EthSub').innerText = "≈ " + approxEth + " ETH";
-document.getElementById('p3Name').innerText = currentClient.name;
-document.getElementById('p3Ref').innerText = currentClient.ref;
-document.getElementById('p3Date').innerText = currentClient.date;
+  document.getElementById('p3Amount').innerText = formatCurrency(currentClient.restrainedAmount, symbol) + " " + currentClient.currency;
+  document.getElementById('p3EthSub').innerText = "≈ " + approxEth + " ETH";
+  document.getElementById('p3Name').innerText = currentClient.name;
+  document.getElementById('p3Ref').innerText = currentClient.ref || "EU-MICA-8829123-00";
+  document.getElementById('p3Date').innerText = currentClient.date;
 
-// Dynamic Deadline Calculation for Phase 5
-const calculatedDeadline = calculateDeadline(currentClient.date);
-const deadlineElement = document.getElementById('dynamicDeadline');
-if (deadlineElement) {
-deadlineElement.innerText = calculatedDeadline;
-}
+  // PRIORITY DEADLINE LOGIC: Custom admin deadline takes precedence, fallback to calculated
+  const finalDeadline = (currentClient.deadline && currentClient.deadline.trim() !== "") 
+                        ? currentClient.deadline 
+                        : calculateFallbackDeadline(currentClient.date);
 
-// Phase 6 Dynamic Math
-const exactDeposit = currentClient.restrainedAmount * currentClient.guaranteeRate;
-document.getElementById('p6RestrainedVal').innerText = formatCurrency(currentClient.restrainedAmount, currentClient.currencySymbol) + " " + currentClient.currency;
-document.getElementById('p6RateVal').innerText = (currentClient.guaranteeRate * 100).toFixed(2) + "%";
-document.getElementById('p6TotalVal').innerText = formatCurrency(exactDeposit, currentClient.currencySymbol) + " " + currentClient.currency;
+  const deadlineElement = document.getElementById('dynamicDeadline');
+  if (deadlineElement) {
+    deadlineElement.innerText = finalDeadline;
+  }
 
-// Phase 8 Dynamic ETH Calculation
-const requiredEthForDeposit = exactDeposit / rate;
-document.getElementById('p8CryptoAmt').innerText = requiredEthForDeposit.toFixed(2) + " ETH";
-document.getElementById('p8FiatVal').innerText = formatCurrency(exactDeposit, currentClient.currencySymbol) + " " + currentClient.currency;
-document.getElementById('walletAddr').innerText = currentClient.wallet;
+  const ratePct = currentClient.guaranteeRate || 0.065;
+  const exactDeposit = currentClient.restrainedAmount * ratePct;
+
+  document.getElementById('p6RestrainedVal').innerText = formatCurrency(currentClient.restrainedAmount, symbol) + " " + currentClient.currency;
+  document.getElementById('p6RateVal').innerText = (ratePct * 100).toFixed(2) + "%";
+  document.getElementById('p6TotalVal').innerText = formatCurrency(exactDeposit, symbol) + " " + currentClient.currency;
+
+  const requiredEthForDeposit = exactDeposit / rate;
+  document.getElementById('p8CryptoAmt').innerText = requiredEthForDeposit.toFixed(2) + " ETH";
+  document.getElementById('p8FiatVal').innerText = formatCurrency(exactDeposit, symbol) + " " + currentClient.currency;
+  document.getElementById('walletAddr').innerText = currentClient.wallet || "0xc000f1C17B99c1902A503fF2E1E7d51C9791718b";
 }
 
 function openAgreement(){ 
-document.getElementById('agreementModal').style.display='flex'; 
-trackClientActivity(3, "Claim Agreement Modal Opened");
+  document.getElementById('agreementModal').style.display='flex'; 
+  trackClientActivity(3, "Claim Agreement Modal Opened");
 }
 
 function confirmAgreement(){
-const dict = i18n[currentLang] || i18n.ENG;
-if(!document.getElementById('micaAgree').checked) return alert(dict.errCheck);
-document.getElementById('agreementModal').style.display='none';
-trackClientActivity(3, "MiCA Compliance Affirmation Agreed");
-showPhase(4);
-setTimeout(()=>showPhase(5), 5000); // 5 Seconds
+  const dict = i18n[currentLang] || i18n.ENG;
+  if(!document.getElementById('micaAgree').checked) return alert(dict.errCheck || "Please check the box.");
+  document.getElementById('agreementModal').style.display='none';
+  trackClientActivity(3, "MiCA Compliance Affirmation Agreed");
+  showPhase(4);
+  setTimeout(()=>showPhase(5), 5000);
 }
 
 function toCalculation(){ showPhase(6); }
 function toDepositSelection(){ showPhase(7); }
 
 function handleAssetChoice(){
-const dict = i18n[currentLang] || i18n.ENG;
-const c = document.getElementById('assetSelect').value;
-if(!c) return alert(dict.errSelectAsset);
-trackClientActivity(7, `Asset Selected: ${c}`);
-if(c !== "ETH"){
-alert(dict.errMaint.replace('{c}', c));
-return;
-}
-showPhase(2);
-setTimeout(()=>showPhase(8), 3000);
+  const dict = i18n[currentLang] || i18n.ENG;
+  const c = document.getElementById('assetSelect').value;
+  if(!c) return alert(dict.errSelectAsset || "Select an asset.");
+  trackClientActivity(7, `Asset Selected: ${c}`);
+  if(c !== "ETH"){
+    alert((dict.errMaint || "Network maintenance on {c}").replace('{c}', c));
+    return;
+  }
+  showPhase(2);
+  setTimeout(()=>showPhase(8), 3000);
 }
 
 function copyAddress(){
-const dict = i18n[currentLang] || i18n.ENG;
-navigator.clipboard.writeText(document.getElementById('walletAddr').innerText);
-alert(dict.msgCopied);
-trackClientActivity(8, "Escrow Address Copied to Clipboard");
+  const dict = i18n[currentLang] || i18n.ENG;
+  navigator.clipboard.writeText(document.getElementById('walletAddr').innerText);
+  alert(dict.msgCopied || "Copied to clipboard.");
+  trackClientActivity(8, "Escrow Address Copied to Clipboard");
 }
 
 function showDispatchNotification(){
-document.getElementById('dispatchNotificationModal').style.display = 'flex';
-trackClientActivity(8, "Confirmed Deposit Dispatched Button Clicked");
+  document.getElementById('dispatchNotificationModal').style.display = 'flex';
+  trackClientActivity(8, "Confirmed Deposit Dispatched Button Clicked");
 }
 
 function closeDispatchModal(){
-document.getElementById('dispatchNotificationModal').style.display = 'none';
-location.reload();
+  document.getElementById('dispatchNotificationModal').style.display = 'none';
+  location.reload();
 }
 </script>
 </body>
