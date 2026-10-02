@@ -23,6 +23,86 @@ body {
   color: #1e293b;
 }
 
+/* AUTHENTICATION OVERLAY */
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.login-card {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.login-card h2 {
+  margin-top: 0;
+  color: var(--eu-blue);
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.login-field {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.login-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #475569;
+}
+
+.login-field input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.btn-login {
+  width: 100%;
+  background: var(--eu-blue);
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.btn-login:hover {
+  background: #002673;
+}
+
+.login-error {
+  color: var(--danger);
+  font-size: 13px;
+  margin-top: 12px;
+  display: none;
+  font-weight: 500;
+}
+
+/* ADMIN DASHBOARD STYLES */
 header {
   background: var(--eu-blue);
   color: #fff;
@@ -86,6 +166,19 @@ input, select {
 
 .btn-submit:hover { background: #002673; }
 
+.btn-logout {
+  background: #e2e8f0;
+  color: #1e293b;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.btn-logout:hover { background: #cbd5e1; }
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -119,13 +212,35 @@ th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
 }
 </style>
 </head>
-<body>
+<body onload="checkAuthSession()">
 
+<!-- AUTHENTICATION OVERLAY -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-card">
+    <i class="fas fa-lock" style="font-size: 40px; color: var(--eu-blue); margin-bottom: 10px;"></i>
+    <h2>Admin Authorization</h2>
+    <form onsubmit="handleAdminLogin(event)">
+      <div class="login-field">
+        <label for="adminUser">Username</label>
+        <input type="text" id="adminUser" placeholder="Enter username" required autocomplete="off">
+      </div>
+      <div class="login-field">
+        <label for="adminPass">Password</label>
+        <input type="password" id="adminPass" placeholder="Enter password" required autocomplete="off">
+      </div>
+      <button type="submit" class="btn-login"><i class="fas fa-sign-in-alt"></i> Access Dashboard</button>
+      <div class="login-error" id="loginError"><i class="fas fa-exclamation-circle"></i> Invalid Username or Password</div>
+    </form>
+  </div>
+</div>
+
+<!-- MAIN ADMIN DASHBOARD -->
 <header>
   <div style="display:flex; align-items:center; gap:15px;">
     <i class="fas fa-user-shield" style="font-size: 24px;"></i>
     <h1 style="margin:0; font-size:18px;">Asset Claim Portal — Admin Console</h1>
   </div>
+  <button class="btn-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
 </header>
 
 <div class="admin-container">
@@ -202,11 +317,43 @@ th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
 
 </div>
 
-<!-- FIREBASE SDKs WITH YOUR EXACT ESMA-ASSETS CONFIG -->
+<!-- FIREBASE COMPATIBLE SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
+// SESSION & LOGIN CHECK
+function checkAuthSession() {
+  const isAuth = sessionStorage.getItem("esma_admin_authenticated");
+  if (isAuth === "true") {
+    document.getElementById("loginOverlay").style.display = "none";
+    initAdminDatabase();
+  }
+}
+
+function handleAdminLogin(e) {
+  e.preventDefault();
+  const u = document.getElementById("adminUser").value.trim().toLowerCase();
+  const p = document.getElementById("adminPass").value;
+  const errEl = document.getElementById("loginError");
+
+  // STRICT CREDENTIAL VERIFICATION
+  if (u === "admin" && p === "Admin@24!!") {
+    sessionStorage.setItem("esma_admin_authenticated", "true");
+    document.getElementById("loginOverlay").style.display = "none";
+    errEl.style.display = "none";
+    initAdminDatabase();
+  } else {
+    errEl.style.display = "block";
+  }
+}
+
+function handleLogout() {
+  sessionStorage.removeItem("esma_admin_authenticated");
+  location.reload();
+}
+
+// FIREBASE DATABASE OPERATIONS
 const firebaseConfig = {
   apiKey: "AIzaSyC45bNuxFV-UkceTNxKNvh2pF2QceRF_wM",
   authDomain: "esma-assets.firebaseapp.com",
@@ -219,34 +366,36 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-db.collection("claim_clients").onSnapshot((snapshot) => {
-  const tbody = document.getElementById('clientTableBody');
-  tbody.innerHTML = '';
-  let count = 0;
+function initAdminDatabase() {
+  db.collection("claim_clients").onSnapshot((snapshot) => {
+    const tbody = document.getElementById('clientTableBody');
+    tbody.innerHTML = '';
+    let count = 0;
 
-  snapshot.forEach((doc) => {
-    count++;
-    const client = doc.data();
-    const email = doc.id;
-    const currencySymbols = { EUR: "€", USD: "$", GBP: "£" };
-    const sym = currencySymbols[client.currency] || "€";
+    snapshot.forEach((doc) => {
+      count++;
+      const client = doc.data();
+      const email = doc.id;
+      const currencySymbols = { EUR: "€", USD: "$", GBP: "£" };
+      const sym = currencySymbols[client.currency] || "€";
 
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td><strong>${client.name}</strong></td>
-      <td>${email}</td>
-      <td>${sym}${Number(client.restrainedAmount).toLocaleString('en-US', {minimumFractionDigits: 2})} (${client.currency})</td>
-      <td>${client.date}</td>
-      <td><span class="badge-deadline">${client.deadline || 'Auto-Calculated'}</span></td>
-      <td>
-        <button onclick="deleteClient('${email}')" class="btn-del"><i class="fas fa-trash"></i> Delete</button>
-      </td>
-    `;
-    tbody.appendChild(tr);
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><strong>${client.name}</strong></td>
+        <td>${email}</td>
+        <td>${sym}${Number(client.restrainedAmount).toLocaleString('en-US', {minimumFractionDigits: 2})} (${client.currency})</td>
+        <td>${client.date}</td>
+        <td><span class="badge-deadline">${client.deadline || 'Auto-Calculated'}</span></td>
+        <td>
+          <button onclick="deleteClient('${email}')" class="btn-del"><i class="fas fa-trash"></i> Delete</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    document.getElementById('clientCount').innerText = count;
   });
-
-  document.getElementById('clientCount').innerText = count;
-});
+}
 
 async function saveClient(e) {
   e.preventDefault();
