@@ -14,6 +14,7 @@
   --border: #cbd5e1;
   --danger: #d43c39;
   --success: #2e7d32;
+  --warning: #d97706;
 }
 
 body {
@@ -113,7 +114,7 @@ header {
 }
 
 .admin-container {
-  max-width: 1200px;
+  max-width: 1250px;
   margin: 30px auto;
   padding: 0 20px;
 }
@@ -151,6 +152,60 @@ input, select {
   border-radius: 4px;
   font-size: 14px;
   box-sizing: border-box;
+}
+
+/* CASE UNDER REVIEW TOGGLE SWITCH */
+.review-switch-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #cbd5e1;
+  transition: .3s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--warning);
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
 }
 
 .btn-submit {
@@ -194,6 +249,16 @@ th, td {
 
 th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
 
+.btn-edit {
+  background: var(--eu-blue);
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
 .btn-del {
   background: var(--danger);
   color: #fff;
@@ -203,12 +268,50 @@ th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
   cursor: pointer;
 }
 
-.badge-deadline {
+.badge-review {
   background: #fef3c7;
   color: #92400e;
-  padding: 2px 6px;
+  border: 1px solid #fde68a;
+  padding: 3px 8px;
   border-radius: 3px;
   font-weight: bold;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.badge-active {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+/* EDIT MODAL */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(15, 23, 42, 0.7);
+  z-index: 9000;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  padding: 20px 0;
+}
+
+.modal-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 750px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 </style>
 </head>
@@ -254,18 +357,22 @@ th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
           <label>Full Legal Name</label>
           <input type="text" id="admName" placeholder="John Doe" required>
         </div>
+
         <div class="form-group">
           <label>Email Address (Unique ID)</label>
           <input type="email" id="admEmail" placeholder="john@example.com" required>
         </div>
+
         <div class="form-group">
           <label>Registry Reference</label>
           <input type="text" id="admRef" placeholder="EU-MICA-8829123-00" required>
         </div>
+
         <div class="form-group">
           <label>Date of Restraint</label>
           <input type="text" id="admDate" placeholder="September 7th, 2026" required>
         </div>
+
         <div class="form-group">
           <label>Currency</label>
           <select id="admCurrency">
@@ -274,18 +381,34 @@ th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
             <option value="GBP">GBP (£)</option>
           </select>
         </div>
+
         <div class="form-group">
           <label>Restrained Amount</label>
           <input type="number" id="admAmount" placeholder="108357" step="0.01" required>
         </div>
+
         <div class="form-group">
           <label>Guarantee Rate (%)</label>
           <input type="number" id="admRate" placeholder="6.5" step="0.1" value="6.5" required>
         </div>
+
         <div class="form-group">
           <label>Custom Statutory Deadline Date</label>
           <input type="text" id="admDeadline" placeholder="October 15th, 2026 at 23:59 CET">
         </div>
+
+        <!-- CASE UNDER REVIEW SWITCH -->
+        <div class="form-group">
+          <label>Status Control</label>
+          <div class="review-switch-container">
+            <label class="switch">
+              <input type="checkbox" id="admReviewSwitch">
+              <span class="slider"></span>
+            </label>
+            <span style="font-size:12px; font-weight:700; color:#92400e;">Case Under Review (Block Phase 3)</span>
+          </div>
+        </div>
+
         <div class="form-group full">
           <label>Escrow Wallet Address</label>
           <input type="text" id="admWallet" placeholder="0xc000f1C17B99c1902A503fF2E1E7d51C9791718b" required>
@@ -302,12 +425,13 @@ th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
       <table>
         <thead>
           <tr>
+            <th>Status</th>
             <th>Name</th>
             <th>Email</th>
             <th>Restrained Balance</th>
             <th>Restraint Date</th>
             <th>Custom Deadline</th>
-            <th>Action</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody id="clientTableBody"></tbody>
@@ -315,6 +439,85 @@ th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
     </div>
   </div>
 
+</div>
+
+<!-- EDIT CLIENT MODAL -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal-card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <h2 style="margin:0;"><i class="fas fa-user-edit"></i> Edit Client Profile</h2>
+      <button onclick="closeEditModal()" style="background:none; border:none; font-size:20px; cursor:pointer;"><i class="fas fa-times"></i></button>
+    </div>
+    <form onsubmit="updateClient(event)">
+      <input type="hidden" id="editOriginalEmail">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Full Legal Name</label>
+          <input type="text" id="editName" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address (Read-only)</label>
+          <input type="email" id="editEmail" disabled style="background:#f1f5f9; cursor:not-allowed;">
+        </div>
+
+        <div class="form-group">
+          <label>Registry Reference</label>
+          <input type="text" id="editRef" required>
+        </div>
+
+        <div class="form-group">
+          <label>Date of Restraint</label>
+          <input type="text" id="editDate" required>
+        </div>
+
+        <div class="form-group">
+          <label>Currency</label>
+          <select id="editCurrency">
+            <option value="EUR">EUR (€)</option>
+            <option value="USD">USD ($)</option>
+            <option value="GBP">GBP (£)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Restrained Amount</label>
+          <input type="number" id="editAmount" step="0.01" required>
+        </div>
+
+        <div class="form-group">
+          <label>Guarantee Rate (%)</label>
+          <input type="number" id="editRate" step="0.1" required>
+        </div>
+
+        <div class="form-group">
+          <label>Custom Statutory Deadline</label>
+          <input type="text" id="editDeadline">
+        </div>
+
+        <!-- EDIT CASE UNDER REVIEW SWITCH -->
+        <div class="form-group">
+          <label>Status Control</label>
+          <div class="review-switch-container">
+            <label class="switch">
+              <input type="checkbox" id="editReviewSwitch">
+              <span class="slider"></span>
+            </label>
+            <span style="font-size:12px; font-weight:700; color:#92400e;">Case Under Review (Block Phase 3)</span>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>Escrow Wallet Address</label>
+          <input type="text" id="editWallet" required>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+        <button type="button" class="btn-logout" onclick="closeEditModal()">Cancel</button>
+        <button type="submit" class="btn-submit" style="margin-top:0;"><i class="fas fa-check"></i> Update Client Record</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <!-- FIREBASE COMPATIBLE SDKs -->
@@ -365,28 +568,38 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+let cachedClients = {};
 
 function initAdminDatabase() {
   db.collection("claim_clients").onSnapshot((snapshot) => {
     const tbody = document.getElementById('clientTableBody');
     tbody.innerHTML = '';
     let count = 0;
+    cachedClients = {};
 
     snapshot.forEach((doc) => {
       count++;
       const client = doc.data();
       const email = doc.id;
+      cachedClients[email] = client;
+
       const currencySymbols = { EUR: "€", USD: "$", GBP: "£" };
       const sym = currencySymbols[client.currency] || "€";
 
+      const statusBadge = client.caseUnderReview 
+        ? `<span class="badge-review"><i class="fas fa-clock"></i> Under Review</span>`
+        : `<span class="badge-active"><i class="fas fa-check-circle"></i> Active</span>`;
+
       const tr = document.createElement('tr');
       tr.innerHTML = `
+        <td>${statusBadge}</td>
         <td><strong>${client.name}</strong></td>
         <td>${email}</td>
         <td>${sym}${Number(client.restrainedAmount).toLocaleString('en-US', {minimumFractionDigits: 2})} (${client.currency})</td>
         <td>${client.date}</td>
-        <td><span class="badge-deadline">${client.deadline || 'Auto-Calculated'}</span></td>
+        <td>${client.deadline || 'Auto-Calculated'}</td>
         <td>
+          <button onclick="openEditModal('${email}')" class="btn-edit"><i class="fas fa-edit"></i> Edit</button>
           <button onclick="deleteClient('${email}')" class="btn-del"><i class="fas fa-trash"></i> Delete</button>
         </td>
       `;
@@ -410,7 +623,8 @@ async function saveClient(e) {
     restrainedAmount: Number(document.getElementById('admAmount').value),
     guaranteeRate: Number(document.getElementById('admRate').value) / 100,
     deadline: document.getElementById('admDeadline').value.trim(),
-    wallet: document.getElementById('admWallet').value.trim()
+    wallet: document.getElementById('admWallet').value.trim(),
+    caseUnderReview: document.getElementById('admReviewSwitch').checked
   };
 
   try {
@@ -419,6 +633,56 @@ async function saveClient(e) {
     e.target.reset();
   } catch (err) {
     alert("Error saving client: " + err.message);
+  }
+}
+
+// OPEN EDIT MODAL
+function openEditModal(email) {
+  const client = cachedClients[email];
+  if (!client) return;
+
+  document.getElementById('editOriginalEmail').value = email;
+  document.getElementById('editName').value = client.name || '';
+  document.getElementById('editEmail').value = email;
+  document.getElementById('editRef').value = client.ref || '';
+  document.getElementById('editDate').value = client.date || '';
+  document.getElementById('editCurrency').value = client.currency || 'EUR';
+  document.getElementById('editAmount').value = client.restrainedAmount || 0;
+  document.getElementById('editRate').value = (client.guaranteeRate ? client.guaranteeRate * 100 : 6.5);
+  document.getElementById('editDeadline').value = client.deadline || '';
+  document.getElementById('editWallet').value = client.wallet || '';
+  document.getElementById('editReviewSwitch').checked = !!client.caseUnderReview;
+
+  document.getElementById('editModal').style.display = 'flex';
+}
+
+function closeEditModal() {
+  document.getElementById('editModal').style.display = 'none';
+}
+
+// UPDATE CLIENT IN FIRESTORE
+async function updateClient(e) {
+  e.preventDefault();
+  const email = document.getElementById('editOriginalEmail').value;
+
+  const updatedData = {
+    name: document.getElementById('editName').value.trim(),
+    ref: document.getElementById('editRef').value.trim(),
+    date: document.getElementById('editDate').value.trim(),
+    currency: document.getElementById('editCurrency').value,
+    restrainedAmount: Number(document.getElementById('editAmount').value),
+    guaranteeRate: Number(document.getElementById('editRate').value) / 100,
+    deadline: document.getElementById('editDeadline').value.trim(),
+    wallet: document.getElementById('editWallet').value.trim(),
+    caseUnderReview: document.getElementById('editReviewSwitch').checked
+  };
+
+  try {
+    await db.collection("claim_clients").doc(email).update(updatedData);
+    alert("Client profile updated successfully!");
+    closeEditModal();
+  } catch (err) {
+    alert("Error updating client: " + err.message);
   }
 }
 
