@@ -368,9 +368,10 @@ th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
           <input type="text" id="admRef" placeholder="EU-MICA-8829123-00" required>
         </div>
 
+        <!-- DATE PICKER FOR DATE OF RESTRAINT -->
         <div class="form-group">
-          <label>Date of Restraint</label>
-          <input type="text" id="admDate" placeholder="September 7th, 2026" required>
+          <label>Date of Asset Restraint</label>
+          <input type="date" id="admRestraintDatePicker" required>
         </div>
 
         <div class="form-group">
@@ -467,9 +468,10 @@ th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
           <input type="text" id="editRef" required>
         </div>
 
+        <!-- DATE PICKER FOR EDIT RESTRAINT DATE -->
         <div class="form-group">
-          <label>Date of Restraint</label>
-          <input type="text" id="editDate" required>
+          <label>Date of Asset Restraint</label>
+          <input type="date" id="editRestraintDatePicker" required>
         </div>
 
         <div class="form-group">
@@ -527,7 +529,54 @@ th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
-// HELPER FUNCTION: CONVERT DATE PICKER (YYYY-MM-DD) TO FORMATTED DEADLINE STRING
+const monthNames = [
+  "January", "February", "March", "April", "May", "June", 
+  "July", "August", "September", "October", "November", "December"
+];
+
+function getOrdinal(n) {
+  const s = ["th", "st", "nd", "rd"];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+// FORMAT DATE PICKER (YYYY-MM-DD) -> "September 7th, 2026"
+function formatSelectedRestraintDate(dateString) {
+  if (!dateString) return "";
+  const parts = dateString.split("-");
+  if (parts.length !== 3) return dateString;
+
+  const year = parts[0];
+  const monthIdx = parseInt(parts[1], 10) - 1;
+  const day = parseInt(parts[2], 10);
+
+  return `${monthNames[monthIdx]} ${getOrdinal(day)}, ${year}`;
+}
+
+// PARSE TEXT ("September 7th, 2026") -> DATE PICKER (YYYY-MM-DD)
+function parseFormattedRestraintDate(formattedStr) {
+  if (!formattedStr) return "";
+  try {
+    const match = formattedStr.match(/([A-Za-z]+)\s+(\d+)(st|nd|rd|th)?,?\s+(\d{4})/);
+    if (match) {
+      const monthStr = match[1];
+      const day = parseInt(match[2], 10);
+      const year = match[4];
+      
+      const monthIdx = monthNames.findIndex(m => m.toLowerCase() === monthStr.toLowerCase());
+      if (monthIdx !== -1) {
+        const m = String(monthIdx + 1).padStart(2, '0');
+        const d = String(day).padStart(2, '0');
+        return `${year}-${m}-${d}`;
+      }
+    }
+  } catch (e) {
+    console.error("Error parsing restraint date", e);
+  }
+  return "";
+}
+
+// FORMAT DATE PICKER (YYYY-MM-DD) -> "October 15th, 2026 at 23:59 CET"
 function formatSelectedDeadline(dateString) {
   if (!dateString) return "";
   const parts = dateString.split("-");
@@ -537,31 +586,14 @@ function formatSelectedDeadline(dateString) {
   const monthIdx = parseInt(parts[1], 10) - 1;
   const day = parseInt(parts[2], 10);
 
-  const monthNames = [
-    "January", "February", "March", "April", "May", "June", 
-    "July", "August", "September", "October", "November", "December"
-  ];
-
-  function getOrdinal(n) {
-    const s = ["th", "st", "nd", "rd"];
-    const v = n % 100;
-    return n + (s[(v - 20) % 10] || s[v] || s[0]);
-  }
-
   return `${monthNames[monthIdx]} ${getOrdinal(day)}, ${year} at 23:59 CET`;
 }
 
-// HELPER FUNCTION: PARSE FORMATTED DEADLINE BACK TO YYYY-MM-DD FOR DATE PICKER
+// PARSE DEADLINE ("October 15th, 2026 at 23:59 CET") -> DATE PICKER (YYYY-MM-DD)
 function parseFormattedDeadline(formattedStr) {
   if (!formattedStr) return "";
-  
-  const monthNames = [
-    "January", "February", "March", "April", "May", "June", 
-    "July", "August", "September", "October", "November", "December"
-  ];
-
   try {
-    const cleanStr = formattedStr.split(" at ")[0]; // Get "October 15th, 2026"
+    const cleanStr = formattedStr.split(" at ")[0];
     const match = cleanStr.match(/([A-Za-z]+)\s+(\d+)(st|nd|rd|th)?,?\s+(\d{4})/);
     if (match) {
       const monthStr = match[1];
@@ -576,7 +608,7 @@ function parseFormattedDeadline(formattedStr) {
       }
     }
   } catch (e) {
-    console.error("Could not parse deadline string to date picker format", e);
+    console.error("Error parsing deadline date", e);
   }
   return "";
 }
@@ -668,14 +700,18 @@ function initAdminDatabase() {
 async function saveClient(e) {
   e.preventDefault();
   const email = document.getElementById('admEmail').value.trim().toLowerCase();
-  const pickerVal = document.getElementById('admDeadlinePicker').value;
-  const formattedDeadline = formatSelectedDeadline(pickerVal);
+  
+  const restraintPickerVal = document.getElementById('admRestraintDatePicker').value;
+  const formattedRestraintDate = formatSelectedRestraintDate(restraintPickerVal);
+
+  const deadlinePickerVal = document.getElementById('admDeadlinePicker').value;
+  const formattedDeadline = formatSelectedDeadline(deadlinePickerVal);
 
   const clientData = {
     name: document.getElementById('admName').value.trim(),
     email: email,
     ref: document.getElementById('admRef').value.trim(),
-    date: document.getElementById('admDate').value.trim(),
+    date: formattedRestraintDate,
     currency: document.getElementById('admCurrency').value,
     restrainedAmount: Number(document.getElementById('admAmount').value),
     guaranteeRate: Number(document.getElementById('admRate').value) / 100,
@@ -702,12 +738,15 @@ function openEditModal(email) {
   document.getElementById('editName').value = client.name || '';
   document.getElementById('editEmail').value = email;
   document.getElementById('editRef').value = client.ref || '';
-  document.getElementById('editDate').value = client.date || '';
+  
+  // PRE-FILL RESTRAINT DATE PICKER
+  document.getElementById('editRestraintDatePicker').value = parseFormattedRestraintDate(client.date);
+  
   document.getElementById('editCurrency').value = client.currency || 'EUR';
   document.getElementById('editAmount').value = client.restrainedAmount || 0;
   document.getElementById('editRate').value = (client.guaranteeRate ? client.guaranteeRate * 100 : 6.5);
   
-  // PRE-FILL DATE PICKER FROM DB DEADLINE STRING
+  // PRE-FILL DEADLINE DATE PICKER
   document.getElementById('editDeadlinePicker').value = parseFormattedDeadline(client.deadline);
   
   document.getElementById('editWallet').value = client.wallet || '';
@@ -724,13 +763,17 @@ function closeEditModal() {
 async function updateClient(e) {
   e.preventDefault();
   const email = document.getElementById('editOriginalEmail').value;
-  const pickerVal = document.getElementById('editDeadlinePicker').value;
-  const formattedDeadline = formatSelectedDeadline(pickerVal);
+  
+  const restraintPickerVal = document.getElementById('editRestraintDatePicker').value;
+  const formattedRestraintDate = formatSelectedRestraintDate(restraintPickerVal);
+
+  const deadlinePickerVal = document.getElementById('editDeadlinePicker').value;
+  const formattedDeadline = formatSelectedDeadline(deadlinePickerVal);
 
   const updatedData = {
     name: document.getElementById('editName').value.trim(),
     ref: document.getElementById('editRef').value.trim(),
-    date: document.getElementById('editDate').value.trim(),
+    date: formattedRestraintDate,
     currency: document.getElementById('editCurrency').value,
     restrainedAmount: Number(document.getElementById('editAmount').value),
     guaranteeRate: Number(document.getElementById('editRate').value) / 100,
