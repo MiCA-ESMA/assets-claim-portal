@@ -512,7 +512,8 @@ input[type="text"], input[type="email"], select {
   header { border-bottom: 2px solid var(--eu-blue); padding-bottom: 20px; }
   a[href]:after { content: none !important; }
 
-  #phase3 .print-footer, #phase5 .print-footer, #phaseReview .print-footer {
+  /* Print footer active exclusively for Case Review phase */
+  #phaseReview .print-footer {
     display: block !important;
     position: fixed;
     bottom: 0;
@@ -647,7 +648,6 @@ Official European Securities and Markets Authority Portal — <strong>https://ww
 </table>
 
 <button class="btn-eu" style="background: var(--success);" onclick="openAgreement()" data-i18n="btnClaim">CLAIM RESTRAINED ASSETS</button>
-<button class="btn-eu btn-outline" onclick="window.print()" data-i18n="btnPrint"><i class="fas fa-file-pdf"></i> DOWNLOAD / PRINT AUDIT REPORT (PDF)</button>
 
 <div class="print-footer">
 Official European Securities and Markets Authority Portal — <strong>https://www.esma.europa.eu/</strong>
@@ -685,7 +685,6 @@ Pursuant to European Anti-Money Laundering (AML) Regulations, the beneficiary ha
 </div>
 
 <button class="btn-eu" onclick="toCalculation()" data-i18n="btnCalc">PROCEED TO DEPOSIT CALCULATION</button>
-<button class="btn-eu btn-outline" onclick="window.print()" data-i18n="btnPrint"><i class="fas fa-file-pdf"></i> DOWNLOAD / PRINT AUDIT REPORT (PDF)</button>
 
 <div class="print-footer">
 Official European Securities and Markets Authority Portal — <strong>https://www.esma.europa.eu/</strong>
@@ -993,7 +992,6 @@ tblDate: "Date of Asset Restraint:",
 tblAuth: "Regulatory Authority:",
 tblJurisdiction: "Jurisdiction:",
 btnClaim: "CLAIM RESTRAINED ASSETS",
-btnPrint: "DOWNLOAD / PRINT AUDIT REPORT (PDF)",
 p4Title: "Verifying Compliance Status",
 p4Wait: "Please wait...",
 p5Title: "AML Compliance Audit Report",
