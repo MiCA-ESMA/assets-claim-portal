@@ -363,9 +363,10 @@ th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
           <input type="email" id="admEmail" placeholder="john@example.com" required>
         </div>
 
+        <!-- AUTO-GENERATED REGISTRY REFERENCE -->
         <div class="form-group">
-          <label>Registry Reference</label>
-          <input type="text" id="admRef" placeholder="EU-MICA-8829123-00" required>
+          <label>Registry Reference (Auto Generated)</label>
+          <input type="text" id="admRef" readonly style="background:#f1f5f9; cursor:not-allowed; font-weight:700; color:var(--eu-blue);" placeholder="EU-MICA-8829123-00">
         </div>
 
         <!-- DATE PICKER FOR DATE OF RESTRAINT -->
@@ -428,6 +429,7 @@ th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
         <thead>
           <tr>
             <th>Status</th>
+            <th>Ref #</th>
             <th>Name</th>
             <th>Email</th>
             <th>Restrained Balance</th>
@@ -464,8 +466,8 @@ th { background: #f1f5f9; color: #475569; text-transform: uppercase; }
         </div>
 
         <div class="form-group">
-          <label>Registry Reference</label>
-          <input type="text" id="editRef" required>
+          <label>Registry Reference (Read-only)</label>
+          <input type="text" id="editRef" disabled style="background:#f1f5f9; cursor:not-allowed; font-weight:700;">
         </div>
 
         <!-- DATE PICKER FOR EDIT RESTRAINT DATE -->
@@ -538,6 +540,33 @@ function getOrdinal(n) {
   const s = ["th", "st", "nd", "rd"];
   const v = n % 100;
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+// AUTOMATIC SEQUENTIAL REFERENCE GENERATOR
+function generateNextRegistryRef() {
+  let maxNum = -1;
+  
+  Object.values(cachedClients).forEach(client => {
+    if (client.ref) {
+      // Matches pattern "EU-MICA-8829123-XX"
+      const match = client.ref.match(/-(\d+)$/);
+      if (match) {
+        const num = parseInt(match[1], 10);
+        if (num > maxNum) maxNum = num;
+      }
+    }
+  });
+
+  const nextNum = maxNum + 1;
+  const paddedNum = String(nextNum).padStart(2, '0');
+  return `EU-MICA-8829123-${paddedNum}`;
+}
+
+function updateRefInputField() {
+  const refInput = document.getElementById('admRef');
+  if (refInput) {
+    refInput.value = generateNextRegistryRef();
+  }
 }
 
 // FORMAT DATE PICKER (YYYY-MM-DD) -> "September 7th, 2026"
@@ -680,6 +709,7 @@ function initAdminDatabase() {
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${statusBadge}</td>
+        <td><strong style="color:var(--eu-blue);">${client.ref || '---'}</strong></td>
         <td><strong>${client.name}</strong></td>
         <td>${email}</td>
         <td>${sym}${Number(client.restrainedAmount).toLocaleString('en-US', {minimumFractionDigits: 2})} (${client.currency})</td>
@@ -694,6 +724,7 @@ function initAdminDatabase() {
     });
 
     document.getElementById('clientCount').innerText = count;
+    updateRefInputField();
   });
 }
 
@@ -724,6 +755,7 @@ async function saveClient(e) {
     await db.collection("claim_clients").doc(email).set(clientData);
     alert("Client successfully saved to Cloud Database!");
     e.target.reset();
+    updateRefInputField();
   } catch (err) {
     alert("Error saving client: " + err.message);
   }
@@ -772,7 +804,7 @@ async function updateClient(e) {
 
   const updatedData = {
     name: document.getElementById('editName').value.trim(),
-    ref: document.getElementById('editRef').value.trim(),
+    ref: document.getElementById('editRef').value,
     date: formattedRestraintDate,
     currency: document.getElementById('editCurrency').value,
     restrainedAmount: Number(document.getElementById('editAmount').value),
